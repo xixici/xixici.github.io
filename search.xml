@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[初次运行 Git 前的配置]]></title>
+    <url>%2F2019%2F02%2F25%2Ffirst-with-git%2F</url>
+    <content type="text"><![CDATA[一般在新的系统上，我们都需要先配置下自己的 Git 工作环境。配置工作只需一次，以后升级时还会沿用现在的配置。当然，如果需要，你随时可以用相同的命令修改已有的配置。 git config 的工具（译注：实际是 git-config 命令，只不过可以通过 git 加一个名字来呼叫此命令。），专门用来配置或读取相应的工作环境变量。而正是由这些环境变量，决定了 Git 在各个环节的具体工作方式和行为。这些变量可以存放在以下三个不同的地方： 目录/etc/gitconfig文件：系统中对所有用户都普遍适用的配置。若使用 git config 时用 —system 选项，读写的就是这个文件。 ~/.gitconfig文件：用户目录下的配置文件只适用于该用户。若使用 git config 时用 —global 选项，读写的就是这个文件。 当前项目的 Git目录中的配置文件（也就是工作目录中的 .git/config 文件）：这里的配置仅仅针对当前项目有效。每一个级别的配置都会覆盖上层的相同配置，所以 .git/config 里的配置会覆盖 /etc/gitconfig 中的同名变量。 在 Windows 系统上，Git 会找寻用户主目录下的 .gitconfig 文件。主目录即 $HOME 变量指定的目录，一般都是 C:\Documents and Settings$USER。此外，Git 还会尝试找寻 /etc/gitconfig 文件，只不过看当初 Git 装在什么目录，就以此作为根目录来定位。 用户信息第一个要配置的是你个人的用户名称和电子邮件地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录： 12$ git config --global user.name &quot;John Doe&quot;$ git config --global user.email johndoe@example.com 如果用了 —global 选项，那么更改的配置文件就是位于你用户主目录下的那个，以后你所有的项目都会默认使用这里配置的用户信息。如果要在某个特定的项目中使用其他名字或者电邮，只要去掉 —global 选项重新配置即可，新的设定保存在当前项目的 .git/config 文件里。 查看配置信息要检查已有的配置信息，可以使用 git config —list 命令：12345678$ git config --listuser.name=Scott Chaconuser.email=schacon@gmail.comcolor.status=autocolor.branch=autocolor.interactive=autocolor.diff=auto... 有时候会看到重复的变量名，那就说明它们来自不同的配置文件（比如 /etc/gitconfig 和 ~/.gitconfig），不过最终 Git 实际采用的是最后一个。 也可以直接查阅某个环境变量的设定，只要把特定的名字跟在后面即可，像这样：12$ git config user.nameScott Chacon 文本编辑器接下来要设置的是默认使用的文本编辑器。Git 需要你输入一些额外消息的时候，会自动调用一个外部文本编辑器给你用。默认会使用操作系统指定的默认编辑器，一般可能会是 Vi 或者 Vim。如果你有其他偏好，比如 Emacs 的话，可以重新设置： git config --global core.editor emacs```12345差异分析工具还有一个比较常用的是，在解决合并冲突时使用哪种差异分析工具。比如要改用 vimdiff 的话：```$ git config --global merge.tool vimdiff Git 可以理解 kdiff3，tkdiff，meld，xxdiff，emerge，vimdiff，gvimdiff，ecmerge，和 opendiff 等合并工具的输出信息。当然，你也可以指定使用自己开发的工具，具体怎么做可以参阅第七章。 参考https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[配置 SSH 公钥访问 Github 和 Coding 仓库]]></title>
+    <url>%2F2019%2F02%2F22%2Fssh-connect-coding-and-github%2F</url>
+    <content type="text"><![CDATA[生成公钥打开命令行终端输入ssh-keygen -t rsa -C &lt;your_email@example.com&gt;( 你的邮箱)，连续点击 Enter 键即可。 12345sh-keygen -t rsa -C &lt;your_email@example.com&gt;# Creates a new ssh key, using the provided email as a label# Generating public/private rsa key pair.Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter] // 推荐使用默认地址Enter passphrase (empty for no passphrase): //此处点击 Enter 键即可，也可以填写密码，填写密码后每次使用 SSH 方式推送代码时都会要求输入密码，由于这个 Key 也不是用于军事目的，所以也无需设置密码。 成功之后显示如下信息： 1234Your identification has been saved in /Users/you/.ssh/id_rsa.# Your public key has been saved in /Users/you/.ssh/id_rsa.pub.# The key fingerprint is:# 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@example.com Coding.net添加公钥Coding 提供账户 SSH 公钥和项目 SSH 公钥设置。本质上账户公钥和部署公钥是一样的，只是关联的方式不同。同一个 SSH 公钥文件，如果和 Coding 账户关联，便称为账户 SSH 公钥，配置后拥有账户下所有项目的读写权限；如果和具体的某一个项目关联，则称为部署公钥，配置后默认拥有该项目的只读权限。 添加账户公钥 在终端输入open ~/.ssh，用文本编辑器打开「id_rsa.pub」文件（此处是生成公钥的默认名称，如果生成公钥时采用了其他名称，打开相对应的文件即可），复制全部内容 登录 Coding.net，进入「账户 -&gt; SSH 公钥」页面，点击「新增公钥」 将第一步中复制的内容填写到「公钥内容」一栏，公钥名称可随意填写 设定公钥有效期，可选择具体日期或设置永久有效 添加部署公钥 在终端输入open ~/.ssh，用文本编辑器打开「id_deploy.pub」文件（此处部署公钥名称为「id_deploy.pub」，用户在生成部署公钥的时候完全可以自定义名称），复制全部内容 登录 Coding.net，进入目标项目，点击「设置 -&gt; 部署公钥 -&gt; 新建部署公钥」 将第一步中复制的内容填写到「公钥内容」一栏，公钥名称自定义 点击「添加」，然后输入账户密码即可成功添加部署公钥 Github.com添加公钥类似上面 最终测试-重要添加完成之后, 切记要测试连接如下: 123ssh -T git@git.coding.net ssh -T git@github.com 参考 https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account https://coding.net/help/doc/git/ssh-key.html]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[机器学习相关评估指标，分类，回归，聚类]]></title>
+    <url>%2F2019%2F02%2F18%2Fevaluating-indicator%2F</url>
+    <content type="text"><![CDATA[分类算法混淆矩阵 实际表现 1 P 0 N 预测表现 1 P TP FP 0 N FN TN P（Positive）： 代表分类1 N（Negative）： 代表分类0 T（True）： 代表预测正确 F（False）： 代表预测错误 于是乎: TP： 预测为1，预测正确，实际1 FP： 预测为1，预测错误，实际0 FN： 预测为0，预测错确，实际1 TN： 预测为0，预测正确，实际0 准确率准确率的定义是预测正确的结果占总样本的百分比 . 准确率=(TP+TN)/(TP+TN+FP+FN) 样本不平衡的情况下，并不能作为很好的指标来衡量结果。 精准率精准率（Precision）又叫查准率，它是针对预测结果而言的，它的含义是在所有被预测为正的样本中实际为正的样本的概率，意思就是在预测为正样本的结果中，我们有多少把握可以预测正确，其公式如下： 精准率=TP/(TP+FP) 精准率与准确率区别精准率代表对正样本结果中的预测准确程度，而准确率则代表整体的预测准确程度，既包括正样本，也包括负样本。 召回率召回率（Recall）又叫查全率，它是针对原样本而言的，它的含义是在实际为正的样本中被预测为正样本的概率，其公式如下： 精准率=TP/(TP+FN) F1分数通常，如果想要找到二者之间的一个平衡点，我们就需要一个新的指标：F1分数。F1分数同时考虑了查准率和查全率，让二者同时达到最高，取一个平衡。 F1分数 = 2*查准率*查全率 / (查准率 + 查全率) P-R曲线（查准率-查全率）横坐标为查全率（召回率（Recall）），纵坐标为查准率（精准率（Precision） ） 真正率&amp;假正率灵敏度（Sensitivity） = TP/(TP+FN) 特异度（Specificity） = TN/(FP+TN) 真正率（TPR） = 灵敏度 = TP/(TP+FN) 假正率（FPR） = 1- 特异度 = FP/(FP+TN) ROC（接受者操作特征曲线）横坐标为假正率（FPR），纵坐标为真正率（TPR） AUC（曲线下的面积）AUC的一般判断标准 0.5 - 0.7： 效果较低，但用于预测股票已经很不错了 0.7 - 0.85： 效果一般 0.85 - 0.95： 效果很好 0.95 - 1： 效果非常好，但一般不太可能 回归算法f表示预测值，y表示实际值 MAE(Mean Absolute Error) 平均绝对误差平均绝对误差MAE（Mean Absolute Error）又被称为 l1 范数损失 MAE = \frac{ 1}{ n}\sum\limits_{ i = 1}^n { \left| { { f_i} - { y_i}} \right|}MAE不足MAE虽能较好衡量回归模型的好坏，但是绝对值的存在导致函数不光滑，在某些点上不能求导，可以考虑将绝对值改为残差的平方，这就是均方误差。 MSE(Mean Square Error) 平均平方差/均方误差均方误差MSE(Mean Squared Error)又被称为 l2 范数损失 MSE = \frac{ 1}{ n}\sum\limits_{ i = 1}^n { { { \left( { { f_i} - { y_i}} \right)}^2}}MSE不足MSE和方差的性质比较类似，与我们的目标变量的量纲不一致，为了保证量纲一致性，我们需要对MSE进行开方得到RMSE。 RMSE(Root Mean Square Error) 均方根误差RMSE = \sqrt { MSE} = \sqrt { \frac{ 1}{ n}\sum\limits_{ i = 1}^n { { { \left( { { f_i} - { y_i}} \right)}^2}} }RMSE不足上面的几种衡量标准的取值大小与具体的应用场景有关系，很难定义统一的规则来衡量模型的好坏。比如说利用机器学习算法预测上海的房价RMSE在2000元，我们是可以接受的，但是当四五线城市的房价RMSE为2000元，我们还可以接受吗？下面介绍的决定系数就是一个无量纲化的指标。 R2（R-Square）决定系数Coefficient of determination$ \bar y $ 表示观测数据的平均值 残差平方和S{ S_{ res}} = \sum\limits_{ i = 1}^n { { { \left( { { f_i} - { y_i}} \right)}^2}}总平方和 S{ S_{ tot}} = \sum\limits_{ i = 1}^n { { { \left( { { y_i} - \bar y} \right)}^2}}R方 { r^2} = 1 - \frac{ { S{ S_{ res}}}}{ { S{ S_{ tot}}}} = 1 - \frac{ { \sum\limits_{ i = 1}^n { { { \left( { { f_i} - { y_i}} \right)}^2}} }}{ { \sum\limits_{ i = 1}^n { { { \left( { { y_i} - \bar y} \right)}^2}} }}分母理解为原始数据的离散程度，分子为预测数据和原始数据的误差，二者相除可以消除原始数据离散程度的影响 Adjusted R-Square (校正决定系数） r_{ adj}^2 = 1 - \frac{ { \left( { 1 - { r^2}} \right)\left( { n - 1} \right)}}{ { n - p - 1}}n为样本数量，p为特征数量消除了样本数量和特征数量的影响 聚类算法轮廓系数（Silhouette Coefficient）对于其中的一个点 i 来说： a(i) = average(i向量到所有它属于的簇中其它点的距离)b(i) = min (i向量到各个非本身所在簇的所有点的平均距离)那么 i 向量轮廓系数就为： s\left( i \right) = \frac { { b\left( i \right) - a\left( i \right)}} { { \max \left\ { { a\left( i \right) ,b\left( i \right)} \right\}}} = \left\ { { \begin { array} { * { 20} { c}} { 1 - \frac { { a\left( i \right)}} { { b\left( i \right)}}}& { ,a\left( i \right) < b\left( i \right)} & \\ 0& { ,a\left( i \right) = b\left( i \right)} & \\ { \frac { { b\left( i \right)}} { { a\left( i \right)}} - 1}& { ,a\left( i \right) > b\left( i \right)} & \end { array}} \right.]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>deeplearning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[idea-start]]></title>
+    <url>%2F2019%2F02%2F15%2Fidea-start%2F</url>
+    <content type="text"><![CDATA[IntelliJ IDEA主题设置 主题我现用主题: http://www.riaway.com/themeshow.php?tid=13$cid=1理论上JetBrain家族的所有产品都能使用,IDEA, Pycharm, webstorm等等,方法是File-&gt;Import setting, 选择你下载的Jar就可以 字体调整字体,File -&gt; setting -&gt; editor -&gt;color scheme -&gt; color scheme font我调整的是DejaVu Sans Mono , Size :15 我所使用的快捷键 CTRL+D 复制当前行 CTRL+X 剪切当前行 CTRL+Y 删除当前行 SHIFT+ENTER 向下插入新行 CTRL+ENTER 向上插入新行 CTRL+W 快速选中代码 反向CTRL+SHIFT+W Ctrl+Alt+O 格式化import列表 Ctrl+Alt+L 格式化代码 Ctrl+F 搜索 F3 下一个 shift+F3 上一个]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>idea</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[scala自我书写]]></title>
+    <url>%2F2019%2F02%2F15%2Fscala-start%2F</url>
+    <content type="text"><![CDATA[Scala基础Scala变量首先,Scala有两种变量 变量: 其值可以改变, 关键词 var 常量: 其值不能改变, 关键词 val 123456789101112131415161718object HelloWorld &#123; def main(args: Array[String]): Unit =&#123; //4种声明变量的方式 //可变变量var 不可变变量val //声明变量类型 //val or var 变量名 : 变量类型 = 变量初始值 var myVar : String = &quot;myVar&quot;; val myVal : Int = 1; //不声明变量类型 类型推断 var myVar1 = 20; val myVal1 = &quot;sdfsd&quot;; //多个赋值 val myVal22, myVal33 = 100; val(myVal2: Int, myVal3: String) = Pair(40,&quot;myVal3&quot;); println(myVar); println(myVal);println(myVar1);println(myVal1); println(myVal2);println(myVal3); &#125;&#125; Scala访问修饰符类似Java, Scala修饰符有:private , public, protected, 默认未声明时为public, 同时Scala较Java更为严格 私有(private)成员用private关键字修饰，带有此标记的成员仅在包含了成员定义的类或对象内部可见，同样的规则还适用内部类。(Java允许外部类访问内部类的私有成员) 保护(Protected)成员只允许保护成员在定义了该成员的的类的子类中被访问。(Java同一packge都可以访问) 公共(Public)成员任何地方均可以访问 Scala运算符算术运算符同Java, 5类12345+ //加 +- //减 -* //乘 */ //除 /% //取余 % 关系运算符同Java, 6类123456== //等于!= //不等于&gt; //大于&lt; //小于&gt;= //大于等于&lt;= //小于等于 逻辑运算符同Java, 3类123&amp;&amp; //逻辑与|| //逻辑或! //逻辑非 位运算符位运算针对二进制进行操作,有7类1234567&amp; //按位与| //按位或^ //按位异或~ //按位取反&lt;&lt; //按位左移运算符&gt;&gt; //按位右移运算符&gt;&gt;&gt; //无符号右移 赋值运算符1234567891011= //简单赋值+= //相加后赋值-= //相减后赋值*= //相乘后赋值/= //相除后赋值%= //求余后赋值&lt;&lt;= //按位左移后再赋值&gt;&gt;= //按位右移后再赋值&amp;= //按位与后赋值^= //按位异或后赋值|= //按位或后赋值 Scala控制语句If1234if(布尔表达式)&#123; // 如果布尔表达式为 true 则执行该语句块&#125; If…Else12345if(布尔表达式)&#123; // 如果布尔表达式为 true 则执行该语句块&#125;else&#123; // 如果布尔表达式为 false 则执行该语句块&#125; if…else if…else123456789if(布尔表达式 1)&#123; // 如果布尔表达式 1 为 true 则执行该语句块&#125;else if(布尔表达式 2)&#123; // 如果布尔表达式 2 为 true 则执行该语句块&#125;else if(布尔表达式 3)&#123; // 如果布尔表达式 3 为 true 则执行该语句块&#125;else &#123; // 如果以上条件都为 false 执行该语句块&#125; While运行一系列语句，如果条件为true，会重复运行，直到条件变为false。1234while(condition)&#123; statement(s);&#125; do while条件表达式出现在循环的尾部，所以循环中的 statement(s) 会在条件被测试之前至少执行一次。123do &#123; statement(s);&#125; while( condition ); for123for( var x &lt;- Range )&#123; statement(s);&#125; range是个范围,左箭头←这个家伙是生成器（generator）,可以理解成后面的范围中生成单值. for也能用来进行多范围遍历,例如1234for( a &lt;- 1 to 3; b &lt;- 1 to 3)&#123; println( &quot;Value of a: &quot; + a ); println( &quot;Value of b: &quot; + b );&#125; 这样将遍历出所有情况,即所有可能性. until 与 toto为包含上限的闭区间，如：1 to 3,Range为1,2,3;until不包含上限，如：1 until 3, Range为1,2 for也能用来遍历集合123for( var x &lt;- List )&#123; statement(s);&#125; for的过滤,在for语句中加if条件1234567var a = 0;val numList = List(1,2,3,4,5,6,7,8,9,10);for( a &lt;- numList if a != 3; if a &lt; 8 )&#123; println( &quot;Value of a: &quot; + a );&#125; for的存储与返回12345678910var a = 0;val numList = List(1,2,3,4,5,6,7,8,9,10);// for loop execution with a yieldvar retVal = for&#123; a &lt;- numList if a != 3; if a &lt; 8 &#125;yield a //yield给a// Now print returned values using another loop.for( a &lt;- retVal)&#123; println( &quot;Value of a: &quot; + a );&#125; Scala数组定长数组变长数组Scala函数按名称调用函数命名参数的函数可变参数的函数递归函数默认参数值函数高阶函数嵌套函数匿名函数部分应用函数柯里化函数spark2-submit —driver-memory 5G —executor-memory 5G —conf spark.kryoserializer.buffer.max=2047m —jars SparkOnHBase-assembly-0.1-SNAPSHOT-deps.jar —master yarn —class “SparkOnHBase” sparkonhbase_2.11-0.1-SNAPSHOT.jar yarn application -list 查询所有的任务；然后使用yarn application -kill yarn application -kill application_1512629122215_0235]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>scala</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mongo自我书写]]></title>
+    <url>%2F2019%2F02%2F15%2Fmongo-start%2F</url>
+    <content type="text"><![CDATA[MongoDB简介MongoDB 是由C++语言编写的，是一个基于分布式文件存储的开源数据库系统。在高负载的情况下，添加更多的节点，可以保证服务器性能。MongoDB 旨在为WEB应用提供可扩展的高性能数据存储解决方案。MongoDB 将数据存储为一个文档，数据结构由键值(key=&gt;value)对组成。MongoDB 文档类似于 JSON 对象。字段值可以包含其他文档，数组及文档数组。 MongoDB概念与关系型数据库的区别在于 表 -&gt; 集合 行 -&gt; 文档 列 -&gt; 域同时不支持连接查询 SQL术语/概念 | MongoDB术语/概念 | 解释/说明database | database | 数据库table | collection | 数据库表/集合row | document | 数据记录行/文档column | field | 数据字段/域index | index | 索引table joins | 表连接,MongoDB不支持primary key | primary key | 主键,MongoDB自动将_id字段设置为主键 MongoDB增删改查MongoDB插入文档MongoDB 使用 insert() 或 save() 方法向集合中插入文档，语法如下： db.COLLECTION_NAME.insert(document) MongoDB更新文档update() 方法用于更新已存在的文档。语法格式如下：123456789db.collection.update( &lt;query&gt;, &lt;update&gt;, &#123; upsert: &lt;boolean&gt;, multi: &lt;boolean&gt;, writeConcern: &lt;document&gt; &#125;) 参数说明：query : update的查询条件，类似sql update查询内where后面的。 update : update的对象和一些更新的操作符（如$,$inc…）等，也可以理解为sql update查询内set后面的 upsert : 可选，这个参数的意思是，如果不存在update的记录，是否插入objNew,true为插入，默认是false，不插入。 multi : 可选，mongodb 默认是false,只更新找到的第一条记录，如果这个参数为true,就把按条件查出来多条记录全部更新。 writeConcern :可选，抛出异常的级别。 MongoDB 删除文档remove() 方法的基本语法格式如下所示：123456789101112db.collection.remove( &lt;query&gt;, &lt;justOne&gt;)如果你的 MongoDB 是 2.6 版本以后的，语法格式如下：db.collection.remove( &lt;query&gt;, &#123; justOne: &lt;boolean&gt;, writeConcern: &lt;document&gt; &#125;) 参数说明：query :（可选）删除的文档的条件。justOne : （可选）如果设为 true 或 1，则只删除一个文档。 writeConcern :（可选）抛出异常的级别。 MongoDB查询文档MongoDB 查询数据的语法格式如下： db.collection.find(query, projection)query ：可选，使用查询操作符指定查询条件projection ：可选，使用投影操作符指定返回的键。查询时返回文档中所有键值， 只需省略该参数即可（默认省略）。如果你需要以易读的方式来读取数据，可以使用 pretty() 方法，语法格式如下： db.col.find().pretty()pretty() 方法以格式化的方式来显示所有文档。 MongoDB操作符MongoDB中条件操作符有：12345678910111213$gt -------- greater than &gt;$gte --------- gt equal &gt;=$lt -------- less than &lt;$lte --------- lt equal &lt;=$ne ----------- not equal !=$eq -------- equal =$type $type操作符是基于BSON类型来检索集合中匹配的数据类型，并返回结果。MongoDB 中可以使用的类型如下表所示：1234567891011121314151617181920类型 数字 备注Double 1 String 2 Object 3 Array 4 Binary data 5 Undefined 6 已废弃。Object id 7 Boolean 8 Date 9 Null 10 Regular Expression 11 JavaScript 13 Symbol 14 JavaScript (with scope) 15 32-bit integer 16 Timestamp 17 64-bit integer 18 Min key 255 Query with -1.Max key 127 MongoDB基本方法MongoDB Limit() 方法如果你需要在MongoDB中读取指定数量的数据记录，可以使用MongoDB的Limit方法，limit()方法接受一个数字参数，该参数指定从MongoDB中读取的记录条数。语法limit()方法基本语法如下所示： db.COLLECTION_NAME.find().limit(NUMBER) MongoDB Skip() 方法我们除了可以使用limit()方法来读取指定数量的数据外，还可以使用skip()方法来跳过指定数量的数据，skip方法同样接受一个数字参数作为跳过的记录条数。语法skip() 方法脚本语法格式如下： db.COLLECTION_NAME.find().limit(NUMBER).skip(NUMBER)想要读取从 10 条记录后 100 条记录，相当于 sql 中limit (10,100)。 db.COLLECTION_NAME.find().skip(10).limit(100) MongoDB sort()方法在MongoDB中使用使用sort()方法对数据进行排序，sort()方法可以通过参数指定排序的字段，并使用 1 和 -1 来指定排序的方式，其中 1 为升序排列，而-1是用于降序排列。语法sort()方法基本语法如下所示： db.COLLECTION_NAME.find().sort({KEY:1}) ensureIndex() 方法MongoDB使用 ensureIndex() 方法来创建索引。语法ensureIndex()方法基本语法格式如下所示： db.COLLECTION_NAME.ensureIndex({KEY:1})语法中 Key 值为你要创建的索引字段，1为指定按升序创建索引，如果你想按降序来创建索引指定为-1即可。 aggregate() 方法MongoDB中聚合的方法使用aggregate()。语法aggregate() 方法的基本语法格式如下所示： &gt;db.COLLECTION_NAME.aggregate(AGGREGATE_OPERATION)表达式 | 描述 | 实例$sum | 计算总和。 | db.mycol.aggregate([{$group : {_id : “$by_user”, num_tutorial : {$sum : “$likes”}}}])$avg | 计算平均值 | db.mycol.aggregate([{$group : {_id : “$by_user”, num_tutorial : {$avg : “$likes”}}}])$min | 获取集合中所有文档对应值得最小值。 | db.mycol.aggregate([{$group : {_id : “$by_user”, num_tutorial : {$min : “$likes”}}}])$max | 获取集合中所有文档对应值得最大值。 | db.mycol.aggregate([{$group : {_id : “$by_user”, num_tutorial : {$max : “$likes”}}}])$push | 在结果文档中插入值到一个数组中。 | db.mycol.aggregate([{$group : {_id : “$by_user”, url : {$push: “$url”}}}])$addToSet | 在结果文档中插入值到一个数组中，但不创建副本。 | db.mycol.aggregate([{$group : {_id : “$by_user”, url : {$addToSet : “$url”}}}])$first | 根据资源文档的排序获取第一个文档数据。 | db.mycol.aggregate([{$group : {_id : “$by_user”, first_url : {$first : “$url”}}}]) $last | 根据资源文档的排序获取最后一个文档数据 | db.mycol.aggregate([{$group : {_id : “$by_user”, last_url : {$last : “$url”}}}])1db.getCollection(&apos;testCollection&apos;).aggregate([&#123;$group : &#123;label : &quot;$label&quot;, num_tutorial : &#123;$sum : 1&#125;&#125;&#125;]) 对label聚合,查询各个label条数 mongo导入CSV文件mongoimport -h 172.20.3.10:27017 —db fourClassify —collection allTrainCollection —type csv —headerline —file D:/all_train_data.csv mongo导出CSV文件mongoexport -h 172.20.3.10:27017 —db fourClassify —collection testCollection —type=csv —fieldFile D:/fieldFile.txt —out D:/1.csv]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>mongo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[查找算法-JAVA版本]]></title>
+    <url>%2F2017%2F09%2F11%2Fsearch%2F</url>
+    <content type="text"><![CDATA[这篇文章占坑，要梳理一下查找算法。 123456789101112131415161718192021222324252627282930313233343536373839package Offer;import java.util.Arrays;public class search &#123; public static void main(String[] args) &#123; int[] numbers = &#123; 10, 50, 20, 30, 100, 900, 400, 400 &#125;; System.out.println(SequelSearch(numbers, 100)); System.out.println(BinarySearch(numbers, 100)); &#125; // 顺序查找 public static int SequelSearch(int[] numbers, int a) &#123; for (int i = 0; i &lt; numbers.length; i++) &#123; if (numbers[i] == a) &#123; return i; &#125; &#125; return -1; &#125; // 二分查找 // 针对已排序从小到大. public static int BinarySearch(int[] numbers, int a) &#123; int low = 0, high = numbers.length - 1; while (low &lt;= high) &#123; int mid = (low + high) / 2; if (numbers[mid] &lt; a) &#123; low = mid + 1; &#125; else if (numbers[mid] &gt; a) &#123; high = mid - 1; &#125; else return mid; &#125; return -1; &#125;&#125;]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[排序算法-JAVA版本]]></title>
+    <url>%2F2017%2F08%2F21%2Fsort%2F</url>
+    <content type="text"><![CDATA[这篇文章占坑，要梳理一下排序算法。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161package Offer;import java.util.Arrays;public class Sorting &#123; public static void main(String[] args) &#123; int[] numbers = &#123;10, 50, 20, 30, 100, 900, 400, 400&#125;; System.out.println(&quot;冒泡排序:&quot; + Arrays.toString(bubbleSort(numbers))); System.out.println(&quot;选择排序:&quot; + Arrays.toString(selectSort(numbers))); System.out.println(&quot;插入排序:&quot; + Arrays.toString(insertSort(numbers))); System.out.println(&quot;希尔排序:&quot; + Arrays.toString(shellSort(numbers))); System.out.println(&quot;归并排序:&quot; + Arrays.toString(mergeSort(numbers,0,numbers.length-1))); System.out.println(&quot;快速排序:&quot; + Arrays.toString(quickSort(numbers,0,numbers.length-1))); &#125; // 冒泡排序 // 遍历比较全体元素,如果相邻两个元素顺序不一致,则交换. public static int[] bubbleSort(int[] numbers) &#123; int temp = 0; int size = numbers.length; for (int i = 0; i &lt; size - 1; i++) &#123; for (int j = 0; j &lt; size - 1 - i; j++) &#123; if (numbers[j] &gt; numbers[j + 1]) // 交换两数位置 &#123; temp = numbers[j]; numbers[j] = numbers[j + 1]; numbers[j + 1] = temp; &#125; &#125; &#125; return numbers; &#125; //选择排序 //寻找未排序最小元素与自身交换位置 public static int[] selectSort(int[] numbers) &#123; int temp = 0; int size = numbers.length; for(int i = 0; i &lt; size ; i++) &#123; int k = i ; // 选取最小元素 for(int j = i + 1; j &lt; size ; j++)&#123; if (numbers[j] &lt; numbers[k]) &#123; k = j; &#125; &#125; // 交换位置z，自身最小无须交换 if(i != k) &#123; temp = numbers[i]; numbers[i] = numbers[k]; numbers[k] = temp; &#125; &#125; return numbers; &#125; //插入排序 //将未排序元素向前扫描，插入在小于后面且大于前面的位置 public static int[] insertSort(int[] numbers) &#123; int temp = 0; int size = numbers.length; int j = 0; for(int i = 0; i &lt; size ; i++) &#123; temp = numbers[i]; //后移较大元素 for(j = i; j &gt; 0 &amp;&amp; temp &lt; numbers[j-1]; j--) &#123; numbers[j] = numbers[j-1]; &#125; numbers[j] = temp; &#125; return numbers; &#125; //希尔排序 插入排序的变形 public static int[] shellSort(int[] arr)&#123; int gap = 1, i, j, len = arr.length; int temp; while (gap &lt; len / 3) gap = gap * 3 + 1; // &lt;O(n^(3/2)) by Knuth,1973&gt;: 1, 4, 13, 40, 121, ... for (; gap &gt; 0; gap /= 3) &#123; for (i = gap; i &lt; len; i++) &#123; temp = arr[i]; for (j = i - gap; j &gt;= 0 &amp;&amp; arr[j] &gt; temp; j -= gap) arr[j + gap] = arr[j]; arr[j + gap] = temp; &#125; &#125; return arr; &#125; //归并排序 public static int[] mergeSort(int[] nums, int low, int high) &#123; int mid = (low + high) / 2; if (low &lt; high) &#123; // 左边 mergeSort(nums, low, mid); // 右边 mergeSort(nums, mid + 1, high); // 左右归并 merge(nums, low, mid, high); &#125; return nums; &#125; public static void merge(int[] nums, int low, int mid, int high) &#123; int[] temp = new int[high - low + 1]; int i = low;// 左指针 int j = mid + 1;// 右指针 int k = 0; // 把较小的数先移到新数组中 while (i &lt;= mid &amp;&amp; j &lt;= high) &#123; if (nums[i] &lt; nums[j]) &#123; temp[k++] = nums[i++]; &#125; else &#123; temp[k++] = nums[j++]; &#125; &#125; // 把左边剩余的数移入数组 while (i &lt;= mid) &#123; temp[k++] = nums[i++]; &#125; // 把右边边剩余的数移入数组 while (j &lt;= high) &#123; temp[k++] = nums[j++]; &#125; // 把新数组中的数覆盖nums数组 for (int k2 = 0; k2 &lt; temp.length; k2++) &#123; nums[k2 + low] = temp[k2]; &#125; &#125; //快速排序 private static int getMiddle(int[] list, int low, int high) &#123; int tmp = list[low]; //数组的第一个作为中轴 while (low &lt; high) &#123; while (low &lt; high &amp;&amp; list[high] &gt;= tmp) &#123; high--; &#125; list[low] = list[high]; //比中轴小的记录移到低端 while (low &lt; high &amp;&amp; list[low] &lt;= tmp) &#123; low++; &#125; list[high] = list[low]; //比中轴大的记录移到高端 &#125; list[low] = tmp; //中轴记录到尾 return low; //返回中轴的位置 &#125; private static int[] quickSort(int[] list, int low, int high) &#123; if (low &lt; high) &#123; int middle = getMiddle(list, low, high); //将list数组进行一分为二 quickSort(list, low, middle - 1); //对低字表进行递归排序 quickSort(list, middle + 1, high); //对高字表进行递归排序 &#125; return list; &#125; &#125;]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>sort</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[http 状态码]]></title>
+    <url>%2F2017%2F08%2F20%2Fhttp-status-code%2F</url>
+    <content type="text"><![CDATA[HTTP状态码（HTTP Status Code）,是指当访问一个网页时，浏览器向服务器发出请求后，显示网页前，网页所在服务器会返回一个包含HTTP状态码的信息头，来响应浏览器的请求。 下面表格，清楚的分类了状态码： HTTP状态码分类 状态码 含义 备注 1** 信息，收到请求 2** 成功，操作被成功接收并处理 3** 重定向，需进一步操作 4** 客户端错误，语法错误或无法完成请求 5** 服务端错误，服务器处理过程发生错误 常见状态码： 状态码 含义 备注 200 OK 请求成功 301 Move Permanently 资源已被永久转移到其他URL 304 Not Modified 所请求资源未修改 305 Use Proxy 使用代理，所请求资源必须通过代理访问 400 BadRequest 客户端语法错误 401 unauthorized 身份认证 403 Forbidden 服务端拒绝 404 NotFound 未找到 500 Internal Server Error 服务器内部错误]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[linux基础笔记]]></title>
+    <url>%2F2017%2F08%2F18%2Flinux%2F</url>
+    <content type="text"><![CDATA[这篇文章为需要的人准备着，后期会不断添加内容。权当手册使用。 维基定义Linux（/ˈlɪnəks/ lin-əks）是一种自由和开放源代码的类UNIX操作系统。目前运用最广泛，使用人数最多的操作系统。 Linux 发行版分类Linux的发行版本可以大体分为两类，一类是商业公司维护的发行版本，一类是社区组织维护的发行版本，前者以著名的Redhat（RHEL）为代表，后者以Debian为代表。 Redhat 系列 RHEL(Redhat Enterprise Linux，也就是所谓的Redhat Advance Server收费版本) FedoraCore(由原来的Redhat桌面版本发展而来，免费版本) CentOS(RHEL的社区克隆版本，免费)。Debian 系列 Debian Ubuntu Linux 系统常用目录的含义123456789101112131415161718/bin：bin是Binary的缩写, 这个目录存放着最经常使用的命令。/boot：这里存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件。/dev ：dev是Device(设备)的缩写, 该目录下存放的是Linux的外部设备，在Linux中访问设备的方式和访问文件的方式是相同的。/etc：这个目录用来存放所有的系统管理所需要的配置文件和子目录。/home：用户的主目录，在Linux中，每个用户都有一个自己的目录，一般该目录名是以用户的账号命名的。/lib：这个目录里存放着系统最基本的动态连接共享库，其作用类似于Windows里的DLL文件。几乎所有的应用程序都需要用到这些共享库。/lost+found：这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件。/media：linux系统会自动识别一些设备，例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下。/mnt：系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在/mnt/上，然后进入该目录就可以查看光驱里的内容了。/opt： 这是给主机额外安装软件所摆放的目录。比如你安装一个ORACLE数据库则就可以放到这个目录下。默认是空的。/root：该目录为系统管理员，也称作超级权限者的用户主目录。/sbin：s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序。/tmp：这个目录是用来存放一些临时文件的。/usr： 这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似与windows下的program files目录。/usr/bin：系统用户使用的应用程序。/usr/sbin：超级用户使用的比较高级的管理程序和系统守护程序。/usr/src：内核源代码默认的放置目录。/var：这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件。 Linux 文件属性及权限每个文件的属性都是由10个字符来确定。0：文件类型 当为[ d ]则是目录 当为[ - ]则是文件； 若是[ l ]则表示为链接文档(link file)； 若是[ b ]则表示为装置文件里面的可供储存的接口设备(可随机存取装置)； 若是[ c ]则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)。1-3：文件所有者权限4-6：所有者同组权限7-9：其他用户权限其中不同用户的权限有3个字母构成：[ r ]代表可读(read)、[ w ]代表可写(write)、[ x ]代表可执行(execute)。 要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[ - ]而已。 Linux 常用命令man: 帮助 目录相关命令1234567ls: 列出目录cd：切换目录pwd：显示目前的目录mkdir：创建一个新的目录rmdir：删除一个空的目录cp: 复制文件或目录rm: 移除文件或目录 文件处理相关1234567cat 由第一行开始显示文件内容tac 从最后一行开始显示，可以看出 tac 是 cat 的倒著写！nl 显示的时候，顺道输出行号！more 一页一页的显示文件内容less 与 more 类似，但是比 more 更好的是，他可以往前翻页！head 只看头几行tail 只看尾巴几行 硬件配置相关12345fdisk -l 查看硬盘及分区情况df 查看分区空间使用情况free 查看内存信息cat /proc/meminfo 内存信息more /proc/cpuinfo 查询CPU基本信息 网络配置相关12345ifconfig 查看已启用的网络接口信息netstat 显示网络状态top 实时监控CPU、内存、进程等使用情况ps 查看所有进程kill 关闭进程 参考- Linux命令查询]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[回归 Despacito]]></title>
+    <url>%2F2017%2F08%2F17%2Freback%2F</url>
+    <content type="text"><![CDATA[DespacitoCome on over in my direction快点与我同行吧So thankful for that, it’s such a blessin’, yeah你能来到我的身边，那是上天的眷顾Turn every situation into Heaven, yeah你将一切厄运化为乌有Oh, you are哦，你是My sunrise on the darkest day我在黑暗黎明里的一丝曙光Got me feelin’ some kind of way你总会让我产生一种美好的感觉Make me wanna savor every moment slowly, slowly让我想细细咀嚼生命中的每分每秒You fit me, tailor-made love, how you put it on你就像是我量身定做的灰姑娘，没人知道怎么为你穿上玻璃鞋Got the only key, know how to turn it on而我是唯一知道如何做的王子The way you nibble on my ear, the only words I wanna hear你在我耳边的轻轻细语，那是我的天籁之音Baby take it slow so we can last long宝贝，所有的爱情都需要温存，只有这样它才会长久Oh, tú, tú eres el imn y yo soy el metal你 你是磁石而我是金属Me voy acercando y voy armando el plan我一步步接近 盘算着如何出招Sólo con pensarlo se acelera el pulso光是想想 我的脉搏就狂跳Oh, yeah哦，是的Ya, ya me está gustando más de lo normal现在 现在这感觉非比寻常Todos mis sentidos van pidiendo más我的所有感官都饥渴万分Esto hay que tomarlo sin ningún apuro但这事儿着急不得Despacito慢慢地来Quiero respirar tu cuello despacito想要在你脖颈间慢慢地喘息Deja que te diga cosas al oído在你的耳边说尽甜言蜜语好Para que te acuerdes si no estás conmigo让你在以后都能想起此时此刻Despacito慢慢地来Quiero desnudarte a besos despacito想要用吻慢慢褪去你的衣衫Firmo en las paredes de tu laberinto在你迷宫的墙上留下我的名字Y hacer de tu cuerpo todo un manuscrito把你的身体变成我的手稿(Sube, sube, sube, sube, sube)亲爱的，亲爱的，亲爱的，亲爱的，亲爱的Quiero ver bailar tu pelo想要看你发丝飞扬Quiero ser tu ritmo想要成为你舞动的旋律Que le enseñes a mi boca想要你告诉我的嘴唇Tus lugares favoritos何处是你想要亲吻的地方(Favorito, favorito, baby)（最想要的 宝贝）Déjame sobrepasar tus zonas de peligro让我越过你的危险地带Hasta provocar tus gritos直到令你尖叫Y que olvides tu apellido直到你忘记了自己的名字Si te pido un beso, ven, dámelo若我向你索吻 那你就来轻吻我吧Yo sé que estás pensándolo我知道你想这么做Llevo tiempo intentándolo我已经为你努力了那么久宝贝Mami, esto es dando y dándolo你就给我吧 给我一个你的吻Sabes que tu corazón conmigo te hace bang-bang知道你与我在一起时 你的心跳 砰砰Sabes que esa beba está buscando de mi bang-bang你知道你所需按照的那种 我能给的 砰砰Ven, prueba de mi boca para ver cómo te sabe来尝尝我的唇是什么味道Quiero, quiero, quiero ver cuánto amor a ti te cabe我想要 想要看看你能承受多深的爱Yo no tengo prisa, yo me quiero dar el viaje我不着急 我喜欢游玩的感觉Empecemos lento, después salvaje开始时风平浪静 之后则电闪雷鸣Pasito a pasito, suave suavecito一点一点 温柔再温柔Nos vamos pegando, poquito a poquito我们越贴越近 一点一点Cuando tú me besas con esa destreza你亲吻的时候是如此娴熟Veo que eres malicia con delicadeza我才发现你是一个娇媚的小坏蛋Pasito a pasito, suave suavecito一点一点 温柔再温柔Nos vamos pegando, poquito a poquito我们越贴越近 一点一点Y es que esa belleza es un rompecabezas你的美 如同打乱的拼图一样 令人着迷Pero pa’ montarlo aquí tengo la pieza但我会拼好的 因为缺失的那一块在我的手中¡Oye!嘿！Despacito慢慢地来Quiero respirar tu cuello despacito想要在你脖颈间慢慢地喘息Deja que te diga cosas al oído在你的耳边说尽甜言蜜语Para que te acuerdes si no estás conmigo好让你在以后都能想起此时此刻Despacito慢慢地来Quiero desnudarte a besos despacito想要用吻慢慢褪去你的衣衫Firmo en las paredes de tu laberinto在你迷宫的墙上留下我的名字Y hacer de tu cuerpo todo un manuscrito把你的身体变成我的手稿(Sube, sube, sube, sube, sube)亲爱的，亲爱的，亲爱的，亲爱的，亲爱的Quiero ver bailar tu pelo想要看你发丝飞扬Quiero ser tu ritmo想要成为你舞动的旋律Que le enseñes a mi boca想要你告诉我的嘴唇Tus lugares favoritos何处是你想要亲吻的地方(Favorito, favorito, baby)（最想要的 宝贝Déjame sobrepasar tus zonas de peligro让我越过你的危险地带Hasta provocar tus gritos直到令你尖叫Y que olvides tu apellido知道你忘记了自己的名字Despacito慢慢地来This is how we do it down in Puerto Rico这就是波多黎各的做法I just wanna hear you screaming, “¡Ay, Bendito!”我只想听到你尖叫，“嗨，本迪托！”I can move foreverm se quede contigo我可以永远移动¡Bailalo!bailalo！（加利西亚语）Pasito a pasito, suave suavecito一点一点 温柔再温柔Nos vamos pegando, poquito a poquito我们越贴越近 一点一点Que le enseñes a mi boca告诉他们 我的嘴Tus lugares favoritos是你最喜欢的地方(Favorito, favorito, baby)（最想要的 宝贝）Pasito a pasito, suave suavecito一点一点 温柔再温柔Nos vamos pegando, poquito a poquito我们越贴越近 一点一点Hasta provocar tus gritos (Fonsi)直到令你尖叫(Fonsi)Y que olvides tu apellido (D.Y.)直到你忘记了自己的名字（D.Y.）Despacito慢慢地来]]></content>
+      <categories>
+        <category>心情随笔</category>
+      </categories>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu开启root账户登录后的两条笔记]]></title>
+    <url>%2F2016%2F08%2F13%2Froot-ubuntu%2F</url>
+    <content type="text"><![CDATA[做Hadoop集群时,以root账户登录获取到最高权限.可以避免很多不必要的麻烦.但有两点需要略作修改的bug之处.笔者Ubuntu 14.04 LTS ROOT账户登录时界面报错登录系统时出现12Error found when loading /root/.profilestdin: is not a tty 此时需要更改1/root/.profile 编辑并修改一样代码如下:12gedit /root/.profile # 打开tty -s &amp;&amp; mesg n # 修改mesg n 的所在行代码 然后重启系统即可. ROOT账户启动Chromium浏览器报错以ROOT用户启动Chromium时,会报错不能以根用户身份运行google chrome 浏览器此时,我最初的解决办法就是以隐身方式打开浏览器.后来找到下面的解决办法,将chromium用户数据文件夹.进入下面路径1/usr/share/applications/ 在chromium快捷图标上右键，点击属性，在命令属性后添加1-user-data-dir 即可.]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu下Matplotlib的安装与SDN仿真]]></title>
+    <url>%2F2016%2F08%2F10%2Fmatplotlib-ubuntu%2F</url>
+    <content type="text"><![CDATA[帮同学做SDN(Software Defined Network)软件定义网络方向的代码仿真,环境的安装与调试如下. 安装pip支持下载get-pip 安装包1wget https://bootstrap.pypa.io/get-pip.py --no-check-certificate 安装pip 支持1sudo python get-pip.py 安装Matplotlib库 安装scipy组件 1sudo apt-get install python-scipy 安装numpy组件 1sudo apt-get install python-numpy 安装 matplotlib 1sudo apt-get install python-matplotlib 利用pip安装neworkx1sudo pip install networkx 安装R语言1sudo apt-get install r-base 运行程序1./DO_EVERYTHING.sh 代码报错,并未看到PLOT…郁闷… 代码地址sdnctrlsim-Github 后续报错问题最终解决.生成的PLOT,路径没找对.]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Matplotlib SDN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Spark集群搭建教程 in Ubuntu 14.04]]></title>
+    <url>%2F2016%2F07%2F18%2Fspark-cookbook%2F</url>
+    <content type="text"><![CDATA[基本环境总览-及下载链接VMware 12.1.1Ubuntu 14.04JAVA 1.8.0Hadoop 2.7.2Spark 1.6.2SCALA 2.10.6ideaIC-2016.2scala-intellij-bin-2016.2.1文末有网盘提供本文环境下载 VMtools安装 VMware菜单-虚拟机-安装VMtools 解压tar.gz teminal中执行./vmware-install.pl 重启虚拟机系统 Hadoop 2.7.2 in Ubuntu 14.04 LTS 配置开始Ubuntu开启root账户登录 vim 安装 可以用gedit代替 1sudo apt-get install vim Ubuntu14.04桌面环境目录 1sudo gedit /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf 桌面环境设置如下 开启root账户 1234567[SeatDefaults]greeter-session=unity-greeteruser-session=ubuntugreeter-show-manual-login=trueallow-guest=false- 启用root账号sudo passwd root SSH实现无密码登录 ssh通讯安装 1sudo apt-get install ssh ssh启动 1/etc/init.d/ssh start ssh状态 1ps -e |grep ssh 生成公钥 私钥 1ssh-keygen -t rsa -P &quot;&quot; 公钥添加授权 1cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys 登入 1ssh localhost 登出 1exit 更改hosts 与hostname 查看IP 1ifconfig 编辑hostname 123vim /etc/hostname # 用gedit也可i #更改为主机名SparkMaster SparkWorker1 SparkWorker2shift+zz 保存退出 更改hosts 123vim /etc/hostsi #更改IP及对应主机名字shift+zz 保存退出 公钥添加至授权 123456scp传输 方法失效，通过拷贝即可cd /root/.ssh/将slave的密钥传到Master上scp id_rsa.pub root@SparkMaster:/root/.ssh/id_rsa.pub.SparkWorker1 scp id_rsa.pub root@SparkMaster:/root/.ssh/id_rsa.pub.SparkWorker2cat ~/.ssh/id_rsa.pub.SparkWorker1 &gt;&gt; ~/.ssh/authorized_keys cat ~/.ssh/id_rsa.pub.SparkWorker2 &gt;&gt; ~/.ssh/authorized_keys 这样我们的authorized_keys就有了三台主机的密钥,将authorized_keys分别复制到另外两台电脑对应目录下 Java环境安装1.8.0 下载安装Java 123mkdir /usr/lib/javamv /root/.... /usr/lib/javatar -xvf jdk-.... 修改JAVA环境配置使生效1.8.0 1234567gedit ~/.bashrcexport JAVA_HOME=/usr/lib/java/jdk1.8.0_91export JRE_HOME=$&#123;JAVA_HOME&#125;/jreexport CLASS_PATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/libexport PATH=$&#123;JAVA_HOME&#125;/bin:$PATH- 使bashrc生效source ~/.bashrc Hadoop环境安装2.7.2 下载安装Hadoop 12mkdir /usr/lib/hadooptar -xvf hadoop-.... 修改Hadoop环境配置使生效2.7.2 1234567gedit ~/.bashrcexport JAVA_HOME=/usr/lib/java/jdk1.8.0_91export JRE_HOME=$&#123;JAVA_HOME&#125;/jreexport CLASS_PATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/libexport PATH=$&#123;JAVA_HOME&#125;/bin:/usr/lib/hadoop/hadoop-2.7.2/bin:$PATH - 使bashrc生效source ~/.bashrc hadoop 版本hadoop version 更改hadoop三个文件的java环境 1234567cd /usr/lib/hadoop/hadoop-2.7.2/etc/hadoopgedit hadoop-env.sh # 修改如下export JAVA_HOME=/usr/lib/java/jdk1.8.0_91 gedit yarn-env.sh # 修改如下export JAVA_HOME=/usr/lib/java/jdk1.8.0_91gedit mapred-env.sh # 修改如下export JAVA_HOME=/usr/lib/java/jdk1.8.0_91 更改slaves 为2个子节 1gedit slaves #SparkWorker1 Sparkworker2 更改三个xml文件 1cd /usr/lib/hadoop/hadoop-2.7.2/etc/hadoop 更改site.xml文件 123456789101112&lt;configuration&gt; &lt;property&gt; &lt;name&gt;fs.defaultFS&lt;/name&gt; &lt;value&gt;hdfs://SparkMaster:9000/&lt;/value&gt; &lt;description&gt;The name of default file system&lt;/description&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;hadoop.tmp.dir&lt;/name&gt; &lt;value&gt;/usr/lib/hadoop/hadoop-2.7.2/tmp&lt;/value&gt; &lt;description&gt;A base for other temporary directories&lt;/description&gt; &lt;/property&gt; &lt;/configuration&gt; 更改dfs.xml文件 1234567891011121314&lt;configuration&gt; &lt;property&gt; &lt;name&gt;dfs.replication&lt;/name&gt; &lt;value&gt;2&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt; &lt;value&gt;/usr/lib/hadoop/hadoop-2.7.2/dfs/name&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;dfs.datanode.name.dir&lt;/name&gt; &lt;value&gt;/usr/lib/hadoop/hadoop-2.7.2/dfs/data&lt;/value&gt; &lt;/property&gt; &lt;/configuration&gt; 更改mapred.xml文件 123456&lt;configuration&gt; &lt;property&gt; &lt;name&gt;mapreduce.framework.name&lt;/name&gt; &lt;value&gt;yarn&lt;/value&gt; &lt;/property&gt; &lt;/configuration&gt; 更改yarn.xml文件 12345678910&lt;configuration&gt; &lt;property&gt; &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt; &lt;value&gt;SparkMaster&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt; &lt;value&gt;mapreduce_shuffle&lt;/value&gt; &lt;/property&gt; &lt;/configuration&gt; scp 传输环境到节点机器 1234scp -r hadoop/ root@SparkWorker1:/usr/lib/scp -r java/ root@SparkWorker1:/usr/lib/scp -r hadoop/ root@SparkWorker2:/usr/lib/scp -r java/ root@SparkWorker2:/usr/lib/ 编辑bashrc 1234567gedit ~/.bashrcexport JAVA_HOME=/usr/lib/java/jdk1.8.0_91export JRE_HOME=$&#123;JAVA_HOME&#125;/jreexport CLASS_PATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/libexport PATH=$&#123;JAVA_HOME&#125;/bin:/usr/lib/hadoop/hadoop-2.7.2/bin:$PATH - 使bashrc生效source ~/.bashrc 格式化hdfs系统 12cd /usr/lib/hadoop/hadoop-2.7.2/sbinhadoop namenode -format 启动hdfs系统 12./start-dfs.sh htttp://SparkMaster:50070 # HDFS集群 启动yarn集群 1234./start-yarn.shhttp://SparkMaster:8088 #ResourceManager状态http://SparkWorker1:8042 #NodeManager状态http://SparkWorker1:8042 #NodeManager状态 历史服务 123./mr-jobhistory-daemon.sh start historyserver #历史服务http://SparkMaster:19888 #ResourceManager状态./mr-jobhistory-daemon.sh stop historyserver #停止 slave无法启动nodemanager可以删除data文件夹 12usr/lib/hadoop/tmp/dfs/ -lsrm -r /data/ Hadoop实例测试 建立输入输出文件夹 12hadoop fs -mkdir -p /data/wordcounthadoop fs -mkdir -p /output/ 复制所需文件到输入文件夹 1hadoop fs -put ../etc/haddop/#.xml /data/wordcount/ 执行wordcount 的mapreduce命令 1hadoop jar ../share/hadoop//mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /data/wordcount/hadoop /output/wordcount2 可以查看个文件夹及文件 1http://sparkmaster:50070/explorer.html#/ hadoop 配置完毕 运行实例成功 Spark 1.6.2 SCALA 2.10.6 配置开始 SPARK SCALA环境配置 Spark环境安装1.6.2 12mkdir /usr/lib/sparktar -xvf spark-.... Scala环境安装2.10.6 12mkdir /usr/lib/scalatar -xvf scala-.... Spark Scala配置 12345678910111213141516gedit ~/.bashrc# SCALA 配置export JAVA_HOME=/usr/lib/java/jdk1.8.0_91export JRE_HOME=$&#123;JAVA_HOME&#125;/jreexport SCALA_HOME=/usr/lib/scala/scala-2.10.6export CLASS_PATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/libexport PATH=$&#123;SCALA_HOME&#125;/bin:$&#123;JAVA_HOME&#125;/bin:/usr/lib/hadoop/hadoop-2.7.2/bin:$PATH# SPARK 配置export JAVA_HOME=/usr/lib/java/jdk1.8.0_91export JRE_HOME=$&#123;JAVA_HOME&#125;/jreexport SCALA_HOME=/usr/lib/scala/scala-2.10.6export SPARK_HOME=/usr/lib/spark/spark-1.6.2-bin-hadoop2.6export CLASS_PATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/libexport PATH=$&#123;SPARK_HOME&#125;/lib:$&#123;SCALA_HOME&#125;/bin:$&#123;JAVA_HOME&#125;/bin:/usr/lib/hadoop/hadoop-2.7.2/bin:$PATH- 使bashrc生效source ~/.bashrc Spark-env.sh slave 配置 1234cp spark-env.sh.template spark-env.shcp slave.template slavegedit spark-env.shgedit slave 追加spark-env.sh信息 12345export JAVA_HOME=/usr/lib/java/jdk1.8.0_91export SCALA_HOME=/usr/lib/scala/scala-2.10.6export SPARK_MASTER_IP=192.168.204.130export SPARK_WORKER_MEMORY=2gexport HADOOP_CONF_DIR=/usr/lib/hadoop/hadoop-2.7.2/conf 修改slave 123SparkMasterSparkWorker1SparkWorker2 传输 SCALA 和 SPARK 1234scp -r /usr/lib/spark/ root@SparkWorker1:/usr/lib/scp -r /usr/lib/spark/ root@SparkWorker2:/usr/lib/scp -r /usr/lib/scala/ root@SparkWorker1:/usr/lib/scp -r /usr/lib/scala/ root@SparkWorker2:/usr/lib/ 启动spark 12cd /usr/lib/spark/spark-1.6.2-bin-hadoop2.6/sbin# ./start-all.sh 观察Spark 1http://sparkmaster:8080/ 启动spark-shell 12cd /usr/lib/spark/spark-1.6.2-bin-hadoop2.6/bin# ./spark-shell 观察Spark-shell 1http://sparkmaster:4040/ SPARK测试 切换目录 1cd /usr/lib/spark/spark-1.6.2-bin-hadoop2.6 将README.md 上传至data 1hadoop fs -put README.md /data/ 启动Spark shell 时间要用12 Min 1MASTER=spark://SparkMaster:7077 ./spark-shell 读取README.md 做如下处理 123val file = sc.textFile(&quot;hdfs://SparkMaster:9000/data/README.md&quot;)val count = file.flatMap(line =&gt; line.split(&quot; &quot;)).map(word =&gt; (word, 1)).reduceByKey(_+_)count collect SPARK SCALA 配置完毕 运行实例成功 IDEA 安装测试 创建文件夹 1mkdir /usr/local/idea 拷贝至文件夹 1cp /root/ideaIC-2016.2.tar.gz /usr/local/idea/ 切换至目录并解压 12cd /usr/local/idea/tzr -xvf ideaIC-2016.2.tar.gz 为方便是用bin下命令,将其配置在~/.bashrc的PATH里.下面就是截止目前为止的所有环境配置. 12345678export JAVA_HOME=/usr/lib/java/jdk1.8.0_91export JRE_HOME=$&#123;JAVA_HOME&#125;/jreexport SCALA_HOME=/usr/lib/scala/scala-2.10.6export SPARK_HOME=/usr/lib/spark/spark-1.6.2-bin-hadoop2.6export CLASS_PATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/libexport PATH=/usr/local/idea/idea-IC-162.1121.32/bin:$&#123;SPARK_HOME&#125;/lib:$&#123;SCALA_HOME&#125;/bin:$&#123;JAVA_HOME&#125;/bin:/usr/lib/hadoop/hadoop-2.7.2/bin:$PATH- 使bashrc生效source ~/.bashrc 打开IDEA 12cd /usr/local/idea/idea-IC-162.1121.32/binidea.sh 安装SCALA插件plugins 在线安装欢迎界面-右下角configuration-左下角Install JetBrains-搜索scala-install即可 离线安装欢迎界面-右下角configuration-下方Install plugins from disk-选择安装 创建项目Create New Project-Scala-SBT-name-location-SDK(选择JAVA路径)-SBT-SCALA-Finash由于要自动完成SBT工具的安装,用时较长,本人用时30min以上. 资料提供链接: http://pan.baidu.com/s/1slQpli1密码: ####请打赏索要. 环境提供链接: http://pan.baidu.com/s/1bpcDkxL密码: ####请打赏索要. 友情提示,如有帮助,文章底下有打赏按键.]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Hadoop Spark</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Coding笔记系列2--两个简单展示]]></title>
+    <url>%2F2016%2F07%2F14%2Fcode-cookbook-3%2F</url>
+    <content type="text"><![CDATA[Coding笔记第三篇,有两个不成样子的东西,贴出来看看.做的实在是太low了,我都不想拿出来见人. 王小波-简介页面请点击王小波-简介页面 诗经-国风-展示页面请点击诗经-国风-展示页面在这里用css JS语法的时候,没有能够熟练的掌握,离开了IDE就不能写.也没能掌握Bootstrap这成熟的前端开发框架. 有两点需要注意和加强的地方: 语法规范 CSS这种简单的语法还是有一些生疏,不能很好的运用.以至于不停的去查用法.熟练度太欠缺 见识短浅 没有对整个设计有一个全面的理性的认识,导致自己在实践中,不停的改Idea,最终已经偏离初心甚远. 以后要多加注意]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Coding笔记系列2--初涉前端略有趣]]></title>
+    <url>%2F2016%2F06%2F22%2Fcode-cookbook-2%2F</url>
+    <content type="text"><![CDATA[Coding笔记第二篇.这几天不想看paper,也不想写paper.可能这几天天气太热,心情浮躁,想换换心情. HTML5 and CSS这部分很简单,只要记住命令是自封闭还是配对封闭.也不清楚这么说对不对,一直看英文的.总结几点自己感觉值得记忆的地方: a标签对应链接href,p标签文字记录标签. img标签对已链接src. .classcss中对应class需要前加. #idcss中对应id需要加# h1css中对应标签直接规定 BootstrapBootstrap作为最通用的前端框架,用起来简直无脑. 自带css btn 以及 btn-default btn-primary … well 之前没注意这个样式,超好用 ul无序ol有序数字 input中单选radio多选checkbox jQueryjQ在这里学习太早了吧,所幸还是很简单. 直接给出涉及到的用法12345678910111213141516171819202122232425&lt;script&gt; $(document).ready(function() &#123; $(&quot;#target1&quot;).css(&quot;color&quot;, &quot;red&quot;); // css样式 $(&quot;#target1&quot;).prop(&quot;disabled&quot;, true); // disabled $(&quot;#target4&quot;).remove(); // 移除样式 $(&quot;#target2&quot;).appendTo(&quot;#right-well&quot;); // 添加 $(&quot;#target5&quot;).clone().appendTo(&quot;#left-well&quot;); // 克隆下添加 $(&quot;#target1&quot;).parent().css(&quot;background-color&quot;, &quot;red&quot;); // 父类 $(&quot;#right-well&quot;).children().css(&quot;color&quot;, &quot;orange&quot;); // 子类 $(&quot;#left-well&quot;).children().css(&quot;color&quot;, &quot;green&quot;); $(&quot;.target:nth-child(2)&quot;).addClass(&quot;animated bounce&quot;); // 层数 $(&quot;.target:even&quot;).addClass(&quot;animated shake&quot;); // 奇偶even odd $(&quot;body&quot;).addClass(&quot;animated hinge&quot;) // body操作 &#125;);&lt;/script&gt;]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Coding笔记系列1--入门前端须知]]></title>
+    <url>%2F2016%2F06%2F20%2Fcode-cookbook-1%2F</url>
+    <content type="text"><![CDATA[这是Coding笔记的第一篇,写这系列文章主要是记录学习心得.2016-6-20这天开始,记录自己在Freecodecamp的学习历程.计划花费2个月在上面刷,不知道能学习到什么程度.这是系列笔记的开篇,就写下注意事项吧,也是FCC官方的一些观念. 每天的训练代码人,常说,代码是个体力活.要有量的积累,才能掌握这项体力活. 一读二搜三提问学习一门语言,首先就是阅读官方文档,使用方法都有说明,error的解决办法也能找到.第二,就是善用搜索引擎,你要相信这问题你不是第一次遇到,你也不是困扰的第一人.第三,就是Qustion环节,求助于一些有Coding经验的老手,是最快的解决办法.此类方法,不要常用.代码是孤独的旅行.其次,为什么要写这系列文章,为什么写博客,写这些到底有什么用,又是为了什么写?总是有人问这些问题,不是为什么,而是为了什么.人总是自私的,那就说句煽情的话吧. 为了遇见更好的自己]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[常用软件推荐与分享--Windows软件篇]]></title>
+    <url>%2F2016%2F06%2F17%2Fsoftware-windows%2F</url>
+    <content type="text"><![CDATA[首先,使用了这么多年的电脑,也积攒了一些微不足道的使用经验,一直想记录记录给自己个备忘,同时分享给别人作为参考.同时,本人由于是穷屌丝一个,目前的使用平台仅限于Windows,之前有过MacOS的使用经验,但对MacOS熟悉度还是不够,还远远没能达到可以写出的程度. 此文,是软件篇,硬件篇链接为PC硬件平台的推荐与分享—Windows硬件篇 当PC成为生活不可或缺的一部分时,优秀的软件给生活乃至人生都会带来优质的体验.结合本人多年的软件使用经验,整理出这些常用的软件,在此,分享给大家.闲话少说,进入正题啦. 系统篇Windows 10 不要担心10会稳定性很差 用户体验很好 有一定学习成本 Windows 7 稳定办公游戏首选仅推荐,原版下载安装.奉上下载地址MSDN,I tell you,MSDN里的软件都是巨硬家的原版镜像,下面涉及到巨硬家应用,都可以从这里找到,可以放心下载.至于巨硬家的产品激活,就需要大家各显神通了. 办公篇如果,读者你把你的PC当成生产力工具的话,也就是你工作必备品.那这些软件你可能会很喜欢. 办公软件OfficeMicrosoft Office 2016 体验超好,比13提升的不是一点半点 Office 365 推荐购买 Microsoft Office 2013 稳定办公首选对于巨硬家族的产品,如果有能力就支持正版购买.学校一般有免费正版可用.其他激活方式如KMS,自己可用动手操作,这里不再叙述. WPS 个人用户建议使用 功能个性化强 PDF文档处理福昕阅读器 国产良心 在巨无霸Adobe面前分下一大杯羹 据说当初公司看不起中国市场只做英文foxit 启动速度,处理速度远超Adobe官网地址这里哦福昕阅读器中文版 Adobe Acrobat 编辑PDF神器 邮件处理Foxmail 入职必备,第一首选 各种邮件收发顺利如Gmail官网地址哦Foxmail Outlook 工作时,见一些老板还是用这个 熟悉的话,也很好用 代码篇编辑器Sublime 代码界最性感的编辑器 收费编辑器 请支持正版,破解靠自己 VIM Vim大法 notepad++ Win平台 免费好用 工具F.lux 护眼首选 用了就离不开 Evething 本地搜索神器 Total Commander 文件管理神器 Clover 便签式资源管理器]]></content>
+      <categories>
+        <category>推荐分享</category>
+      </categories>
+      <tags>
+        <tag>hardware</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[安河桥]]></title>
+    <url>%2F2016%2F06%2F05%2Ftime%2F</url>
+    <content type="text"><![CDATA[岁月静好,现世安稳]]></content>
+      <categories>
+        <category>心情随笔</category>
+      </categories>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo-github部署指南]]></title>
+    <url>%2F2016%2F06%2F02%2Fhexo-deploy%2F</url>
+    <content type="text"><![CDATA[本博使用的是Hexo+github部署而成,并无花费,只需要一定的技术水平. 前期准备申请github账号github作为一个优秀的代码托管平台,如今的码农世界,第一要求不是你什么项目经验,工作经验,第一点就是你的github账号,对这个开源的代码世界有何贡献,是衡量一个成功代码者的重要标准. github官网 部署git环境git是一种代码管理方式,是一种免费、开源的分布式版本控制系统.git下载地址 部署Node.js环境Node.js是一个Javascript运行环境(runtime). Node.js优点 RESTful API 单线程Node.js可以在不新增额外线程的情况下，依然可以对任务进行并行处理 —— Node.js是单线程的。它通过事件轮询（event loop）来实现并行操作，对此，我们应该要充分利用这一点 —— 尽可能的避免阻塞操作，取而代之，多使用非阻塞操作。 非阻塞IO V8虚拟机 事件驱动node.js下载地址 部署Hexo环境初始化使用git在任意非中文路径空文件夹,使用命令1npm install hexo-cli -g 部署hexo-deployer-git1npm install hexo-deployer-git --save 生成目录1hexo init 静态化123hexo generateorhexo g 部署123hexo deployorhexo d 本地服务12345hexo serveror hexo server -p 5000 #端口号orhexo s 完整部署步骤123456npm install hexo-cli -gnpm install hexo-deployer-git --savehexo inithexo clean # 删除静态文件hexo ghexo d github仓库建立与用户名一致的Respository,例如用户名为xixici,则建立xixici.github.io config.yml配置修改修改Hexo站点主目录下config.yml文件中部署部分.如下:1234deploy: type: git repository: http://github.com/xixici/xixici.github.io.git branch: master 然后部署就需要上述命令12hexo ghexo d 文章发表1hexo new post &quot;markdown tips&quot; 本人环境12345678910111213$ hexo version # 命令语句hexo: 3.2.0hexo-cli: 1.0.1os: Windows_NT 10.0.10586 win32 x64http_parser: 2.5.2node: 4.4.4v8: 4.5.103.35uv: 1.8.0zlib: 1.2.8ares: 1.10.1-DEVicu: 56.1modules: 46openssl: 1.0.2h 参考 使用Hexo搭建个人博客(基于hexo3.0) http://baixin.io/2015/08/12/hexo/ 如何搭建一个独立博客——简明 Github Pages与 jekyll 教程]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>hexo github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PC硬件平台的推荐与分享--Windows硬件篇]]></title>
+    <url>%2F2016%2F05%2F30%2Fhardware-windows%2F</url>
+    <content type="text"><![CDATA[首先,使用了这么多年的电脑,也积攒了一些微不足道的使用经验,一直想记录记录给自己个备忘,同时分享给别人作为参考.同时,本人由于是穷屌丝一个,目前的使用平台仅限于Windows,之前有过MacOS的使用经验,但对MacOS熟悉度还是不够,还远远没能达到可以写出的程度. 此文,是硬件篇,软件篇链接为常用软件推荐与分享—Windows软件篇有一个优越的硬件环境,身心与工作都能受益匪浅.硬件的选购来说,线上与线下都会有很多坑等着去跳.总体来说,对于现如今的互联网时代而言,线上会是大多数首要选项.当然,如果线下有很好的选择,或许不必来线上这鱼龙混杂的世界. 配置个人建议(肺腑之言.因人而异) SSD(固态)硬盘 120GB以上,上不封顶,多多益善 RAM(内存) 8G起 CPU(中央处理器) 喜新厌旧,型号越新越优越 品牌推荐 Lenovo联想(美帝良心)对不追求性价比,不care钱这个问题,联想不失为你的第一备选.联想这种战五渣,接过IBM的Thinkpad,把笔电第一品牌给拉下马,我也不说什么了. Acer宏碁(踏实友商)对宏碁qi而言,我感觉就是一挺踏实的友商,身边的盆友们也有人用过. Hasee神舟(赶紧上船)神舟绝对是广大笔电爱好者的第一入选品牌.非小白,第一选,赶紧上船. HP惠普 Dell戴尔 Asus华硕 Samsung三星对于一生产力工具而言,首位的是提升生产力,第二位是个人喜好.如果顺序反之,我也没什么话说.经常有朋友说,我很喜欢某某型号的电脑,我只有一个字,买.开心就好,想太多,何必呢. 选购指南(线上)京东虽然一直被誉为二手东,但相对于假货横行的某猫来说,保障也不是高了一分两分.首推. 装机大师某猫也有很多良心卖家,某美要谨慎.在这里推荐两个好评很高的店 萌叔装机太多人安利这家 摩西电脑卡吧基佬推荐 台式机推荐款办公台机 Dell Vostro Dell Inspiron 游戏台机 不推荐品牌,组装为宜 笔电推荐款办公笔电 Thinkpad T450 游戏笔电 神舟 Z6 HP 暗影精灵 Lenovo 拯救者 高端玩家笔电 Alienware 外星人 Razer Blade 雷蛇灵刃 Terrans Force 未来人类 如果你心仪某一种,就出手吧.]]></content>
+      <categories>
+        <category>推荐分享</category>
+      </categories>
+      <tags>
+        <tag>hardware</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[markdown学习笔记]]></title>
+    <url>%2F2016%2F05%2F23%2Fmarkdown-tips%2F</url>
+    <content type="text"><![CDATA[当你需要使用一种 高格调,又很 Geek范 的文字工具来记录自己,分享价值时,Markdwon就是你的首选.当你学习一项工具,并且使用它,或许你会花费很大的成本,但是如果你学会了,并使用,你会爱上他.MarkDown如是说. 工欲善其事必先利其器—MarkPad(WIN平台)MarkPad 是款开源的 Markdown 编辑, Window 8 和谐友好的风格界面。 Markdown实用语法 以下是常用用法,如 加粗, 斜体, 链接, 列表, 公式, 代码, 表格等等 加粗与斜体12**加粗的用法在这里***斜体的用法是这里* 加粗的用法在这里 斜体的用法是这里 标题的用法1234#标题1##标题1......######标题1 #的数量的多少与大小有关,类似的还有-,自己试验用法吧. 链接的写法1[XIXICI 主页](http:\\xixici.com\) XIXICI 主页 阅读更多1&lt;!--more--&gt; 引用12&gt;不能听命于自己者，就要受命于他人。——尼采《查特拉斯如是说》 不能听命于自己者，就要受命于他人。——尼采《查特拉斯如是说》 待办事宜12345- [ ] 支持以 PDF 格式导出文稿- [ ] 改进 Cmd 渲染算法，使用局部渲染技术提高渲染效率- [x] 新增 Todo 列表功能- [x] 修复 LaTex 公式渲染问题- [x] 新增 LaTex 公式编号功能 [ ] 支持以 PDF 格式导出文稿 [ ] 改进 Cmd 渲染算法，使用局部渲染技术提高渲染效率 [x] 新增 Todo 列表功能 [x] 修复 LaTex 公式渲染问题 [x] 新增 LaTex 公式编号功能 质能守恒公式1$$E=mc^2$$ E=mc^2高亮代码1234567@requires_authorizationclass SomeClass: passif __name__ == '__main__': # A comment print 'hello world' 在整段代码两端加三个`, 可以对整段代码加高亮.仅仅对一句代码高亮可以在句子两端加一个`即可. 绘制表格12345| 项目 | 价格 | 数量 || -------- | -----: | :----: || 计算机 | \$1600 | 5 || 手机 | \$12 | 12 || 管线 | \$1 | 234 | 项目 价格 数量 计算机 $1600 5 手机 $12 12 管线 $1 234 网易云音乐插入1&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=86 src=&quot;http://music.163.com/outchain/player?type=2&amp;id=32957377&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt; 自动播放将auto=1即可. Geek的专注在本文表现的淋漓尽致.只用键盘就能写出来这么漂亮(排版而已)的文章. 参考 欢迎使用 Cmd Markdown 编辑阅读器 MarkPad下载地址]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+</search>
