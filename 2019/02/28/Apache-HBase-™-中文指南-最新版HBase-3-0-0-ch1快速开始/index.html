@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="入门1. 介绍快速开始 会介绍如何运行一个单机版的Standalone模式HBase. 2. 快速开始 - Standalone HBase本章节介绍了在单机安装HBase的方法。会引导你通过hbase shell创建一个表，插入一行，然后执行put和scan指令，开启和关闭这张表，开启和停止HBase。只要10分钟就可以完成以下的操作。 除了下载HBase外，此过程不到10分钟就能完成。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache HBase ™ 中文指南(最新版HBase 3.0.0)-ch1快速开始">
+<meta property="og:url" content="http://xixici.com/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch1快速开始/index.html">
+<meta property="og:site_name" content="西西词">
+<meta property="og:description" content="入门1. 介绍快速开始 会介绍如何运行一个单机版的Standalone模式HBase. 2. 快速开始 - Standalone HBase本章节介绍了在单机安装HBase的方法。会引导你通过hbase shell创建一个表，插入一行，然后执行put和scan指令，开启和关闭这张表，开启和停止HBase。只要10分钟就可以完成以下的操作。 除了下载HBase外，此过程不到10分钟就能完成。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-28T08:51:40.817Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apache HBase ™ 中文指南(最新版HBase 3.0.0)-ch1快速开始">
+<meta name="twitter:description" content="入门1. 介绍快速开始 会介绍如何运行一个单机版的Standalone模式HBase. 2. 快速开始 - Standalone HBase本章节介绍了在单机安装HBase的方法。会引导你通过hbase shell创建一个表，插入一行，然后执行put和scan指令，开启和关闭这张表，开启和停止HBase。只要10分钟就可以完成以下的操作。 除了下载HBase外，此过程不到10分钟就能完成。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://xixici.com/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch1快速开始/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Apache HBase ™ 中文指南(最新版HBase 3.0.0)-ch1快速开始 | 西西词</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">西西词</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">诗在远方</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">18</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">4</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">24</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/xixici" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch1快速开始/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="远方与诗的存在">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西词">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Apache HBase ™ 中文指南(最新版HBase 3.0.0)-ch1快速开始
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-28 16:47:36 / 修改时间：16:51:40" itemprop="dateCreated datePublished" datetime="2019-02-28T16:47:36+08:00">2019-02-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/翻译/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch1快速开始/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch1快速开始/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h1><h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><p><a href="#quickstart">快速开始</a> 会介绍如何运行一个单机版的Standalone模式HBase.</p>
+<h2 id="2-快速开始-Standalone-HBase"><a href="#2-快速开始-Standalone-HBase" class="headerlink" title="2. 快速开始 - Standalone HBase"></a>2. 快速开始 - Standalone HBase</h2><p>本章节介绍了在单机安装HBase的方法。会引导你通过<code>hbase shell</code>创建一个表，插入一行，然后执行put和scan指令，开启和关闭这张表，开启和停止HBase。只要10分钟就可以完成以下的操作。</p>
+<p>除了下载HBase外，此过程不到10分钟就能完成。</p>
+<a id="more"></a>
+<h3 id="2-1-JDK-版本要求"><a href="#2-1-JDK-版本要求" class="headerlink" title="2.1. JDK 版本要求"></a>2.1. JDK 版本要求</h3><p>HBase要求安装JDK。有关支持JDK版本的信息，请参阅<a href="#java">Java</a>。</p>
+<h3 id="2-2-HBase开始"><a href="#2-2-HBase开始" class="headerlink" title="2.2. HBase开始"></a>2.2. HBase开始</h3><h4 id="过程：下载、配置和启动-Standalone-HBase"><a href="#过程：下载、配置和启动-Standalone-HBase" class="headerlink" title="过程：下载、配置和启动 Standalone HBase"></a>过程：下载、配置和启动 Standalone HBase</h4><ol>
+<li><p>选择一个[Apache下载镜像]（<a href="https://www.apache.org/dyn/closer.lua/hbase/）。" target="_blank" rel="noopener">https://www.apache.org/dyn/closer.lua/hbase/）。</a> 建议点击顶部链接，进入_HBase Releases_ 点击_stable_的文件夹，然后下载将以_tar.gz_结尾的二进制文件到本地。暂时不要下载以_src.tar.gz_结尾的文件。</p>
+</li>
+<li><p>解压缩，然后进入到那个要解压的目录.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tar xzvf hbase-3.0.0-SNAPSHOT-bin.tar.gz</span><br><span class="line">$ cd hbase-3.0.0-SNAPSHOT/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在启动HBase之前，您需要设置<code>JAVA_HOME</code>环境变量。您可以通过操作系统的常用设置来设置变量，HBase也提供了一个中心机制_conf/hbase-env.sh_。编辑此文件，取消注释以<code>JAVA_HOME</code>开头的行，并将其设置为适合您的操作系统的路径。应将<code>JAVA_HOME</code>变量设置为包含可执行文件_bin/java_的目录。如今，大多数Linux操作系统都提供了一种机制，例如RHEL或CentOS上的/usr/bin/alternatives，可以方便切换环境。在这种情况下，您可以将<code>JAVA_HOME</code>设置为包含_bin/java_的符号链接的目录，通常为_/usr_。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/usr</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑HBase主配置文件_conf/hbase-site.xml_.<br>此时，您需要在本地文件系统上指定HBase和ZooKeeper数据存储目录，并知晓一些风险。默认情况下，HBase会在/tmp下创建一个新目录，但是许多服务为在重新启动时会删除_/tmp_的内容，因此您需要将数据存储在其他位置。以下配置文件处在_hbase_,名为<code>testuser</code>的用户的主目录中。首次安装HBase为空，可以将<code>&lt;property&gt;</code>标记粘贴在<code>&lt;configuration&gt;</code>内。</p>
+<p>示例 1.  _hbase-site.xml_  Standalone HBase配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;hbase.rootdir&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;file:///home/testuser/hbase&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;/home/testuser/zookeeper&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;hbase.unsafe.stream.capability.enforce&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;false&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;</span><br><span class="line">      Controls whether HBase will check for stream capabilities (hflush/hsync).</span><br><span class="line"></span><br><span class="line">      Disable this if you intend to run on LocalFileSystem, denoted by a rootdir</span><br><span class="line">      with the &apos;file://&apos; scheme, but be mindful of the NOTE below.</span><br><span class="line"></span><br><span class="line">      WARNING: Setting this to false blinds you to potential data loss and</span><br><span class="line">      inconsistent system state in the event of process and/or node failures. If</span><br><span class="line">      HBase is complaining of an inability to use hsync or hflush it&apos;s most</span><br><span class="line">      likely not a false positive.</span><br><span class="line">    &lt;/description&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>您不需要创建HBase数据目录。 HBase会自动创建。如果您想要自定义创建目录，HBase将尝试进行迁移 。</p>
+<blockquote>
+<p>上例中的_hbase.rootdir_指向_local filesystem_中的目录。 ‘file：//‘前缀是表示本地文件系。您应该将配置示例中的警告牢记在心。在Standalone模式下，HBase利用Apache Hadoopd的本地文件存储。但是这种方式并不能保证HBase运行的持久性。这只是适用于于本地开发和测试用例，可以很好的控制集群故障的成本。它不适合生产部署，否则你会丢失数据。</p>
+</blockquote>
+</li>
+</ol>
+<p>为在HDFS上部署HBase, 可以将 _hbase.rootdir_ 指向如: _hdfs://namenode.example.org:8020/hbase_. 有关此变量的更多用法，可查看章节基于HDFS部署Standalone HBase.</p>
+<ol>
+<li><p>脚本_bin/start-hbase.sh_为启动HBase提供了方便的途径。执行命令，在标准输出的日志里可以看到HBase启动成功的消息。你可以使用 <code>jps</code> 命令来确认你有一个正在运行的进行 <code>HMaster</code>。在 HBase 的Standalone模式中，所有的服务都运行在同一JVM中，如 HMaster，单例的 HRegionServer 和 ZooKeeper 的守护进程。可以前往Web UI_<a href="http://localhost:16010" target="_blank" rel="noopener">http://localhost:16010</a>_查看HBase.</p>
+<blockquote>
+<p>Java必须安装且可用. 如果你收到错误提示，Java未安装，可能java位于非标准位置，你可以编辑_conf/hbase-env.sh_ ,修改 <code>JAVA_HOME</code> 路径，并确保包含 _bin/java_.</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="过程-首次使用HBase"><a href="#过程-首次使用HBase" class="headerlink" title="过程: 首次使用HBase"></a>过程: 首次使用HBase</h4><ol>
+<li><p>连接HBase</p>
+<p>在HBase安装目录_bin/_ 目录下使用<code>hbase shell</code>命令连接正在运行的HBase实例。 在下面这个例子中，当你启动HBase Shell 并忽略一些用法和版本信息后，HBase Shell 是以字符<code>&gt;</code> 结尾。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./bin/hbase shell</span><br><span class="line">hbase(main):001:0&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>预览 HBase Shell 的帮助文本</p>
+<p>输入<code>help</code>并回车, 可以看到HBase Shell的基本信息和一些示例命令.请注意，表名，行，列都必须用引号字符括起来。</p>
+</li>
+<li><p>创建表</p>
+<p>使用 <code>create</code>创建一个表，你必须执行一个表名和列族名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):001:0&gt; create &apos;test&apos;, &apos;cf&apos;</span><br><span class="line">0 row(s) in 0.4170 seconds</span><br><span class="line"></span><br><span class="line">=&gt; Hbase::Table - test</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>表信息</p>
+<p>使用 <code>list</code> 查看存在表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):002:0&gt; list &apos;test&apos;</span><br><span class="line">TABLE</span><br><span class="line">test</span><br><span class="line">1 row(s) in 0.0180 seconds</span><br><span class="line"></span><br><span class="line">=&gt; [&quot;test&quot;]</span><br></pre></td></tr></table></figure>
+<p>使用 <code>describe</code> 查看表细节及配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):003:0&gt; describe &apos;test&apos;</span><br><span class="line">Table test is ENABLED</span><br><span class="line">test</span><br><span class="line">COLUMN FAMILIES DESCRIPTION</span><br><span class="line">&#123;NAME =&gt; &apos;cf&apos;, VERSIONS =&gt; &apos;1&apos;, EVICT_BLOCKS_ON_CLOSE =&gt; &apos;false&apos;, NEW_VERSION_BEHAVIOR =&gt; &apos;false&apos;, KEEP_DELETED_CELLS =&gt; &apos;FALSE&apos;, CACHE_DATA_ON_WRITE =&gt;</span><br><span class="line">&apos;false&apos;, DATA_BLOCK_ENCODING =&gt; &apos;NONE&apos;, TTL =&gt; &apos;FOREVER&apos;, MIN_VERSIONS =&gt; &apos;0&apos;, REPLICATION_SCOPE =&gt; &apos;0&apos;, BLOOMFILTER =&gt; &apos;ROW&apos;, CACHE_INDEX_ON_WRITE =&gt; &apos;f</span><br><span class="line">alse&apos;, IN_MEMORY =&gt; &apos;false&apos;, CACHE_BLOOMS_ON_WRITE =&gt; &apos;false&apos;, PREFETCH_BLOCKS_ON_OPEN =&gt; &apos;false&apos;, COMPRESSION =&gt; &apos;NONE&apos;, BLOCKCACHE =&gt; &apos;true&apos;, BLOCKSIZE</span><br><span class="line"> =&gt; &apos;65536&apos;&#125;</span><br><span class="line">1 row(s)</span><br><span class="line">Took 0.9998 seconds</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>插入数据</p>
+<p>使用 <code>put</code> 插入数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):003:0&gt; put &apos;test&apos;, &apos;row1&apos;, &apos;cf:a&apos;, &apos;value1&apos;</span><br><span class="line">0 row(s) in 0.0850 seconds</span><br><span class="line"></span><br><span class="line">hbase(main):004:0&gt; put &apos;test&apos;, &apos;row2&apos;, &apos;cf:b&apos;, &apos;value2&apos;</span><br><span class="line">0 row(s) in 0.0110 seconds</span><br><span class="line"></span><br><span class="line">hbase(main):005:0&gt; put &apos;test&apos;, &apos;row3&apos;, &apos;cf:c&apos;, &apos;value3&apos;</span><br><span class="line">0 row(s) in 0.0100 seconds</span><br></pre></td></tr></table></figure>
+<p>在这里，我们往<code>test</code>表中依次插入了三条数据。首先插入了一条rowkey为<code>row1</code>、列为<code>cf:a</code>、值为<code>value1</code>的数据。HBase中的列是包含列族前缀的，在这个例子中，冒号前的为列 <code>cf</code>，冒号后的为列限定符 <code>a</code> 。</p>
+</li>
+<li><p>扫描全部数据</p>
+<p>从HBase获取数据的途径之一就是 <code>scan</code> 。使用 scan 命令扫描表数据。你可以对扫描做限制，不过现在，获取全部的数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):006:0&gt; scan &apos;test&apos;</span><br><span class="line">ROW                                      COLUMN+CELL</span><br><span class="line"> row1                                    column=cf:a, timestamp=1421762485768, value=value1</span><br><span class="line"> row2                                    column=cf:b, timestamp=1421762491785, value=value2</span><br><span class="line"> row3                                    column=cf:c, timestamp=1421762496210, value=value3</span><br><span class="line">3 row(s) in 0.0230 seconds</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取一条数据</p>
+<p>使用 <code>get</code> 命令一次获取一条数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):007:0&gt; get &apos;test&apos;, &apos;row1&apos;</span><br><span class="line">COLUMN                                   CELL</span><br><span class="line"> cf:a                                    timestamp=1421762485768, value=value1</span><br><span class="line">1 row(s) in 0.0350 seconds</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>禁用表</p>
+<p>如果你想删除一个表或者改变表的设置，以及一些其他的场景，首先你需要使用 <code>disable</code> 命令禁用表。你可以使用 <code>enable</code> 命令“反禁用”即启用表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):008:0&gt; disable &apos;test&apos;</span><br><span class="line">0 row(s) in 1.1820 seconds</span><br><span class="line"></span><br><span class="line">hbase(main):009:0&gt; enable &apos;test&apos;</span><br><span class="line">0 row(s) in 0.1770 seconds</span><br></pre></td></tr></table></figure>
+<p>Disable the table again if you tested the <code>enable</code> command above:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):010:0&gt; disable &apos;test&apos;</span><br><span class="line">0 row(s) in 1.1820 seconds</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除表</p>
+<p>使用 <code>drop</code> 命令删除一个表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):011:0&gt; drop &apos;test&apos;</span><br><span class="line">0 row(s) in 0.1370 seconds</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>退出HBase Shell.</p>
+<p>使用<code>quit</code>命令退出命令行并从集群断开连接。HBase 仍然在后台运行。</p>
+</li>
+</ol>
+<h4 id="过程-停止HBase"><a href="#过程-停止HBase" class="headerlink" title="过程: 停止HBase"></a>过程: 停止HBase</h4><ol>
+<li><p>脚本 _bin/start-hbase.sh_ 这个脚本提供了便利的启动所有 HBase 服务，同样地， _bin/stop-hbase.sh_  脚本用来停止所有HBase服务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./bin/stop-hbase.sh</span><br><span class="line">stopping hbase....................</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在使用这个命令后，它可能需要过几分钟才能停掉服务进程。可以使用 <code>jps</code> 确认 HMaster 和 HRegionServer 进程是否关闭。</p>
+</li>
+</ol>
+<p>上面已经向您展示了如何启动和停止HBase的Standalone实例。在下一节中，我们将简要介绍HBase其他部署模式。</p>
+<h3 id="2-3-伪分布式HBase"><a href="#2-3-伪分布式HBase" class="headerlink" title="2.3. 伪分布式HBase"></a>2.3. 伪分布式HBase</h3><p>在<a href="#quickstart">快速开始</a>小节部署了Standalone模式的HBase后，您可以重新配置以伪分布式运行。伪分布模式意味着HBase仍然在单个主机上完全运行，但是每个HBase守护进程（HMaster，HRegionServer和ZooKeeper）作为一个单独的进程运行：在独立模式下，所有守护进程都运行在一个jvm进程/实例中。 默认情况下, 除非你按 <a href="#quickstart">快速开始</a>更改<code>hbase.rootdir</code> 的配置，否则你的数据仍会存储在 _/tmp/_中。假设HDFS系统可用，我们将数据存储在HDFS上。 当然，您可以跳过HDFS配置，继续使用本地文件系统。</p>
+<blockquote>
+<p>Hadoop配置</p>
+<p>此过程假定已在本地系统或远程系统上配置Hadoop和HDFS，并且保证正在运行且可用，版本为Hadoop 2。Hadoop文档向导 <a href="https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html" target="_blank" rel="noopener">配置单节点集群</a>.</p>
+</blockquote>
+<ol>
+<li><p>停止HBase</p>
+<p>假设你刚刚完成 <a href="#quickstart">快速开始</a> , Hbase正在运行, 那么请停止他.这个过程将创建一个全新的目录，HBase将存储它的数据，所以你之前创建的任何数据库都将丢失。</p>
+</li>
+<li><p>配置HBase</p>
+<p>编辑 _hbase-site.xml_ . 首先，添加以下指示HBase以分布式模式运行的属性，每个守护进程有一个JVM实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;</span><br><span class="line">  &lt;value&gt;true&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<p>接下来，将 <code>hbase.rootdir</code> 从本地文件系统更改为您的 HDFS 实例的地址，使用 <code>hdfs:////</code>的 URI 语法。在这个例子中，HDFS在端口8020\的本地主机上运行。并确保 <code>hbase.unsafe.stream.capability.enforce</code>删除或为true.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;hbase.rootdir&lt;/name&gt;</span><br><span class="line">  &lt;value&gt;hdfs://localhost:8020/hbase&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<p>您不需要在HDFS中创建目录。HBase会为你做这个。如果你要更改目录，HBase会试图迁移。</p>
+</li>
+<li><p>启动HBase</p>
+<p>使用_bin/start-hbase.sh_ 启动HBase. 如果您的系统配置正确，该<code>jps</code>命令应显示HMaster和HRegionServer进程正在运行。</p>
+</li>
+<li><p>检查HDFS中的HBase目录</p>
+<p>如果一切正常，HBase在HDFS中创建它的目录。在上面的配置中，它存储在HDFS上的_/hbase/_中。您可以使用 hadoop 的 _bin/_目录中的<code>hadoop fs</code> 命令来列出此目录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ./bin/hadoop fs -ls /hbase</span><br><span class="line">Found 7 items</span><br><span class="line">drwxr-xr-x   - hbase users          0 2014-06-25 18:58 /hbase/.tmp</span><br><span class="line">drwxr-xr-x   - hbase users          0 2014-06-25 21:49 /hbase/WALs</span><br><span class="line">drwxr-xr-x   - hbase users          0 2014-06-25 18:48 /hbase/corrupt</span><br><span class="line">drwxr-xr-x   - hbase users          0 2014-06-25 18:58 /hbase/data</span><br><span class="line">-rw-r--r--   3 hbase users         42 2014-06-25 18:41 /hbase/hbase.id</span><br><span class="line">-rw-r--r--   3 hbase users          7 2014-06-25 18:41 /hbase/hbase.version</span><br><span class="line">drwxr-xr-x   - hbase users          0 2014-06-25 21:49 /hbase/oldWALs</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建一个表并使用数据填充它</p>
+<p>您可以使用HBase Shell创建一个表，使用数据填充它，使用与<a href="#shell_exercises">shell练习</a>中相同的步骤。</p>
+</li>
+<li><p>启动和停止备份HBase主（HMaster）服务器</p>
+<blockquote>
+<p>在同一个硬件上运行多个HMaster实例在生产环境中是没有意义的，就像运行伪分布式集群对于生产没有意义一样。此步骤仅供测试和学习之用。</p>
+</blockquote>
+<p>HMaster服务器控制HBase集群。你可以启动最多9个备份HMaster服务器，这个服务器总共有10个HMaster计算主服务器。使用<code>local-master-backup.sh</code>启动备份HMaster。对于要启动的每个备份主节点，请添加一个表示该主节点的端口偏移量的参数。每个HMaster使用三个端口（默认情况下为16010,16020和16030）。端口偏移量2添加到这些端口，那么备份HMaster将使用端口16012,16022和16032。以下命令启动服务器端口为：16012/16022/16032，16013/16023/16033和16015/16025/16035</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./bin/local-master-backup.sh start 2 3 5</span><br></pre></td></tr></table></figure>
+<p>要在不杀死整个群集的情况下杀死备份主机，则需要查找其进程ID（PID）。PID存储在一个名为_/tmp/hbase-USER-X-master.pid_的文件中。该文件的唯一内容是PID。您可以使用该<code>kill -9</code>命令来杀死该PID。以下命令将终止具有端口偏移1的主服务器，但保持群集正在运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /tmp/hbase-testuser-1-master.pid |xargs kill -9</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动和停止其他RegionServers</p>
+<p>HRegionServer按照HMaster的配置管理StoreFiles中的数据。通常，一个HRegionServer在集群中的每个节点上运行。在同一个系统上运行多个HRegionServers对于伪分布式模式下的测试非常有用。该<code>local-regionservers.sh</code>命令允许您运行多个RegionServer。它以类似的<code>local-master-backup.sh</code>命令的方式工作，因为您提供的每个参数都代表实例的端口偏移量。每个RegionServer需要两个端口，默认端口是16020和16030。但是，由于HMaster使用默认端口，所以其他RegionServers的基本端口不是默认端口，而HMaster自从HBase版本1.1.0以来也是RegionServer。基本端口是16200和16300。您可以在服务器上运行另外99个不是HMaster或备份HMaster的RegionServer。以下命令将启动另外四个RegionServers，它们在从16202/16302（基本端口16200/16300加2）开始的顺序端口上运行 HBase从版本1.1.0开始, HMaster不使用 region server端口, 而为RegionServers预留了10个端口 (16020 to 16029 and 16030 to 16039). 为支持添加RegionServers, 在启动<code>local-regionservers.sh</code>之前,需设置HBASE_RS_BASE_PORT 和 HBASE_RS_INFO_BASE_PORT.例如, 使用基本端口16200和16300。也可以使用另外99个端口。 以下命令将启动另外四个RegionServers，它们在从16202/16302（基本端口16200/16300加2）开始的顺序端口上运行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ .bin/local-regionservers.sh start 2 3 4 5</span><br></pre></td></tr></table></figure>
+<p>要手动停止RegionServer，请使用带有<code>stop</code>参数和服务器偏移量的<code>local-regionservers.sh</code>命令停止。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ .bin/local-regionservers.sh stop 3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>停止HBase</p>
+<p>您可以使用 _bin/stop-hbase.sh_命令以与<a href="#quickstart">快速开始</a>过程相同的方式停止HBase 。</p>
+</li>
+</ol>
+<h3 id="2-4-完全分布式HBase"><a href="#2-4-完全分布式HBase" class="headerlink" title="2.4. 完全分布式HBase"></a>2.4. 完全分布式HBase</h3><p>实际上，您需要一个完全分布式的配置来全面测试HBase，并将其用于实际场景中。在分布式配置中，集群包含多个节点，每个节点运行一个或多个HBase守护进程。这些包括主要和备份主实例，多个ZooKeeper节点和多个RegionServer节点。</p>
+<p>此高级快速入门将两个以上的节点添加到您的群集。架构如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Node Name</th>
+<th>Master</th>
+<th>ZooKeeper</th>
+<th>RegionServer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>node-a.example.com</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>node-b.example.com</td>
+<td>backup</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>node-c.example.com</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这个快速入门假定每个节点都是虚拟机，并且它们都在同一个网络上。它基于之前的快速入门、本地和<a href="#quickstart_pseudo">伪分布式HBase</a>，假设您在该过程中配置的系统是现在<code>node-a</code>。继续之前，在<code>node-a</code>停止HBase 。</p>
+<blockquote>
+<p>请确保所有节点都具有完全的通信访问权限，并且没有任何防火墙规则可以阻止。如果您看到任何错误，如<code>no route to host</code>，请检查您的防火墙设置。</p>
+</blockquote>
+<p>过程: 配置无密码SSH访问</p>
+<p><code>node-a</code>需要能够登录<code>node-b</code>和<code>node-c</code>（包含自己）才能启动守护进程。实现这一点的最简单的方法是在所有主机上使用相同的用户名，并配置<code>node-a</code>到其他的无密码的SSH登录</p>
+<ol>
+<li><p>在<code>node-a</code>，生成一个密钥对</p>
+<p>以运行HBase的用户身份登录时，使用以下命令生成SSH密钥对：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+<p>如果命令成功，密钥对的位置将打印到标准输出。公钥的默认名称是 _id_rsa.pub_.</p>
+</li>
+<li><p>创建并共享密钥的目录</p>
+<p>在<code>node-b</code>和上<code>node-c</code>，以HBase用户身份登录，并在用户主目录中创建一个_.ssh/_目录（如果尚不存在）。如果它已经存在，请注意它可能已经包含其他值。</p>
+</li>
+<li><p>将公钥复制到其他节点</p>
+<p>通过使用scp或其他一些安全的手段，安全地将公钥从<code>node-a</code>复制到每个节点。在其他每个节点上，创建一个名为_.ssh/authorized_keys_的新文件（如果该文件尚不存在），并将_id_rsa.pub_ 文件的内容附加到该文件的末尾。请注意，你也需要为<code>node-a</code>本身执行此项。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试无密码登录</p>
+<p>确保过程正确,可以以相同用户名从<code>node-a</code> 无密码登录其他节点.</p>
+</li>
+<li><p>由于 <code>node-b</code> 是备份主节点, 重复上述步骤,将<code>node-a</code>替换为<code>node-b</code>.确保不会覆盖现有的 _.ssh/authorized_keys_ 文件, 可以使用<code>&gt;&gt;</code>运算符而不是<code>&gt;</code>运算符将新密钥添加到文件末尾。</p>
+</li>
+</ol>
+<p>过程: 准备 <code>node-a</code></p>
+<p><code>node-a</code> 是主节点和ZooKeeper进程节点,而不是RegionServers服务. 首先停止<code>node-a</code>RegionServers服务</p>
+<ol>
+<li><p>编辑 _conf/regionservers_ 移除包含 <code>localhost</code>的列. 添加 <code>node-b</code> 和 <code>node-c</code>的主机名和IP.</p>
+<p>即使你非要在 <code>node-a</code>上运行regionserver, 你应该配置主机名. 演示中为 <code>node-a.example.com</code>.确保您能够将配置分发到集群的每个节点上并无任何主机名冲突。保存文件。</p>
+</li>
+<li><p>配置HBase,将 <code>node-b</code>作为备份主节点</p>
+<p>在 _conf/_ 目录创建 _backup-masters_添加新的一行主机名为 <code>node-b</code>. 演示中主机名为 <code>node-b.example.com</code>.</p>
+</li>
+<li><p>配置ZooKeeper</p>
+<p>实际上，你应该仔细考虑你的ZooKeeper配置。您可以在<a href="#zookeeper">zookeeper</a>部分找到更多关于配置ZooKeeper的信息。这个配置将指示HBase在集群的每个节点上启动和管理一个ZooKeeper实例。在<code>node-a</code>上，编辑_conf/hbase-site.xml_并添加下列属性</p>
+</li>
+</ol>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;</span><br><span class="line">  &lt;value&gt;node-a.example.com,node-b.example.com,node-c.example.com&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;</span><br><span class="line">  &lt;value&gt;/usr/local/zookeeper&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><ol>
+<li>在您的配置中，您已经将<code>node-a</code>作为<code>localhost</code>引用，将引用改为指向其他节点用来引用 <code>node-a</code>的主机名。在这些例子中，主机名是<code>node-a.example.com</code></li>
+</ol>
+<p>过程: 准备 <code>node-b</code> 和 <code>node-c</code></p>
+<p><code>node-b</code> 将运行一个备份主服务器和一个ZooKeeper实例。</p>
+<ol>
+<li><p>下载并解压HBase</p>
+<p>将HBase下载并解压到<code>node-b</code>，就像您为独立和伪分布式快速入门所操作的一样。</p>
+</li>
+<li><p>将配置文件从<code>node-a</code>复制到<code>node-b</code>和<code>node-c</code></p>
+<p>的群集的每个节点都需要具有相同的配置信息。将_conf/_ 目录下的内容复制到<code>node-b</code>和<code>node-c</code>上的_conf/_ 目录中。</p>
+</li>
+</ol>
+<p>过程: 启动并测试群集</p>
+<ol>
+<li><p>确保HBase没有在任何节点上运行</p>
+<p>如果您在之前的测试中忘记停止HBase，您将会遇到错误。通过使用该<code>jps</code>命令检查HBase是否在任何节点上运行。寻<code>HMaster</code>, <code>HRegionServer</code>和 <code>HQuorumPeer</code>的进程。如果他们存在，杀掉他们</p>
+</li>
+<li><p>启动集群</p>
+<p>在<code>node-a</code>，发出<code>start-hbase.sh</code>命令。您的输出将类似于下面的输出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ bin/start-hbase.sh</span><br><span class="line">node-c.example.com: starting zookeeper, logging to /home/hbuser/hbase-0.98.3-hadoop2/bin/../logs/hbase-hbuser-zookeeper-node-c.example.com.out</span><br><span class="line">node-a.example.com: starting zookeeper, logging to /home/hbuser/hbase-0.98.3-hadoop2/bin/../logs/hbase-hbuser-zookeeper-node-a.example.com.out</span><br><span class="line">node-b.example.com: starting zookeeper, logging to /home/hbuser/hbase-0.98.3-hadoop2/bin/../logs/hbase-hbuser-zookeeper-node-b.example.com.out</span><br><span class="line">starting master, logging to /home/hbuser/hbase-0.98.3-hadoop2/bin/../logs/hbase-hbuser-master-node-a.example.com.out</span><br><span class="line">node-c.example.com: starting regionserver, logging to /home/hbuser/hbase-0.98.3-hadoop2/bin/../logs/hbase-hbuser-regionserver-node-c.example.com.out</span><br><span class="line">node-b.example.com: starting regionserver, logging to /home/hbuser/hbase-0.98.3-hadoop2/bin/../logs/hbase-hbuser-regionserver-node-b.example.com.out</span><br><span class="line">node-b.example.com: starting master, logging to /home/hbuser/hbase-0.98.3-hadoop2/bin/../logs/hbase-hbuser-master-nodeb.example.com.out</span><br></pre></td></tr></table></figure>
+<p>ZooKeeper首先启动，然后是master，然后是RegionServers，最后是backup masters。</p>
+</li>
+</ol>
+<ol>
+<li><p>验证进程是否正在运行</p>
+<p>在集群的每个节点上，运行该<code>jps</code>命令并验证每台服务器上是否运行了正确的进程。如果用于其他用途，您可能会看到在您的服务器上运行的其他Java进程。</p>
+<p><code>node-a</code> <code>jps</code> 输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ jps</span><br><span class="line">20355 Jps</span><br><span class="line">20071 HQuorumPeer</span><br><span class="line">20137 HMaster</span><br></pre></td></tr></table></figure>
+<p><code>node-b</code> <code>jps</code> 输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ jps</span><br><span class="line">15930 HRegionServer</span><br><span class="line">16194 Jps</span><br><span class="line">15838 HQuorumPeer</span><br><span class="line">16010 HMaster</span><br></pre></td></tr></table></figure>
+<p><code>node-c</code> <code>jps</code> 输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ jps</span><br><span class="line">13901 Jps</span><br><span class="line">13639 HQuorumPeer</span><br><span class="line">13737 HRegionServer</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ZooKeeper 进程名称</p>
+<p>进程<code>HQuorumPeer</code>是一个由HBase控制和启动的ZooKeeper实例.如果以这种方式使用ZooKeeper，则每个群集节点仅限于一个实例，并且仅适用于测试。如果ZooKeeper在HBase之外运行，则调用该进程QuorumPeer。更多请查看章节 <a href="#zookeeper">zookeeper</a> .</p>
+</blockquote>
+</li>
+<li><p>Web UI.</p>
+<blockquote>
+<p>Web UI 接口更改</p>
+</blockquote>
+<p>在HBase 0.98.x以上,  HBase Web UI的端口从主节点的60010和RegionServer的60030变化为16010 和 16030</p>
+<p>如果一切设置正确，您应该能够使用Web浏览器连接到Master<code>[http://node-a.example.com:16010/](http://node-a.example.com:16010/)</code>或Secondary Master的UI <code>[http://node-b.example.com:16010/](http://node-b.example.com:16010/)</code> 。如果您可以通过<code>localhost</code>而不是从另一台主机连接，请检查您的防火墙规则。您可以在端口16030的IP地址中查看每个RegionServers的Web UI，也可以通过单击Master的Web UI中的链接来查看。</p>
+</li>
+<li><p>测试节点或服务消失时会发生什么</p>
+<p>在配置了三节点集群后，集群并不会很有弹性。您仍然可以通过关闭进程并查看日志来测试主Master或RegionServer的行为。</p>
+</li>
+</ol>
+<h3 id="2-5-接下来"><a href="#2-5-接下来" class="headerlink" title="2.5. 接下来"></a>2.5. 接下来</h3><p>下一章节 <a href="#configuration">configuration</a>, 提供有关不同的HBase运行模式、运行HBase的系统要求以及分布式HBase群集的关键配置的详细信息。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechat-reward-image.png" alt="博主 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay-reward-image.png" alt="博主 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>博主</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://xixici.com/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch1快速开始/" title="Apache HBase ™ 中文指南(最新版HBase 3.0.0)-ch1快速开始">http://xixici.com/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch1快速开始/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/25/first-with-git/" rel="next" title="初次运行 Git 前的配置">
+                <i class="fa fa-chevron-left"></i> 初次运行 Git 前的配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch0前言/" rel="prev" title="Apache HBase ™ 中文指南(最新版HBase 3.0.0)-ch0前言">
+                Apache HBase ™ 中文指南(最新版HBase 3.0.0)-ch0前言 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="博主">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description">远方与诗的存在</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/xixici" title="GitHub &rarr; https://github.com/xixici" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:ybleak@gmail.com" title="E-Mail &rarr; mailto:ybleak@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#入门"><span class="nav-number">1.</span> <span class="nav-text">入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1. 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-快速开始-Standalone-HBase"><span class="nav-number">1.2.</span> <span class="nav-text">2. 快速开始 - Standalone HBase</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-JDK-版本要求"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1. JDK 版本要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-HBase开始"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2. HBase开始</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#过程：下载、配置和启动-Standalone-HBase"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">过程：下载、配置和启动 Standalone HBase</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过程-首次使用HBase"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">过程: 首次使用HBase</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过程-停止HBase"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">过程: 停止HBase</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-伪分布式HBase"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3. 伪分布式HBase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-完全分布式HBase"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4. 完全分布式HBase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-接下来"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5. 接下来</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 - Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'eNL90rjoyqRULdbwDWngaezL-gzGzoHsz',
+    appKey: 'U7WbxXmVMpcwTtsEqCv41v5s',
+    placeholder: 'Talk Something...',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'; 
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+      pbOptions = {};
+      
+        pbOptions.iconStyle = "default";
+      
+        pbOptions.boxForm = "horizontal";
+      
+        pbOptions.position = "bottomCenter";
+      
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Linkedin,Mailto,Pinterest,Facebook,Tumblr,GoogleBookmarks,Evernote";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+        flOptions.iconStyle = "default";
+      
+        flOptions.boxForm = "horizontal";
+      
+        flOptions.position = "middleRight";
+      
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Linkedin,Mailto,Pinterest,Facebook,Tumblr,GoogleBookmarks,Evernote";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script>pangu.spacingPage();</script>
+
+
+  
+  <script src="/js/src/js.cookie.js?v=7.0.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=7.0.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
