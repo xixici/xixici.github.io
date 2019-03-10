@@ -1,0 +1,2313 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Apache HBase配置  译者: xixici  当你想要升级时，你不能跳过主要版本。当你从版本0.98.x到 2.x时，你必须首先升级到1.2.x再从1.2.x升级到 2.x。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解">
+<meta property="og:url" content="http://xixici.com/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解 - 副本/index.html">
+<meta property="og:site_name" content="西西词">
+<meta property="og:description" content="Apache HBase配置  译者: xixici  当你想要升级时，你不能跳过主要版本。当你从版本0.98.x到 2.x时，你必须首先升级到1.2.x再从1.2.x升级到 2.x。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-10T12:44:52.598Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解">
+<meta name="twitter:description" content="Apache HBase配置  译者: xixici  当你想要升级时，你不能跳过主要版本。当你从版本0.98.x到 2.x时，你必须首先升级到1.2.x再从1.2.x升级到 2.x。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://xixici.com/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解 - 副本/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解 | 西西词</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">西西词</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">诗在远方</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">19</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">5</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">27</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/xixici" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解 - 副本/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="远方与诗的存在">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西词">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-04 16:54:00" itemprop="dateCreated datePublished" datetime="2019-03-04T16:54:00+08:00">2019-03-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-10 20:44:52" itemprop="dateModified" datetime="2019-03-10T20:44:52+08:00">2019-03-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/翻译/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解 - 副本/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解 - 副本/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Apache-HBase配置"><a href="#Apache-HBase配置" class="headerlink" title="Apache HBase配置"></a>Apache HBase配置</h1><blockquote>
+<p> 译者: <a href="https://github.com/xixici" target="_blank" rel="noopener">xixici</a></p>
+</blockquote>
+<p>当你想要升级时，你不能跳过主要版本。当你从版本0.98.x到 2.x时，你必须首先升级到1.2.x再从1.2.x升级到 2.x。</p>
+<a id="more"></a>
+<p>回顾 <a href="#configuration">Apache HBase 配置</a>章节，还有 <a href="https://hadoop.apache.org" target="_blank" rel="noopener">Hadoop</a>，并熟悉 <a href="#hbase_supported_tested_definitions">支持和测试</a>.</p>
+<h2 id="11-HBase版本号和兼容性"><a href="#11-HBase版本号和兼容性" class="headerlink" title="11. HBase版本号和兼容性"></a>11. HBase版本号和兼容性</h2><h3 id="11-1-期望语义版本控制"><a href="#11-1-期望语义版本控制" class="headerlink" title="11.1. 期望语义版本控制"></a>11.1. 期望语义版本控制</h3><p>从版本1.0.0开始，HBase采用 <a href="http://semver.org/" target="_blank" rel="noopener">Semantic Versioning</a>作为版本控制。</p>
+<p>对于给定的版本号 MAJOR.MINOR.PATCH，增加如下内容：</p>
+<p>MINOR 版本，当您以向后兼容的方式添加功能时<br>PATCH 版本，当您进行向后兼容的错误修复时<br>预发布和构建元数据的其他标签可作为MAJOR.MINOR.PATCH格式的扩展。</p>
+<ul>
+<li><p>MAJOR 版本，当你进行不兼容的 API 更改时</p>
+</li>
+<li><p>MINOR 版本，当您以向后兼容的方式添加功能时</p>
+</li>
+<li><p>PATCH 版本，当您进行向后兼容的错误修复时</p>
+</li>
+<li><p>预发布和构建元数据的其他标签可作为MAJOR.MINOR.PATCH格式的扩展。</p>
+</li>
+</ul>
+<p>兼容性维度</p>
+<p>除了通常的 API 版本考虑之外，HBase 还有其他需要考虑的兼容性维度。</p>
+<p>Client-Server 线协议兼容性：</p>
+<ul>
+<li><p>允许不同步更新客户端和服务器。</p>
+</li>
+<li><p>我们只能允许先升级服务器。也就是说，服务器将向后兼容旧客户端，这样新的 API 就可以使用。</p>
+</li>
+<li><p>示例：用户应该能够使用旧客户端连接到升级的群集。</p>
+</li>
+</ul>
+<p>Server-Server 协议兼容性：</p>
+<ul>
+<li><p>不同版本的服务器可以共存于同一个群集中。</p>
+</li>
+<li><p>服务器之间的有线协议是兼容的。</p>
+</li>
+<li><p>分布式任务的工作人员（如复制和日志拆分）可以共存于同一个群集中。</p>
+</li>
+<li><p>相关协议（如使用ZK进行协调）也不会改变。</p>
+</li>
+</ul>
+<ul>
+<li>示例：用户可以执行滚动升级。</li>
+</ul>
+<p>文件格式兼容性：</p>
+<ul>
+<li>支持文件格式向前和向后兼容</li>
+</ul>
+<ul>
+<li>示例：文件、ZK 编码、目录布局自动升级为 HBase 升级的一部分。用户可以降级到旧版本，并且一切都将继续工作。</li>
+</ul>
+<p>客户端 API 兼容性：</p>
+<ul>
+<li>允许更改或删除现有的客户端 API。</li>
+</ul>
+<ul>
+<li>在我们更改/删除主要版本之前，API 需要被弃用。</li>
+</ul>
+<ul>
+<li>修补程序（patch）版本中提供的 API 将在所有后续修补程序版本中提供。但是，可能会添加新的 API，这些 API 在以前的修补程序版本中将不可用。</li>
+</ul>
+<ul>
+<li><p>修补程序版本中引入的新 API 只能以源代码兼容的方式添加：即实现公共 API 的代码将继续编译<sup class="footnote">[<a href="#_footnote_1" title="View footnote.">1</a>]</sup>:。示例：使用新废用的 API 的用户不需要使用 HBase API 调用修改应用程序代码，直到下一个主要版本。</p>
+<ul>
+<li>示例：在下一个主要版本之前，使用新弃用的API的用户不需要修改应用程序的HBase API调用代码。</li>
+</ul>
+</li>
+</ul>
+<p>客户端二进制兼容性：</p>
+<ul>
+<li>写入给定修补程序版本中提供的 API 的客户端代码可以运行不变（不需要重新编译），以抵补新的 jar 后续补丁版本。</li>
+</ul>
+<ul>
+<li><p>写入给定修补程序版本中提供的 API 的客户端代码可能无法针对早期修补程序版本中的旧 jar 运行。示例：旧编译的客户端代码将在 jar 中保持不变。</p>
+<ul>
+<li>示例：旧编译的客户端代码将在 jar 中保持不变。</li>
+</ul>
+</li>
+<li><p>如果客户端实现 HBase 接口，则可能需要重新编译升级到较新的次要（minor）版本。</p>
+</li>
+</ul>
+<p>服务器端有限的 API 兼容性（取自 Hadoop）：</p>
+<ul>
+<li><p>内部API被标记为“稳定（Stable）”，“正在发展（Evolving）”或“不稳定（Unstable）”。</p>
+</li>
+<li><p>这意味着协处理器和插件（可插入类，包括复制）的二进制兼容性，只要这些只使用标记的接口/类。</p>
+</li>
+<li><p>例如：旧编译的协处理器，过滤器或插件代码将在新 jar 中保持不变。</p>
+</li>
+</ul>
+<p>相关性兼容性：</p>
+<ul>
+<li>HBase 的升级除Apache Hadoop外，不需要依赖项目的兼容升级，包括运行 Java 时。</li>
+</ul>
+<ul>
+<li><p>HBase 的升级不需要依赖项目的兼容升级，包括Java 。</p>
+</li>
+<li><p>示例：将HBase升级到支持_依赖兼容性_的版本不需要升级Apache ZooKeeper服务。</p>
+</li>
+<li><p>示例：示例：如果当前版本的HBase支持在JDK 8上运行，则升级到支持_依赖兼容性_的版本也将在JDK 8上运行。</p>
+</li>
+</ul>
+<blockquote>
+<p>Hadoop 版本</p>
+<p>之前，我们尝试维护基础Hadoop服务的依赖兼容性，但在过去几年中，这已经证明是站不住脚的。 虽然HBase项目试图维持对旧版本Hadoop的支持，但我们删除了次要版本的“受支持”指示符。 此外，Hadoop项目有自己的一组兼容性指南，这意味着在某些情况下，会破坏指南，也就是必须更新到较新的受支持的次要版本。</p>
+</blockquote>
+<p>操作兼容性：</p>
+<ul>
+<li><p>度量标准的更改</p>
+</li>
+<li><p>服务的行为变化</p>
+</li>
+<li><p>通过 <code>/jmx/</code> 端点公开的 JMX API</p>
+</li>
+</ul>
+<p>概要</p>
+<ul>
+<li><p>修补程序（patch）升级是一种直接替代方案。任何不是 Java 二进制和源代码兼容的更改都将不被允许<sup class="footnote">[<a href="#_footnote_2" title="View footnote.">2</a>]</sup>。在修补程序版本中降级版本可能不兼容。</p>
+</li>
+<li><p>次要（minor）升级不需要修改应用程序/客户端代码。理想情况下，这将是一个直接替换，但如果使用新的 jar，则客户端代码，协处理器，过滤器等可能必须重新编译。</p>
+</li>
+</ul>
+<ul>
+<li>主要（major）升级允许 HBase 做出重大改变。</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Major</th>
+<th>Minor</th>
+<th>Patch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>客户端 - 服务器线路兼容性</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>服务器 - 服务器兼容性</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>文件格式兼容性</td>
+<td>N <sup class="footnote">[<a href="#_footnote_4" title="View footnote.">4</a>]</sup></td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>客户端API兼容性</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>客户端二进制兼容性</td>
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>服务器端有限的API兼容性</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>稳定性（Stable）</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>发展性（Evolving）</td>
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>不稳定性（Unstable）</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+</tr>
+<tr>
+<td>相关性兼容性</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>操作兼容性</td>
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="11-1-1-HBase-API"><a href="#11-1-1-HBase-API" class="headerlink" title="11.1.1. HBase API"></a>11.1.1. HBase API</h4><p>HBase 有很多 API 要点，但对于上面的兼容性矩阵，我们区分了Client API（客户端 API），Limited Private API（有限的私有 API）和 Private API（私有 API）。HBase 使用 <a href="https://yetus.apache.org/documentation/0.5.0/interface-classification/" target="_blank" rel="noopener">Apache Yetus Audience Annotations</a> 来定义稳定性</p>
+<ul>
+<li><p>InterfaceAudience (<a href="https://yetus.apache.org/documentation/0.5.0/audience-annotations-apidocs/org/apache/yetus/audience/InterfaceAudience.html" target="_blank" rel="noopener">javadocs</a>): 捕捉预期的受众，可能的值包括：</p>
+<ul>
+<li><p>Public：对于最终用户和外部项目是安全的；</p>
+</li>
+<li><p>LimitedPrivate：用于我们期望可插入的内部组件，如协处理器；  </p>
+</li>
+<li><p>Private：严格用于 HBase 自身内部定义为 IA 的类中，Private 可以用作声明 <code>IA.LimitedPrivate</code> 接口的参数或返回值。将<code>IA.Private</code>对象视为不透明；不要尝试直接访问其方法或字段。</p>
+</li>
+</ul>
+</li>
+<li><p>InterfaceStability (<a href="https://yetus.apache.org/documentation/0.5.0/audience-annotations-apidocs/org/apache/yetus/audience/InterfaceStability.html" target="_blank" rel="noopener">javadocs</a>): 描述允许接口更改的类型。可能的值包括：</p>
+<ul>
+<li><p>Stable：接口是固定的，预计不会改变；</p>
+</li>
+<li><p>Evolving：界面可能会在未来的minor 版本中改变；</p>
+</li>
+<li><p>Unstable：界面可能随时更改</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>请记住 HBase 项目中 <code>InterfaceAudience</code> 注释和 <code>InterfaceStability</code> 注释之间的以下相互作用：</p>
+<ul>
+<li><p><code>IA.Public</code> 类本质上是稳定的，并坚持我们有关升级类型（主要，次要或修补程序）的稳定性保证。</p>
+</li>
+<li><p><code>IA.LimitedPrivate</code> 类应始终使用给定的 <code>InterfaceStability</code> 值的其中一个进行注释。如果他们不是，你应该假定他们是 <code>IS.Unstable</code>。</p>
+</li>
+<li><p><code>IA.Private</code> 类应该被认为是隐含不稳定的，不能保证发布之间的稳定性。</p>
+</li>
+</ul>
+<p>HBase Client API</p>
+<p>HBase 客户端 API 由所有标记有 InterfaceAudience.Public 接口的类或方法组成。hbase-client 和依赖模块中的所有主类都有InterfaceAudience.Public，InterfaceAudience.LimitedPrivate或InterfaceAudience.Private标记。并非所有其他模块（hbase-server等）中的类都有标记。如果一个类没有使用上述中的一个注释，则它被认为是一个InterfaceAudience.Private类。</p>
+<p>HBase LimitedPrivate API</p>
+<p>LimitedPrivate 注释为接口附带了一组目标使用者。这些使用者是协处理器，phoenix，复制端点实现等。此时，HBase 只能保证修补程序版本之间的这些接口的源和二进制兼容性。</p>
+<p>HBase Private API</p>
+<p>所有使用InterfaceAudience.Private注释的类或没有注释的所有类仅在HBase内部使用。接口和方法签名可以随时改变。如果您依赖于标记为Private的特定界面，则应打开jira以建议将界面更改为Public或LimitedPrivate，或者为此目的公开的接口。</p>
+<p>二进制兼容性：</p>
+<p>当我们说两个 HBase 版本是兼容的时，我们的意思是这些版本是线（wire）和二进制兼容的。兼容的HBase版本意味着客户可以与兼容但不同版本的服务器通话。这也意味着你可以换出一个版本的 jar，并用另一个兼容版本的 jar 替换它们，所有的 jar 都可以工作。除非另有说明，否则 HBase 主要的版本都是二进制兼容的。您可以安全地在二进制兼容版本之间进行滚动升级。例如从1.2.4到 1.2.6.详见:[Does compatibility between versions also mean binary compatibility?] 在HBase论坛的讨论。</p>
+<h3 id="11-2-滚动升级"><a href="#11-2-滚动升级" class="headerlink" title="11.2. 滚动升级"></a>11.2. 滚动升级</h3><p>滚动升级是您一次更新服务器群集中的服务器的过程。如果它们是二进制或线路兼容的，则可以跨 HBase版本进行滚动升级。详见：<a href="#hbase.rolling.restart">Rolling Upgrade Between Versions that are Binary/Wire Compatible</a> 粗略地说，滚动升级是正常地停止每台服务器，更新软件，然后重新启动。您可以为集群中的每个服务器执行此操作。通常先升级 Master，然后再升级 RegionServers。 查看 <a href="#rolling">Rolling Restart</a> </p>
+<p>例如，下面的 HBase 是 symlinked 实际的 HBase 安装。在升级之前，在群集上运行滚动重启之前，我们将 symlink 更改为指向新的 HBase 软件版本，然后运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ HADOOP_HOME=~/hadoop-2.6.0-CRC-SNAPSHOT ~/hbase/bin/rolling-restart.sh --config ~/conf_hbase</span><br></pre></td></tr></table></figure>
+<p>滚动重新启动脚本将首先正常停止并重新启动主服务器，然后依次重新启动每个 RegionServer。由于 symlink 被更改，所以重新启动时，服务器将使用新的HBase 版本。随着滚动升级的进行，检查日志中是否有错误。 </p>
+<p>在兼容二进制/Wire的版本之间进行滚动升级：</p>
+<p>除非另有说明，否则 HBase 指向的版本是二进制兼容的。您可以在 HBase 主要版本之间进行<a href="#hbase.rolling.upgrade">滚动升级</a>。例如，您可以通过在集群中进行滚动升级，使用0.94.6二进制文件替换0.94.5二进制文件，从而从 0.94.5 转到 0.94.6。</p>
+<p>在次要（minor）版本中，我们调用的版本是有线/协议兼容的，在这种情况下，也可以执行<a href="#hbase.rolling.upgrade">滚动升级</a>。</p>
+<h2 id="12-版本恢复"><a href="#12-版本恢复" class="headerlink" title="12. 版本恢复"></a>12. 版本恢复</h2><p>当你在试着升级 HBase 的时候，你可能会遇到升级失败的问题，并且想要将其恢复成之前的版本。本节就介绍如何执行_回滚_以将 HBase 恢复为到较早的版本。请注意，这应该只在主要版本和一些次要版本之间需要。您应该始终能够在相同次要版本的 HBase Patch 版本之间进行_降级_。这些说明可能要求您在开始升级过程之前注意相关的事项，因此请务必事先阅读本节。 </p>
+<h3 id="12-1-警告"><a href="#12-1-警告" class="headerlink" title="12.1. 警告"></a>12.1. 警告</h3><p>回滚与降级</p>
+<p>本节介绍如何对 HBase 次要版本和主要版本之间的升级执行回滚。在本文档中，回滚指的是采取升级后的集群并将其恢复到旧版本的过程，同时_丢失升级后发生的所有更改_。相比之下，群集降级会将升级后的群集恢复到旧版本，同时保留升级后写入的任何数据。我们目前仅提供回滚 HBase 集群的说明。此外，只有在执行升级之前遵循这些说明，回滚才有效。 </p>
+<p>当这些指令谈论回滚与降级的先决条件群集服务（即HDFS）时，您应该将服务版本与退化的降级案例视为相同。</p>
+<p>复制</p>
+<p>除非您正在执行全部服务回滚，否则 HBase 群集将会丢失任何配置的对等 HBase 复制。如果您的集群配置为 HBase 复制，那么在按照这些说明<a href="#hbase.replication.management">Managing and Configuring Cluster Replication</a>进行操作之前，您应该记录所有复制节点。执行回滚之后，您应该将每个记录的对等点添加回群集。另外要注意，自升级后写入群集的数据可能已经或可能未被复制到任何对等方。 </p>
+<p>数据位置</p>
+<p>除非您正在执行全部服务回滚，否则通过回滚过程可能会破坏Region Server的所有局部位置。在群集有时间通过紧凑排列恢复数据位置之前，您应该期望性能的降级。或者，您可以强制压缩来加速此过程，但要以生成群集负载为代价。</p>
+<p>可配置的位置</p>
+<p>以下说明假设 HBase 数据目录和 HBase znode 的默认位置。这两个位置都是可配置的，您应该在继续操作之前验证群集中使用的值。如果您有不同的值，只需将默认值替换为在配置中找到的 HBase 数据目录，它是通过密钥 “HBase” (rootdir) 配置的，并且具有默认的 “/HBase”。* HBase znode通过密钥’zookeeper.znode.parent’进行配置，默认值为’/ hbase’。 </p>
+<h3 id="12-2-所有服务回滚"><a href="#12-2-所有服务回滚" class="headerlink" title="12.2. 所有服务回滚"></a>12.2. 所有服务回滚</h3><p>如果您要执行 HDFS 和 ZooKeeper 服务的回滚，那么 HBase 的数据将在此过程中回滚。</p>
+<p>要求</p>
+<ul>
+<li>能够回滚 HDFS 和 ZooKeeper</li>
+</ul>
+<p>升级前</p>
+<p>在升级前不需要额外的步骤。作为一项额外的预防措施，您可能希望使用 distcp 将 HBase 数据备份到要升级的群集之外。为此，请本节内容中的按照“HDFS降级后回滚”的“升级前”部分中的步骤操作，但它是复制到另一个 HDFS 实例，而不是在同一实例中。 </p>
+<p>执行回滚</p>
+<ol>
+<li><p>停止 HBase</p>
+</li>
+<li><p>执行 HDFS 和 ZooKeeper 的回滚（HBase 应该保持停止状态）</p>
+</li>
+</ol>
+<ol>
+<li><p>将安装的 HBase 版本更改为以前的版本</p>
+</li>
+<li><p>启动 HBase</p>
+</li>
+<li><p>验证 HBase 内容 - 使用 HBase shell 列出表格并扫描一些已知值。</p>
+</li>
+</ol>
+<h3 id="12-3-HDFS-回滚和-ZooKeeper-降级后回滚"><a href="#12-3-HDFS-回滚和-ZooKeeper-降级后回滚" class="headerlink" title="12.3. HDFS 回滚和 ZooKeeper 降级后回滚"></a>12.3. HDFS 回滚和 ZooKeeper 降级后回滚</h3><p>如果您将回滚 HDFS，但通过 ZooKeeper 降级，那么 HBase 将处于不一致的状态。在完成此过程之前，您必须确保集群未启动。</p>
+<p>要求</p>
+<ul>
+<li><p>能够回滚 HDFS</p>
+</li>
+<li><p>能够降级 ZooKeeper</p>
+</li>
+</ul>
+<p>升级前</p>
+<p>在升级前不需要额外的步骤。作为一种额外的预防措施，您可能希望使用 distcp 将 HBase 数据备份到要升级的群集之外。为此，请本节内容中的按照“HDFS降级后回滚”的“升级前”部分中的步骤操作，但它将复制到另一个HDFS实例，而不是在同一实例中。</p>
+<p>执行回滚</p>
+<ol>
+<li>停止 HBase</li>
+</ol>
+<ol>
+<li>执行 HDFS 回滚和 ZooKeeper 降级（HBase 应该保持停止状态）</li>
+</ol>
+<ol>
+<li>将安装的 HBase 版本更改为以前的版本</li>
+</ol>
+<ol>
+<li>清除与 HBase 相关的 ZooKeeper 信息。警告：此步骤将永久销毁所有复制对等点。</li>
+</ol>
+<pre><code>清理 ZooKeeper 中的 HBase 信息
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[hpnewton@gateway_node.example.com ~]$ zookeeper-client -server zookeeper1.example.com:2181,zookeeper2.example.com:2181,zookeeper3.example.com:2181</span><br><span class="line">Welcome to ZooKeeper!</span><br><span class="line">JLine support is disabled</span><br><span class="line">rmr /hbase</span><br><span class="line">quit</span><br><span class="line">Quitting...</span><br></pre></td></tr></table></figure>
+</code></pre><ol>
+<li>启动 HBase</li>
+</ol>
+<ol>
+<li>验证 HBase 内容 - 使用 HBase shell 列出表格并扫描一些已知值。</li>
+</ol>
+<h3 id="12-4-HDFS-降级后回滚"><a href="#12-4-HDFS-降级后回滚" class="headerlink" title="12.4. HDFS 降级后回滚"></a>12.4. HDFS 降级后回滚</h3><p>如果您要执行 HDFS 降级，则无论ZooKeeper是否通过回滚、降级或重新安装，您都需要遵循这些指示信息。 </p>
+<p>要求</p>
+<ul>
+<li><p>可以降级 HDFS</p>
+</li>
+<li><p>升级前群集必须能够运行 MapReduce 作业</p>
+</li>
+<li><p>HDFS 超级用户访问</p>
+</li>
+<li><p>在 HDFS 中至少有两个 HBase 数据目录的副本空间可以降级 HDFS</p>
+</li>
+</ul>
+<p>升级前</p>
+<p>在开始升级过程之前，您必须对 HBase 的支持数据进行完整备份。以下说明介绍了在当前HDFS实例中备份数据的过程。或者，您可以使用 distcp 命令将数据复制到另一个 HDFS 群集。 </p>
+<ol>
+<li>停止 HBase 群集</li>
+</ol>
+<ol>
+<li><p>将 HBase 数据目录复制到备份位置, 方法<a href="https://hadoop.apache.org/docs/current/hadoop-distcp/DistCp.html" target="_blank" rel="noopener">distcp command</a>是使用 distcp 命令作为 HDFS 超级用户 (下面显示在启用安全的群集上)</p>
+<p>使用distcp备份HBase数据目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[hpnewton@gateway_node.example.com ~]$ kinit -k -t hdfs.keytab hdfs@EXAMPLE.COM</span><br><span class="line">[hpnewton@gateway_node.example.com ~]$ hadoop distcp /hbase /hbase-pre-upgrade-backup</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Distcp 将启动一个 mapreduce 作业来处理以分布式方式复制文件。检查 distcp 命令的输出，以确保此作业成功完成。</p>
+</li>
+</ol>
+<p>执行回滚</p>
+<ol>
+<li><p>停止 HBase</p>
+</li>
+<li><p>执行 HDFS 的降级和 ZooKeeper 的降级/回滚（HBase 应该保持停止状态）</p>
+</li>
+<li><p>将安装的 HBase 版本更改为以前的版本</p>
+</li>
+<li><p>将 HBase 数据目录从升级前恢复为 HDFS 超级用户 (如下所示在启用安全的群集上)。如果您将数据备份到另一个 HDFS 群集而不是本地，则需要使用distcp 命令将其复制回当前的 HDFS 群集。<br>恢复 HBase 数据目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[hpnewton@gateway_node.example.com ~]$ kinit -k -t hdfs.keytab hdfs@EXAMPLE.COM</span><br><span class="line">[hpnewton@gateway_node.example.com ~]$ hdfs dfs -mv /hbase /hbase-upgrade-rollback</span><br><span class="line">[hpnewton@gateway_node.example.com ~]$ hdfs dfs -mv /hbase-pre-upgrade-backup /hbase</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>清除与 HBase 相关的 ZooKeeper 信息。警告：此步骤将永久销毁所有复制对等点。</p>
+</li>
+</ol>
+<pre><code>清理 ZooKeeper 中的 HBase 信息：
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[hpnewton@gateway_node.example.com ~]$ zookeeper-client -server zookeeper1.example.com:2181,zookeeper2.example.com:2181,zookeeper3.example.com:2181</span><br><span class="line">Welcome to ZooKeeper!</span><br><span class="line">JLine support is disabled</span><br><span class="line">rmr /hbase</span><br><span class="line">quit</span><br><span class="line">Quitting...</span><br></pre></td></tr></table></figure>
+</code></pre><ol>
+<li><p>启动 HBase</p>
+</li>
+<li><p>验证 HBase 内容 - 使用 HBase shell 列出表格并扫描一些已知值。</p>
+</li>
+</ol>
+<h2 id="13-HBase升级路径"><a href="#13-HBase升级路径" class="headerlink" title="13. HBase升级路径"></a>13. HBase升级路径</h2><h3 id="13-1-从-1-x-升级到-2-x"><a href="#13-1-从-1-x-升级到-2-x" class="headerlink" title="13.1. 从 1.x 升级到 2.x"></a>13.1. 从 1.x 升级到 2.x</h3><p>在本节中，先前稳定的HBase版本相比所发生的重大变化，一定要仔细阅读，然后再进行升级。以免发生意外。</p>
+<h4 id="13-1-1-变化通告"><a href="#13-1-1-变化通告" class="headerlink" title="13.1.1. 变化通告"></a>13.1.1. 变化通告</h4><p>首先，我们将介绍升级到HBase 2.0+时可能遇到的部署/操作更改。之后，我们将告知下游应用程序的更改。请注意，协处理器包含在操作部分中。另外请注意，本节并不旨在传达您可能感兴趣的新功能的信息。有关更改的完整摘要，请参阅您计划升级到的版本的源发布工件中的changes.txt文件。</p>
+<p>更新到HBase 2.0+的基本最低先决条件</p>
+<p>如之前章节所述 <a href="#basic.prerequisites">Basic Prerequisites</a>, HBase 2.0+ 需要依赖Java 8 和 Hadoop 2.6. HBase社区建议在升级您的HBase版本之前，确保您已经完成了任何必要的先决条件升级。</p>
+<p>HBCK 一定要匹配HBase版本</p>
+<p> <strong>一定不要</strong>在HBase 2.0+ 集群上使用 HBase 1.x 版本的 HBCK。 HBCK是严格绑定 HBase版本的。 对hbase 2.0+集群使用早期版本的hbck工具将以不可恢复的方式破坏性地改变集群。</p>
+<p>从HBase 2.0开始， HBCK (也叫做_HBCK1_ 或 _hbck1_)是一个只读工具，可以报告某些非公共系统内部的状态。您不应该依赖这些内部构件的格式和内容来保持HBase版本之间的一致性。</p>
+<p>替代品详见： <a href="#HBCK2">HBase <code>HBCK2</code></a> 和 <a href="#ops_mgt">Apache HBase Operational Management</a>.</p>
+<p>配置设置不再位于HBase 2.0+</p>
+<p>下列配置设置不再适用或不可用。有关详细信息，请参阅详细的发行说明。</p>
+<ul>
+<li><p>hbase.config.read.zookeeper.config (查看 <a href="#upgrade2.0.zkconfig">ZooKeeper configs no longer read from zoo.cfg</a> )</p>
+</li>
+<li><p>hbase.zookeeper.useMulti (HBase现在使用ZK’s multi functionality)</p>
+</li>
+<li><p>hbase.rpc.client.threads.max</p>
+</li>
+<li><p>hbase.rpc.client.nativetransport</p>
+</li>
+<li><p>hbase.fs.tmp.dir</p>
+</li>
+<li><p>hbase.bucketcache.combinedcache.enabled</p>
+</li>
+<li><p>hbase.bucketcache.ioengine 不再支持 ‘heap’ 值.</p>
+</li>
+<li><p>hbase.bulkload.staging.dir</p>
+</li>
+<li><p>hbase.balancer.tablesOnMaster 严格地说，它并没有被删除，但它的意义已经发生了根本性的改变，用户不应该设置它。详见： <a href="#upgrade2.0.regions.on.master">“Master hosting regions” feature broken and unsupported</a> </p>
+</li>
+<li><p>hbase.master.distributed.log.replay 详见： <a href="#upgrade2.0.distributed.log.replay">“Distributed Log Replay” feature broken and removed</a> </p>
+</li>
+<li><p>hbase.regionserver.disallow.writes.when.recovering 详见： <a href="#upgrade2.0.distributed.log.replay">“Distributed Log Replay” feature broken and removed</a> </p>
+</li>
+<li><p>hbase.regionserver.wal.logreplay.batch.size 详见： <a href="#upgrade2.0.distributed.log.replay">“Distributed Log Replay” feature broken and removed</a> </p>
+</li>
+<li><p>hbase.master.catalog.timeout</p>
+</li>
+<li><p>hbase.regionserver.catalog.timeout</p>
+</li>
+<li><p>hbase.metrics.exposeOperationTimes</p>
+</li>
+<li><p>hbase.metrics.showTableName</p>
+</li>
+<li><p>hbase.online.schema.update.enable (HBase 不再支持)</p>
+</li>
+<li><p>hbase.thrift.htablepool.size.max</p>
+</li>
+</ul>
+<p>在HBase 2.0+重命名的配置属性</p>
+<p>已重命名以下属性。在运行时设置旧属性将失败。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>旧名称</th>
+<th>新名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hbase.rpc.server.nativetransport</td>
+<td>hbase.netty.nativetransport</td>
+</tr>
+<tr>
+<td>hbase.netty.rpc.server.worker.count</td>
+<td>hbase.netty.worker.count</td>
+</tr>
+<tr>
+<td>hbase.hfile.compactions.discharger.interval</td>
+<td>hbase.hfile.compaction.discharger.interval</td>
+</tr>
+<tr>
+<td>hbase.hregion.percolumnfamilyflush.size.lower.bound</td>
+<td>hbase.hregion.percolumnfamilyflush.size.lower.bound.min</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在HBase 2.0+中具有不同默认值的配置</p>
+<p>以下配置设置更改了它们的默认值。在适用的情况下，将给出hbase 1.2行为的设置值。</p>
+<ul>
+<li><p>hbase.security.authorization 默认 false. 之前版本的default是true</p>
+</li>
+<li><p>hbase.client.retries.number 现在默认10. 之前默认 35.建议下游用户使用 <a href="#config_timeouts">Timeout settings</a> 所述的客户端超时。</p>
+</li>
+<li><p>hbase.client.serverside.retries.multiplier 现在默认3. 之前默认 10.建议下游用户使用 <a href="#config_timeouts">Timeout settings</a> 所述的客户端超时。</p>
+</li>
+<li><p>hbase.master.fileSplitTimeout 默认10分钟，之前是30秒</p>
+</li>
+<li><p>hbase.regionserver.logroll.multiplier默认 0.5\之前 0.95. 此更改与下面的块大小加倍有关。结合起来，这两个配置更改应该使WAL的大小与HBase-1.x中的大小大致相同，但是小块的发生率应该更低，因为在达到块大小阈值之前，我们无法滚动WAL。<br>详见： <a href="https://issues.apache.org/jira/browse/HBASE-19148" target="_blank" rel="noopener">HBASE-19148</a> </p>
+</li>
+<li><p>hbase.regionserver.hlog.blocksize 默认为wal dir的hdfs默认块大小的2倍。以前它等于wal dir的hdfs默认块大小。</p>
+</li>
+<li><p>hbase.client.start.log.errors.counter 更改为5,以前是9</p>
+</li>
+<li><p>hbase.ipc.server.callqueue.type 改为“FIFO”。在HBase版本1.0-1.2中，这是“最后期限”。在之前和之后的1.x版本中，它已经默认为“FIFO”。</p>
+</li>
+<li><p>hbase.hregion.memstore.chunkpool.maxsize 默认为1.0, 之前是0.0. 实际上，这意味着以前当memstore onheap时，我们不会使用区块池，现在我们将使用。有关mslab区块池的更多信息，请参阅<a href="#gcpause">Long GC pauses</a></p>
+</li>
+<li><p>hbase.master.cleaner.interval 默认为10分钟, 之前是1分钟.</p>
+</li>
+<li><p>hbase.master.procedure.threads 现在将默认为可用CPU数量的1/4，但不少于16个线程。以前，线程数等于CPU数。</p>
+</li>
+<li><p>hbase.hstore.blockingStoreFiles 现在是16。以前是10。</p>
+</li>
+<li><p>hbase.http.max.threads 现在是16。以前是10。</p>
+</li>
+</ul>
+<ul>
+<li><p>hbase.client.max.perserver.tasks 现在是2。以前是5</p>
+</li>
+<li><p>hbase.normalizer.period 现在是5分钟。以前是30分钟.</p>
+</li>
+<li><p>hbase.regionserver.region.split.policy 现在是步进式分割策略。以前，它增加边界区域策略。</p>
+</li>
+</ul>
+<ul>
+<li>replication.source.ratio 现在是0.5。以前是0.1.</li>
+</ul>
+<p>“主托管区域”功能已损坏且不受支持</p>
+<p>hbase 1.y中的“master充当区域服务器”功能和相关后续工作在hbase 2.y中不起作用，不应在生产设置中使用，因为master初始化时出现死锁。建议下游用户将相关的配置设置视为实验性的，并将该功能视为不适合生产设置。</p>
+<p>相关变更的简要概述：</p>
+<ul>
+<li><p>默认情况下，Master不再承载区域</p>
+</li>
+<li><p>hbase.balancer.tablesonmaster是一个布尔值，默认为false（如果它包含hbase 1.x表列表，则默认为false）</p>
+</li>
+<li><p>hbase.balancer.tablesonmaster.systemtablesonly是保持用户表远离master的布尔值。缺省假</p>
+</li>
+<li><p>那些希望复制旧服务器列表配置的人应该部署一个独立的区域服务器进程，然后依赖于区域服务器组。</p>
+</li>
+</ul>
+<p>“分布式日志回放”功能已中断并已删除</p>
+<p>分布式日志重播功能已损坏，已从hbase 2.y+中删除。因此，所有相关的配置、度量、RPC字段和日志记录都已被删除。请注意，在运行到hbase 1.0时发现此功能不可靠，默认为未使用，当我们开始忽略打开该功能的配置时 (<a href="https://issues.apache.org/jira/browse/HBASE-14465" target="_blank" rel="noopener">HBASE-14465</a>)，它在hbase 1.2.0中被有效删除。如果您当前正在使用该功能，请确保执行干净的关机，确保完成所有DLR工作，并在升级之前禁用该功能。</p>
+<p>_prefix-tree_ 编码移除</p>
+<p>前缀树编码已从hbase 2.0.0中删除(<a href="https://issues.apache.org/jira/browse/HBASE-19179" target="_blank" rel="noopener">HBASE-19179</a>)。在HBase-1.2.7、HBase-1.4.0和HBase-1.3.2中已弃用。</p>
+<p>此功能被删除，因为它未被积极维护。如果有兴趣恢复这种可以在慢写代价高昂的情况下改善随机读取延迟的功能，可以在_dev at hbase dot apache dot org_上写下hbase开发者列表。</p>
+<p>升级到HBase 2.0+之前，需要从所有表中删除前缀树编码。要首先执行此操作，您需要将编码从前缀树更改为HBase 2.0中支持的其他内容。之后，您必须主要压缩以前使用前缀树编码的表。要检查哪些列族使用的数据块编码不兼容，可以使用<a href="#ops.pre-upgrade">Pre-Upgrade Validator</a></p>
+<p>指标变化</p>
+<p>以下指标已更改名称：</p>
+<ul>
+<li>以前以”AssignmentManger” [sic]名称发布的度量现在”AssignmentManager”名称发布。</li>
+</ul>
+<p>以下指标改变了其含义：</p>
+<ul>
+<li><p>基于每个区域服务器发布的度量“blockcacheevictioncount”不再包括由于其来自的hfiles无效（例如通过压缩）而从缓存中删除的块。</p>
+</li>
+<li><p>度量’totalRequestCount’每个请求增加一次；以前它是由请求中携带的<code>Actions</code>数量增加的；例如，如果一个请求是由四个get和两个puts组成的<code>multi</code>，那么我们将“totalrequestcount”增加六次；现在，不管怎样，我们都将增加一次。希望在HBase-2.0.0中看到该指标的较低值。</p>
+</li>
+</ul>
+<ul>
+<li>‘readRequestCount’现在对返回非空行的读取进行计数，在较旧的HBase中，无论结果是否为，我们都会增加“readrequestcount”。如果请求不存在的行，此更改将使读取请求图的配置文件变平。YCSB读取繁重的工作负载可以根据数据库的加载方式来实现这一点。</li>
+</ul>
+<p>已删除以下指标：</p>
+<ul>
+<li>与分布式日志重播功能相关的度量不再存在。以前在区域服务器上下文中的名称“replay”下找到了它们。有关详细信息，请参阅 <a href="#upgrade2.0.distributed.log.replay">“Distributed Log Replay” feature broken and removed</a></li>
+</ul>
+<p>添加了以下指标：</p>
+<ul>
+<li>‘totalRowActionRequestCount’是汇总读和写的区域行操作的计数。</li>
+</ul>
+<p>更改日志</p>
+<p>HBase-2.0.0 现在使用 <a href="https://www.slf4j.org/" target="_blank" rel="noopener">slf4j</a> 作日志组件.之前是 <a href="http://logging.apache.org/log4j/1.2/" target="_blank" rel="noopener">log4j (1.2)</a>. 对于大多数情况，转换应该是无缝的；slf4j能够很好地解释_log4j.properties_日志配置文件，这样您就不会注意到日志系统的排放量有任何差异。</p>
+<p>也就是说,  _log4j.properties_ 需要刷新下. 详见例子:  <a href="https://issues.apache.org/jira/browse/HBASE-20351" target="_blank" rel="noopener">HBASE-20351</a>在每次shell命令调用时，一个过时的日志配置文件都显示为netty配置，并在debug级别转储为前导码。</p>
+<p>zookeeper配置不再从zoo.cfg中读取</p>
+<p>HBase不再选择读取与ZooKeeper相关的配置设置的“zoo.cfg”文件。如果您以前依赖“hbase.config.read.zookeeper.config”配置来实现此功能，则应在向每个属性名添加前缀“hbase.zookeeper.property.”的同时，将任何需要的设置迁移到hbase-site.xml文件。</p>
+<p>权限更改</p>
+<p>以下与权限相关的更改要么更改了语义，要么更改了默认值：</p>
+<ul>
+<li><p>授予用户的权限现在与该用户的现有权限合并，而不是重写它们。详见: <a href="https://issues.apache.org/jira/browse/HBASE-17472" target="_blank" rel="noopener">the release note on HBASE-17472</a> </p>
+</li>
+<li><p>区域服务器组命令（在1.4.0中添加）现在需要管理员权限。</p>
+</li>
+</ul>
+<p>大多数管理API不适用于来自HBase 2.0之前的客户机的HBase 2.0+群集。</p>
+<p>从HBase 2.0之前的客户机使用时，许多管理命令都不起作用。这包括一个hbase shell，该shell具有来自hbase 2.0之前版本的库jar。在您还可以更新到所需的客户端版本之前，您需要计划管理API和命令的使用中断。</p>
+<p>当从HBase 2.0之前的客户机执行时，以下客户机操作不适用于HBase 2.0+群集：</p>
+<ul>
+<li><p>list_procedures</p>
+</li>
+<li><p>split</p>
+</li>
+<li><p>merge_region</p>
+</li>
+<li><p>list_quotas</p>
+</li>
+<li><p>enable_table_replication</p>
+</li>
+<li><p>disable_table_replication</p>
+</li>
+<li><p>Snapshot related commands</p>
+</li>
+</ul>
+<p>1.0已弃用的管理员命令删除。</p>
+<p>在适用的情况下，列出了替换命令。</p>
+<ul>
+<li>‘hlog’命令已被删除。 下游用户应该依赖’wal’命令。</li>
+</ul>
+<p>区域服务器内存消耗更改。</p>
+<p>从HBase 1.4之前的版本升级的用户应阅读本节中的说明 <a href="#upgrade1.4.memory">Region Server memory consumption changes.</a>.</p>
+<p>此外，HBase 2.0改变了如何跟踪memstore内存以进行刷新决策。 以前，数据大小和存储开销都用于计算冲洗threashold的利用率。 现在，只使用数据大小来做出每个区域的决策。 在全球范围内，添加存储开销用于做出有关强制刷新的决策。</p>
+<p>用于拆分和合并的Web UI对行前缀进行操作</p>
+<p>以前，Web UI包含表状态页面上的功能，以根据编码的区域名称进行合并或拆分。 在HBase 2.0中，此功能通过采用行前缀来工作。</p>
+<p>从HBase 1.4之前对Replication用户进行特殊升级</p>
+<p>用户在1.4.0版本之前运行HBase版本并使用复制时，请务必阅读本节中的说明<a href="#upgrade1.4.replication">Replication peer’s TableCFs config</a>.</p>
+<p>HBase shell 变化</p>
+<p>HBase shell命令依赖于捆绑的JRuby实例。捆绑的JRuby已从1.6.8版更新到9.1.10.0版。它表示从Ruby 1.8到Ruby 2.3.3的更改，它为用户脚本引入了不兼容的语言更改。</p>
+<p>HBase shell命令现在忽略早期HBase 1.4版本中存在的’—return-values’标志。相反，shell总是表现得像传递了那个标志。如果您希望避免在控制台中打印表达式结果，则应更改IRB配置，如<a href="#irbrc">_irbrc_</a>）部分所述。</p>
+<p>HBase 2.0+中的协处理器API已更改</p>
+<p>所有协处理器API都经过重构，以提高针对未来HBase版本的二进制API兼容性的可支持性。如果您或您所依赖的应用程序具有自定义HBase协处理器，您应阅读 <a href="https://issues.apache.org/jira/browse/HBASE-18169" target="_blank" rel="noopener">the release notes for HBASE-18169</a> ，了解您将需要的更改的详细信息在升级到HBase 2.0+之前制作。</p>
+<p>例如，如果你在HBase 1.2中有一个BaseRegionObserver，那么至少你需要更新它以实现RegionObserver和RegionCoprocessor并添加方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  @Override</span><br><span class="line">  public Optional&lt;RegionObserver&gt; getRegionObserver() &#123;</span><br><span class="line">    return Optional.of(this);</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>HBase 2.0+无法再写入HFile v2文件。</p>
+<p>HBase简化了我们内部的HFile处理。因此，我们再也无法在版本3 \的默认版本之前编写HFile版本。升级用户应确保在升级之前hbase-site.xml中的hfile.format.version未设置为2。如果不这样做将导致Region Server失败。 HBase仍然可以读取以旧版本2格式编写的HFile。</p>
+<p>HBase 2.0+无法再读取基于序列文件的WAL文件。</p>
+<p>HBase无法再读取以Apache Hadoop序列文件格式编写的已弃用的WAL文件。应将hbase.regionserver.hlog.reader.impl和hbase.regionserver.hlog.reader.impl配置条目设置为使用基于Protobuf的WAL读取器/写入器类。此实现是HBase 0.96以来的默认实现，因此传统WAL文件不应成为大多数下游用户关注的问题。</p>
+<p>干净的群集关闭应确保没有WAL文件。如果您不确定给定的WAL文件格式，可以使用<code>hbase wal</code>命令在HBase集群脱机时解析文件。在HBase 2.0+中，此命令将无法读取基于WAL的序列文件。有关该工具的更多信息，请参阅<a href="#hlog_tool.prettyprint">WALPrettyPrinter</a>）。</p>
+<p>过滤器的行为更改</p>
+<p>过滤器ReturnCode NEXT_ROW已重新定义为跳过当前系列中的下一行，而不是跳到所有系列中的下一行。它更合理，因为ReturnCode是商店级别的概念，而不是区域级别。</p>
+<p>下游HBase 2.0+用户应该使用着色客户端</p>
+<p>强烈建议下游用户依赖Maven坐标org.apache.hbase：hbase-shaded-client来运行它们。此工件包含与HBase集群通信所需的所有实现详细信息，同时最大限度地减少暴露的第三方依赖项的数量。</p>
+<p>请注意，此工件公开org.apache.hadoop包空间中的某些类（例如o.a.h.configuration.Configuration），以便我们可以保持与我们的公共API的源兼容性。包含这些类，以便可以将它们更改为使用与HBase客户端代码的其余部分相同的重定位第三方依赖项。如果您还需要**在代码中使用Hadoop，则应确保所有与Hadoop相关的jar都位于类路径中的HBase客户端jar之前。</p>
+<p>运行时类路径的重大更改</p>
+<p>HBase的许多内部依赖项已从运行时类路径中更新或删除。 不遵循<a href="#upgrade2.0.shaded.client.preferred">Downstream HBase 2.0+ users should use the shaded client</a>的指导的下游客户端用户将必须检查Maven为影响而引入的依赖关系集。 LimitedPrivate Coprocessor API的下游用户需要检查运行时环境是否有影响。 有关我们对协调兼容运行时版本一直存在问题的第三方库的新处理的详细信息，请参阅参考指南部分<a href="#thirdparty">The hbase-thirdparty dependency and shading/relocation</a>）。</p>
+<p>对客户端API的源和二进制兼容性进行多次重大更改</p>
+<p>HBase的Java客户端API有许多更改可以破坏源和二进制兼容性的详细信息，请参阅要升级到的版本的兼容性检查报告。 </p>
+<p>跟踪实施变化</p>
+<p>HBase跟踪功能的支持实现已从Apache HTrace 3更新为HTrace 4，其中包括几个重大更改。 虽然HTrace 3和4可以在同一运行时共存，但它们不会相互集成，从而导致不相交的跟踪信息。</p>
+<p>此升级期间HBase的内部更改足以进行编译，但尚未确认跟踪功能中没有回归。 请考虑此功能在不久的将来会过期。</p>
+<p>如果您以前依赖与HBase操作集成的客户端跟踪，则建议您将使用情况升级到HTrace 4。</p>
+<p>HFile不再向前兼容</p>
+<p>由2.0.0, 2.0.1, 2.1.0生成的HFile与 1.4.6-, 1.3.2.1-, 1.2.6.1-和其他非活动版本不向前兼容。 为什么HFile失去兼容性是新版本(2.0.0, 2.0.1, 2.1.0)中的hbase使用protobuf序列化/反序列化TimeRangeTracker（TRT），而旧版本使用DataInput / DataOutput。为解决这个问题,详见: 2.x中 <a href="https://jira.apache.org/jira/browse/HBASE-21012" target="_blank" rel="noopener">HBASE-21012</a> , 1.x中 <a href="https://jira.apache.org/jira/browse/HBASE-21013" target="_blank" rel="noopener">HBASE-21013</a> . 还有 <a href="https://jira.apache.org/jira/browse/HBASE-21008" target="_blank" rel="noopener">HBASE-21008</a>.<br>性能</p>
+<p>在读取和写入路径发生重大变化的情况下，升级到hbase-2.0.0时，您可能会看到性能配置文件发生变化。 在发布时，写入可能会更慢，读取相同或更好，取决于上下文。准备好花时间重新调整<br>(详见: <a href="#performance">Apache HBase Performance Tuning</a>). 性能也是一个正在积极审查的领域，因此期待在即将发布的版本中进行改进<br> (详见: <a href="https://issues.apache.org/jira/browse/HBASE-20188" target="_blank" rel="noopener">HBASE-20188 TESTING Performance</a>).</p>
+<p>集成测试和Kerberos</p>
+<p>集成测试（<code>IntegrationTests *</code>）过去依赖于Kerberos凭证缓存来对安全集群进行身份验证。 当凭证缓存中的票证过期时，这会导致由于身份验证失败导致测试失败。 从hbase-2.0.0（和hbase-1.3.0 +）开始，集成测试客户端将使用配置属性<code>hbase.client.keytab.file</code>和<code>hbase.client.kerberos.principal</code>。 它们是必需的。 客户端将从配置的keytab文件执行登录，并在后台自动刷新凭据以获取进程生命周期(详见:  <a href="https://issues.apache.org/jira/browse/HBASE-16231" target="_blank" rel="noopener">HBASE-16231</a>).</p>
+<h4 id="13-1-2-将协处理器升级到-2-0"><a href="#13-1-2-将协处理器升级到-2-0" class="headerlink" title="13.1.2. 将协处理器升级到 2.0"></a>13.1.2. 将协处理器升级到 2.0</h4><p>协处理器在2.0中发生了很大变化，从类层次结构中的顶级设计更改到更改/删除的方法，接口等。 (详见 jira: <a href="https://issues.apache.org/jira/browse/HBASE-18169" target="_blank" rel="noopener">HBASE-18169 Coprocessor fix and cleanup before 2.0.0 release</a>). 这种种广泛变化的原因是:</p>
+<ol>
+<li><p>传递接口而不是实现; e.g. TableDescriptor 而不是 HTableDescriptor and Region 而不是 HRegion (<a href="https://issues.apache.org/jira/browse/HBASE-18241" target="_blank" rel="noopener">HBASE-18241</a> 更改client.Table 和 client.Admin 并非使用 HTableDescriptor).</p>
+</li>
+<li><p>设计重构让实现者需要填写更少的样板，因此我们可以进行更多的编译时检查 (<a href="https://issues.apache.org/jira/browse/HBASE-17732" target="_blank" rel="noopener">HBASE-17732</a>)</p>
+</li>
+<li><p>从协处理器API清除协议缓冲区 (<a href="https://issues.apache.org/jira/browse/HBASE-18859" target="_blank" rel="noopener">HBASE-18859</a>, <a href="https://issues.apache.org/jira/browse/HBASE-16769" target="_blank" rel="noopener">HBASE-16769</a>, etc)</p>
+</li>
+<li><p>减少我们向Coprocessors公开的内容，删除过于私密而无法公开的内部的钩子(例如: <a href="https://issues.apache.org/jira/browse/HBASE-18453" target="_blank" rel="noopener">HBASE-18453</a> CompactionRequest不应该暴露给用户; <a href="https://issues.apache.org/jira/browse/HBASE-18298" target="_blank" rel="noopener">HBASE-18298</a> RegionServerServices 对CP公开的接口清理;)</p>
+</li>
+</ol>
+<p>要在2.0中使用协处理器，应该针对新 API重建它们，否则它们将无法加载，HBase进程将会死亡。</p>
+<p>升级协处理器的建议更改顺序：</p>
+<ol>
+<li><p>直接实现观察者接口，而不是扩展Base * Observer类。 更改<br> <code>Foo extends BaseXXXObserver</code> 到 <code>Foo implements XXXObserver</code>. (<a href="https://issues.apache.org/jira/browse/HBASE-17312" target="_blank" rel="noopener">HBASE-17312</a>).</p>
+</li>
+<li><p>适应从继承到组合的设计变更<br> (<a href="https://issues.apache.org/jira/browse/HBASE-17732" target="_blank" rel="noopener">HBASE-17732</a>) 像 <a href="https://github.com/apache/hbase/blob/master/dev-support/design-docs/Coprocessor_Design_Improvements-Use_composition_instead_of_inheritance-HBASE-17732.adoc#migrating-existing-cps-to-new-design" target="_blank" rel="noopener">此例</a>.</p>
+</li>
+<li><p>getTable()已从中删除，协处理器应自行管理Table实例。</p>
+</li>
+</ol>
+<p><a href="https://github.com/apache/hbase/tree/branch-2.0/hbase-examples/src/main/java/org/apache/hadoop/hbase/coprocessor/example" target="_blank" rel="noopener">这里hbase-example模块</a>中可以找到使用新API编写协处理器的一些示例</p>
+<p>最后，如果api被更改/删除，会以无法修复的方式打破你，并且如果有充分的理由将其添加回去，请将其通知我们(<a href="mailto:dev@hbase.apache.org" target="_blank" rel="noopener">dev@hbase.apache.org</a>).</p>
+<h4 id="13-1-3-从-1-x-到-2-x的滚动升级"><a href="#13-1-3-从-1-x-到-2-x的滚动升级" class="headerlink" title="13.1.3. 从 1.x 到 2.x的滚动升级"></a>13.1.3. 从 1.x 到 2.x的滚动升级</h4><p>滚动升级目前是一项实验性功能。 他们的测试有限。 在我们有限的经历中，有可能发现一些极端情况，所以如果你走这条路，你应该小心。<br> 下一节<a href="#upgrade2.0.process">Upgrade process from 1.x to 2.x</a>中描述的停止/升级/启动是最安全的方式</p>
+<p>以下是1.4集群滚动升级的提前要求</p>
+<p>前提</p>
+<ul>
+<li><p>升级到最新的1.4.x版本。 Pre 1.4版本也可以使用但未经过测试，因此请在升级到2.x之前升级到1.4.3+，除非您是专家并且熟悉区域分配和崩溃处理。 有关如何升级到1.4.x的信息，请参见<a href="#upgrade1.4">Upgrading from pre-1.4 to 1.4+</a> 部分。</p>
+</li>
+<li><p>确保启用了无zk赋值，即将<code>hbase.assignment.usezk</code>设置为<code>false</code>。 这是最重要的事情。 它允许1.x主服务器为2.x区域服务器分配/取消分配区域。 有关如何从基于zk的分配迁移到zk less赋值，请参阅 <a href="https://issues.apache.org/jira/browse/HBASE-11059" target="_blank" rel="noopener">HBASE-11059</a>的发行说明部分。</p>
+</li>
+<li><p>我们测试了从1.4.3到2.1.0的滚动升级，但如果要升级到2.0.x，它也应该可以工作。</p>
+</li>
+</ul>
+<p>说明</p>
+<ol>
+<li><p>卸载 region服务升级到 2.1.0. 从 <a href="https://issues.apache.org/jira/browse/HBASE-17931" target="_blank" rel="noopener">HBASE-17931</a> 看出，其他系统表的元区域和区域将立即移动到该区域服务器。 如果没有，请手动将它们移动到新的区域服务器。 这非常重要，因为</p>
+<ul>
+<li><p>元区域的模式是硬编码的，如果元在旧的区域服务器上，则新的区域服务器不能访问它，因为它没有一些族，例如，表状态。</p>
+</li>
+<li><p>较低版本的客户端可以与具有更高版本的服务器通信，但反之亦然。 如果元区域位于旧区域服务器上，则新区域服务器将使用具有较高版本的客户端与具有较低版本的服务器通信，这可能引入奇怪的问题。</p>
+</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li>滚动升级所有其他区域服务器。</li>
+</ol>
+<ol>
+<li>升级 masters.</li>
+</ol>
+<p>在滚动升级期间，区域服务器崩溃是可以的。 1.x主服务器可以为1.x和2.x区域服务器分配区域，<a href="https://issues.apache.org/jira/browse/HBASE-19166" target="_blank" rel="noopener">HBASE-19166</a>修复了问题，以便 1.x区域服务器还可以读取2.x区域服务器写入的WAL并将其拆分。</p>
+<blockquote>
+<p>在滚动升级之前，请仔细阅读<a href="#_changes_of_note">Changes of Note!</a>部分。 确保不使用2.0中删除的功能，例如前缀树编码，旧的hfile格式等。它们都可能无法升级并使群集处于中间状态并且难以恢复。</p>
+<p>如果您成功运行此处方，请通知开发者列表，并附上您的经验说明和/或更新上述内容以及您可能采取的任何偏差，以便其他人走这条路线可以从您的努力中受益。</p>
+</blockquote>
+<h4 id="13-1-4-从1-x升级到2-x的升级过程"><a href="#13-1-4-从1-x升级到2-x的升级过程" class="headerlink" title="13.1.4. 从1.x升级到2.x的升级过程"></a>13.1.4. 从1.x升级到2.x的升级过程</h4><p>要升级现有的HBase 1.x群集，您应该：</p>
+<ul>
+<li><p>现有1.x群集关闭</p>
+</li>
+<li><p>更新协处理器</p>
+</li>
+<li><p>首先升级主角色</p>
+</li>
+<li><p>升级RegionServers</p>
+</li>
+<li><p>（最终）升级客户端</p>
+</li>
+</ul>
+<h3 id="13-2-Upgrading-from-pre-1-4-to-1-4"><a href="#13-2-Upgrading-from-pre-1-4-to-1-4" class="headerlink" title="13.2. Upgrading from pre-1.4 to 1.4+"></a>13.2. Upgrading from pre-1.4 to 1.4+</h3><h4 id="13-2-1-Region-Server-memory-consumption-changes"><a href="#13-2-1-Region-Server-memory-consumption-changes" class="headerlink" title="13.2.1. Region Server memory consumption changes."></a>13.2.1. Region Server memory consumption changes.</h4><p>从HBase 1.4之前的版本升级的用户应该知道，对于最大为32G的堆大小（使用CompressedOops），memstore对象（KeyValue，对象和数组头大小等）的堆使用估计已经更准确，从而导致 他们在实践中下降了10-50％。 由于“更胖”的冲洗，这也导致更少的冲洗和压缩。因人而异。 因此，刷新之前memstore的实际堆使用量可能会增加最多100％。 如果已根据观察到的使用情况调整了区域服务器的已配置内存限制，则此更改可能会导致更糟糕的GC行为或甚至OutOfMemory错误。 将环境属性（不是hbase-site.xml）“hbase.memorylayout.use.unsafe”设置为false以禁用。</p>
+<h4 id="13-2-2-Replication-peer’s-TableCFs-设置"><a href="#13-2-2-Replication-peer’s-TableCFs-设置" class="headerlink" title="13.2.2. Replication peer’s TableCFs 设置"></a>13.2.2. Replication peer’s TableCFs 设置</h4><p>在1.4之前，表名不能包含复制对等体的TableCFs配置的名称空间。 通过将TableCF添加到存储在Zookeeper上的ReplicationPeerConfig来修复它。 因此，当升级到1.4时，您必须首先更新Zookeeper上的原始ReplicationPeerConfig数据。 当您的群集具有具有TableCFs配置的复制对等方时，有四个步骤可以升级。</p>
+<ul>
+<li><p>禁用 replication peer.</p>
+</li>
+<li><p>如果master有权写入复制对等znode，则直接滚动更新master。 如果没有，请使用TableCFsUpdater工具更新复制对等方的配置。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bin/hbase org.apache.hadoop.hbase.replication.master.TableCFsUpdater update</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>滚动升级regionservers.</p>
+</li>
+<li><p>开启replication peer.</p>
+</li>
+</ul>
+<p>注意:</p>
+<ul>
+<li>无法使用旧客户端（1.4之前）更改复制对等方的配置。 由于客户端将直接向Zookeeper写入配置，因此旧客户端将错过TableCFs配置。 并且旧客户端将TableCFs配置写入旧的tablecfs znode，它不适用于新版本的regionserver。</li>
+</ul>
+<h4 id="13-2-3-原始数据扫描忽略TTL"><a href="#13-2-3-原始数据扫描忽略TTL" class="headerlink" title="13.2.3. 原始数据扫描忽略TTL"></a>13.2.3. 原始数据扫描忽略TTL</h4><p>现在，执行原始扫描将返回根据TTL设置已过期的结果。</p>
+<h3 id="13-3-从1-3之前升级到1-3"><a href="#13-3-从1-3之前升级到1-3" class="headerlink" title="13.3. 从1.3之前升级到1.3+"></a>13.3. 从1.3之前升级到1.3+</h3><p>如果在Kerberos下运行集成测试，请参阅<a href="#upgrade2.0.it.kerberos">Integration Tests and Kerberos</a>.</p>
+<h3 id="13-4-升级到-1-x"><a href="#13-4-升级到-1-x" class="headerlink" title="13.4. 升级到 1.x"></a>13.4. 升级到 1.x</h3><p>有关升级过程的详细信息，请参阅专门针对要升级到的HBase版本发布的文档。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechat-reward-image.png" alt="博主 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay-reward-image.png" alt="博主 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>博主</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://xixici.com/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解 - 副本/" title="Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解">http://xixici.com/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解 - 副本/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch1快速开始/" rel="next" title="Apache HBase ™ 中文指南(最新版HBase 3.0.0)-ch1快速开始">
+                <i class="fa fa-chevron-left"></i> Apache HBase ™ 中文指南(最新版HBase 3.0.0)-ch1快速开始
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解/" rel="prev" title="Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解">
+                Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="博主">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description">远方与诗的存在</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/xixici" title="GitHub &rarr; https://github.com/xixici" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:ybleak@gmail.com" title="E-Mail &rarr; mailto:ybleak@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Apache-HBase配置"><span class="nav-number">1.</span> <span class="nav-text">Apache HBase配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-HBase版本号和兼容性"><span class="nav-number">1.1.</span> <span class="nav-text">11. HBase版本号和兼容性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-期望语义版本控制"><span class="nav-number">1.1.1.</span> <span class="nav-text">11.1. 期望语义版本控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-1-1-HBase-API"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">11.1.1. HBase API</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-滚动升级"><span class="nav-number">1.1.2.</span> <span class="nav-text">11.2. 滚动升级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-版本恢复"><span class="nav-number">1.2.</span> <span class="nav-text">12. 版本恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-1-警告"><span class="nav-number">1.2.1.</span> <span class="nav-text">12.1. 警告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-2-所有服务回滚"><span class="nav-number">1.2.2.</span> <span class="nav-text">12.2. 所有服务回滚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-HDFS-回滚和-ZooKeeper-降级后回滚"><span class="nav-number">1.2.3.</span> <span class="nav-text">12.3. HDFS 回滚和 ZooKeeper 降级后回滚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-4-HDFS-降级后回滚"><span class="nav-number">1.2.4.</span> <span class="nav-text">12.4. HDFS 降级后回滚</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-HBase升级路径"><span class="nav-number">1.3.</span> <span class="nav-text">13. HBase升级路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-1-从-1-x-升级到-2-x"><span class="nav-number">1.3.1.</span> <span class="nav-text">13.1. 从 1.x 升级到 2.x</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#13-1-1-变化通告"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">13.1.1. 变化通告</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-1-2-将协处理器升级到-2-0"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">13.1.2. 将协处理器升级到 2.0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-1-3-从-1-x-到-2-x的滚动升级"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">13.1.3. 从 1.x 到 2.x的滚动升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-1-4-从1-x升级到2-x的升级过程"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">13.1.4. 从1.x升级到2.x的升级过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-Upgrading-from-pre-1-4-to-1-4"><span class="nav-number">1.3.2.</span> <span class="nav-text">13.2. Upgrading from pre-1.4 to 1.4+</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#13-2-1-Region-Server-memory-consumption-changes"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">13.2.1. Region Server memory consumption changes.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-2-2-Replication-peer’s-TableCFs-设置"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">13.2.2. Replication peer’s TableCFs 设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-2-3-原始数据扫描忽略TTL"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">13.2.3. 原始数据扫描忽略TTL</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3-从1-3之前升级到1-3"><span class="nav-number">1.3.3.</span> <span class="nav-text">13.3. 从1.3之前升级到1.3+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-4-升级到-1-x"><span class="nav-number">1.3.4.</span> <span class="nav-text">13.4. 升级到 1.x</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 - Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'eNL90rjoyqRULdbwDWngaezL-gzGzoHsz',
+    appKey: 'U7WbxXmVMpcwTtsEqCv41v5s',
+    placeholder: 'Talk Something...',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'; 
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+      pbOptions = {};
+      
+        pbOptions.iconStyle = "default";
+      
+        pbOptions.boxForm = "horizontal";
+      
+        pbOptions.position = "bottomCenter";
+      
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Linkedin,Mailto,Pinterest,Facebook,Tumblr,GoogleBookmarks,Evernote";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+        flOptions.iconStyle = "default";
+      
+        flOptions.boxForm = "horizontal";
+      
+        flOptions.position = "middleRight";
+      
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Linkedin,Mailto,Pinterest,Facebook,Tumblr,GoogleBookmarks,Evernote";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script>pangu.spacingPage();</script>
+
+
+  
+  <script src="/js/src/js.cookie.js?v=7.0.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=7.0.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
