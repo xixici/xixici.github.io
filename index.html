@@ -426,7 +426,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/12/scala-learning-exercises/" class="post-title-link" itemprop="url">scala learning exercises</a>
+                <a href="/2019/03/12/scala-learning-exercises/" class="post-title-link" itemprop="url">Scala 学习手册 - 课后题</a>
               
             
           </h2>
@@ -451,7 +451,7 @@
                 
               
 
-              <time title="创建时间：2019-03-12 10:14:16 / 修改时间：10:23:50" itemprop="dateCreated datePublished" datetime="2019-03-12T10:14:16+08:00">2019-03-12</time>
+              <time title="创建时间：2019-03-12 10:14:16 / 修改时间：10:56:00" itemprop="dateCreated datePublished" datetime="2019-03-12T10:14:16+08:00">2019-03-12</time>
             
 
             
@@ -509,337 +509,16 @@
 
       
         
+          <h1 id="章节1"><a href="#章节1" class="headerlink" title="章节1"></a>章节1</h1><p>l. println (）是一 种很好的打印字符串的方怯， 不过你能找到另外一 种不使用 println打印字符串的方能吗？另外， REPL支持哪些类型的数字、 字符串和其他数据？</p>
+          <!--noindex-->
           
-            <h1 id="Scala学习手册-课后题"><a href="#Scala学习手册-课后题" class="headerlink" title="Scala学习手册-课后题"></a>Scala学习手册-课后题</h1><h1 id="章节1"><a href="#章节1" class="headerlink" title="章节1"></a>章节1</h1><p>l. println （）是一 种很好的打印字符串的方怯， 不过你能找到另外一 种不使用 println</p>
-<p>l. println （）是一 种很好的打印字符串的方怯， 不过你能找到另外一 种不使用 println</p>
-<p>打印字符串的方能吗？另外， REPL支持哪些类型的数字、 字符串和其他数据？</p>
-<p>\2. 在Scala REPL中， 将温度值22.5从摄氏度转换为华氏度。 转换公式是cToF(x) = (x *</p>
-<p>9/5) + 32。</p>
-<p>\3. 将练习2的结果除以2， 再将它转换为摄氏度。 不用自己复制粘贴这个值， 可以使 用之前生成的常量变量（例如， “ res。 “ ）。</p>
-<p>\4. REPL可以用：load &lt;f ile＞命令从一个外部文件加载和解释 Scala代码。创建一个新 文件 ，名为Hello.scala ，井增加一个命令来打印 一条欢迎辞 ，然后从R EPL执行这 个命令。</p>
-<p>\5. 还可以用另一种方法加载外部 Scala代码 ：用”ra w “ （原始） 模式把代码粘贴 到R EP L ，代码将在 R EPL 中编译，就好像它们来自一个据文件一样。为此，输 入：p a ste -ra w，按回车键 ，然后粘贴练习4中惊文件的内容。退出”粘贴” 模式 后，应该能看到欢迎辞 。</p>
-<h1 id="章节2"><a href="#章节2" class="headerlink" title="章节2"></a>章节2</h1><p>l. 编写一个新的摄氏度到华氏度转换的程序 （使用公式（x * 9/5) + 32），把每一步转 换的结果保存在单独的值中。你认为这些值的类型分别是什么？</p>
-<p>\2. 修改摄氏度到华氏度转换的公式 ，返回一个整数而不是浮点数。</p>
-<p>\3. 使用输入值2.7255 ，生成字符串 “You owe $2.73”。可以使用字符串内插来实现 吗？</p>
-<p>\4. 有没有更简单的方法重写以下代码？</p>
-<p>val flag: Boolean = false</p>
-<p>val result: Boolean = (flag == f alse)</p>
-<p>\5. 将数字 128转换为一个Cha r 、String和Dou ble ，然后再转换回 Int 。你认为还能得到 原来的值吗？需要特殊的转换函数吗 ？</p>
-<p>\6. 使用输入字符串 “Frank, 123 Main,925-555-1943,95122 “ 和正则表达式匹配来获取 电话号码。可以把电话号码的每 一部分转换为单独的整数值吗？如何把它存储在 一个元组中？</p>
-<h1 id="章节3"><a href="#章节3" class="headerlink" title="章节3"></a>章节3</h1><p>尽管Scala REPL提供了一个很好的途径来尝试这个语言 的特性，不过在REPL 中不只是 编写一两行代码 ，而需要编写多行代码 ，就可能很困难 。由于接下来需要使用多行代 码 ，所以现在开始使用单独的 Scalai原文件。</p>
-<p>seala命令可以启动Scala 阻PL ，还可以用来计算和执行Scala掘文件 ：</p>
-<p>$ scala <source 自le></p>
-<p>可以试试看 ，创建一个名为Hello.scala 的新文件 ，它包含以下内容：</p>
-<p>println(“Hello, World “） 然后用seala命令执行这个文件 ：</p>
-<p>$ scala Hello.scala Hell口 World</p>
-<p>$</p>
-<p>应该可以看到下一行会打印结果 （”Hello, World “） 。</p>
-<p>要执行外部Scala文件 ，还有一种方毡 ：可以在Sca la REPL中使用：loa d命令。如果你 希望使用Scala REPL的同时还能使用文本编辑器或IDE编辑代码 ，这会很有用。</p>
-<p>下面来试试看 ，在创建Hello .scala 文件所在的同一个目录中 ，启动Sca l a R EPL井运</p>
-<p>行 ：load Hello.scala :</p>
-<p>seala&gt; :load Hello. scala Loading Hello.scala.</p>
-<p>Hello, World scala&gt;</p>
-<p>注意 ：:load命令是一个Scala REPL特性 ，实际上这不是Scalat口言的一部分。Scala 阻PL命令与常</p>
-<p>规Scalai君泌的区别在于它们有一个 “：” 前缀．</p>
-<p>现在你可以在Scala REPL中开发，或者也可以在一个单独的文本编辑器或IDE中开发， 下面就可以开始完成这一章的练习了。</p>
-<p>l. 给定一个字符串名 ，写一个匹配表达式 ，如果非空则返回相同的字符串 ，如果为 空就返回字符串”n/a” 。</p>
-<p>\2. 给定一个双精度数 ，写一个表达式 ，如果这个数大于O)ill］返回”greater” ，如果等于0 返回”same” ，如果小于0则返回叮ess飞 你能用if…else块来写这个表达式 吗？使用匹 配表达式呢？</p>
-<p>\3. 写一个表达式 ，将输入值cyan, magenta或yellow转换为相应的6字符十六进制字符 串表示。如何处理错误条件？</p>
-<p>\4. 打印数字 1到 100，每行包含一组5个数 。例如：：</p>
-<p>1, 2, 3, 4, 5,</p>
-<p>6, 7, 8, 9, 10</p>
-<p>\5. 写一个表达式 ，打印数字l到 100，不过3的倍数除外，3的倍数要打印为气y pe” ，另 外要把5的倍数打印为”safe” ，对于3以及5的倍数 （如15） ，贝lj打fP “typesafe”。</p>
-<p>\6. 能不能重写练习5，把代码写在一行上？这样做可能可读性不好 ，不过把代码缩减 为最简形式是一门艺术 ，这也是学习语言的一个很好的练习。</p>
-<h1 id="章节4"><a href="#章节4" class="headerlink" title="章节4"></a>章节4</h1><p>\1. 写一个函数，给定一个圆的半径，计算这个圆的面积。</p>
-<p>\2. 对练习l中的函数提供一个替代形式 ，将半径作为一个St r in g。如果调用这个函数 时提供了一个空String会发生什么？</p>
-<p>\3. 写一个递归函数 ， 可以5, 10、15 地打印从5到50的值 ，但不要使用 f o z或 while循环。可以实现尾递归吗？</p>
-<p>\4.  写一个函数 ，取一个毫秒值 ，返回 一个字符串 ，按天、小时、分和秒描述这个 值。输入值的最佳类型是什么？</p>
-<p>\5. 写一个函数 ，计算第一个值以第二个值为指数的幕 。首先试着用m a t h.p ow来写这 个函数 ，然后用你自己的算式来实现。你使用变量了吗？有没有方能只使用不可 变的数据？你选择一个足够大的 数值类型了吗？</p>
-<p>\6. 写一个函数 ，计算一对2D点 （ x和y ） 之差 ，并把结果返回为一个点。提示：这里 很适合使用元组 （ 见第2章 “元组” 一节）。</p>
-<p>\7. 写一个函数 ，取一个大小为2的元组 ，返回第一个位置上的 I n t值 （如果有）。提 示，这里很适合使用类型参数和 islnstanceOf 类型操作。</p>
-<p>\8. 写一个函数 ，取一个大小为 3的元组 ，返回一个大小为6的元组 ，原来的各个参数 后面跟着相应的String表示 。例如，用（ true, 22.25，”yes “ ） 调用这个函数会返</p>
-<p>回 （ true，”true” ，22.5，飞2.5”，”yes ＂，”yes ＇’ ）。能不能保证所有可能类型的 元组都与你的函数兼容 ？调用这个函数时 ，能不能使用显式类型做到这一点 （除</p>
-<p>了对函数结果使用显式类型，用来存储结果的值也使用显式类型） ？</p>
-<h1 id="章节5"><a href="#章节5" class="headerlink" title="章节5"></a>章节5</h1><p>I. 写一个函数字面量 ，取两个整数 ，井返回较大的一个数 。然后写一个高阶函数 ， 取一个大小为3的整数元组井结合这个函数字面 量 ，用它返回这个元组中的最大 值。</p>
-<p>\2. 库函数u til.R a ndom. nextln t会返回一个随机整数 。用它调用 “max” 函数，提供 两个随机整数和一个函数 （这个函数返回两个给定整数中较大的 一个）。利用另 一个函数 （返回两个给定整数中较小 的一个） 做同样的处理 ，然后再提供另一个 函数每次都返回第二个整数。</p>
-<p>\3. 写一个高阶函数 ，它取一个整数井返回 一个函数 。返回的函数有 一个整数参数</p>
-<p>（如 “x” ），并返回x与传入这个高阶函数的整数的乘积。</p>
-<p>\4. 假设阅读另一个开发人员的代码时看到下面这个函数 ：</p>
-<p>首类函数 I ss</p>
-<p>def f zero<a href="x: A" target="_blank" rel="noopener">A</a>(f : A =&gt; Unit): A = { f (x); x }</p>
-<p>这个函数会完成什么工作 ？能不能给出一个例子来展示如何调用这个函数 ？</p>
-<p>\5. 有一个名为 “square” 的函数 ，希望把它存储在一个函数值中 。这样做合适吗？还 有什么办能可以把一个函数存储在一个值中 ？</p>
-<p>def sq旧re（『『1: Double) = m * m val sq = square</p>
-<p>\6. 编写一个名为 “condi tional “ 的函数，它取一个值x和两个函数同町，返回与x类型 相同的一个值 。p 函数是一个谓词 ，取值x ，并返回一个布尔值b。f函数也取值X , 并返回相同类型的一个新值 。这个”conditional “ 函数只在p(x ）为true时才调用函 数f(x），否则就返回x。”conditional “ 函数需要多少个类型参数？</p>
-<p>\7. 还记得第3章中的 ＇＇.ty pesafe” 练习吗？面试开发人员时有一个常见的 问题 ，我把 它称为 “t y pe saf e”， 也就是要打印数字 1到100，每行一个数 。关键是3的倍数必 须替换为 “t ype”， 5的倍数必须替换为 “safe”。当然 ，如果是凹的倍数，则必 须打印 “typesafe”。</p>
-<p>使用练习6中的 “conditional “ 函数来完成这个挑战。</p>
-<p>如果 “conditional “ 的返回类型与参数x的类型不匹配，你的答案能不能更简短？ 修改 “conditional “ 函数，使它更适合解决这个问题。</p>
-<h1 id="章节6"><a href="#章节6" class="headerlink" title="章节6"></a>章节6</h1><p>还记得我前面给出的建议 （ 见第3章 “练习” ） 吗？我建议把开发环境从 R EPL转换为 一个外部Scala源文件 。如果你还没有完成这个转换，你会发现，由于规模和复杂性的 原因 ，在REPL 中做这些练习几平是不可能 的。</p>
-<p>我还建议使用一个专业的IDE （ 如IntelliJ IDEA CE或基于Eclipse的Scala IDE ） 完成这 些练习。你会立即得到反馈，知道代码是否可以成功编译 ，而且可以得到J Scala库函 数的代码完成提示和文档 。另外有一些面向简单编辑环境 （如Sublime Text 、VIM和 Emacs ） 的插件，它们也支持这个功能 ，不过如果开始使用 Scala，最好使用一个完备 成熟的IDE ，这可能更容易、更快捷 。</p>
-<p>这一节中的练习将帮助你进 一步熟悉这一章介绍的集合和操作。建议你除了写最基本 的解决方案外 ，再花些时间为各个实现寻找一些替代方案。这会帮助你更加了解类似 函数之间的细微差别 ，如fold和red uce ，或head和slice ，另外还可以提供一些工具 ， 使你能绕过这些函数 ，开发你自己的解决方案 。</p>
-<p>\1. 创建一个列表 ，包含前20个Long奇数。你能用一个fod盾环、f ilter操作以及ma p操 作创建这个列表吗 ？编写这个代码的最高效、表述性最好的方怯是什么？</p>
-<p>\2. 写一个名为”factors”的函数 ，它取一个数 ，返回这个数的因数构成的一个列表 （除 了l和它本身）。例如 ，factors(15）应当返回 List (3, 5）。</p>
-<p>然后写一个新函数 ，将”factors”应用到一个数字列表 。试着使用练习1生成的Long 数列表 。例如 ，用List 侣，11, 13, 15）执行这个函数会返回（ 3, 3, 5） ，因为9的 因数是3，而15的因数是3 （又是3） 和5。这里用map和flatten合适吗？或者for循环 是不是更合适？</p>
-<p>\3. 写一个函数干 ir st<a href="it em s: Li st[A], c ou n t : I n t">A</a> : Li st[A］ ，这会返回一 个给定列表中的前x个项 。例如 ，f i r s t ( L i s t (‘ a ＇ ’ t ’ ’ 0 ’ ） , 2 ） 应当返回 L ist （ ’ a ’ 吨’ ）。可以把它写为一个单行函数 ，直接调用一个完成这个任务的 内置 列表操作 ，或者更好的做能是实现你自己的解决方案 。你能用一个for循环来实现 吗？fold lef t呢？能不能使用一个只访问head和tail的递归函数？</p>
-<p>\4. 写一个函数 ，取一个字符串列表 ，井返回这个列表中最长的字符串 。可以不使用 可变的变量吗？这里非常适合使用我们介绍过的列表折叠操作 （见表6-5 ） 。你能 用fol d和r e d u ce实现这个函数吗 ？如果取一个函数参数 （ 它将比较两个字符串 ， 并返回优先的那个字符串）， 你的函数是不是更有用 ？如果这个函数可以应用到 通用列表 ，也就是任何类型的列表 ，该怎么做呢？</p>
-<p>\5. 写一个函数将一个列表逆置 。可以把它写为一个递归函数吗 ？这里很适合使用匹 配表达式。</p>
-<p>\6. 写一个函数 ，它取一个 List[String ］ ，井返回一个 （ List [String], List[String]), 这是字符串列表的 一个元组 。第一个列表应当是原列表中的回文项 （前向和后向 写越都相同 ，如”racecar”）。元组中的第二个列表应当是原 列表中所有其余的项。 可以使用partition很容易地实现这个函数 ，不过能不能用其他操作来实现 ？</p>
-<p>\7. 这一章中最后一个练习是一个多部分问题。我们将从强大的OpenWeatherMap API</p>
-<p>（而且免费） 读取和处理天气预报 。</p>
-<p>要从URL读取内容 ，我们要使用Scala库操作io.Source.fromUR L(u rl: String) , 它会返回一个io.Source实例。然后把掠文本使用getlines.tolist 操作归约为单个 行的集合。下面是一个例子，这里使用 io.Sou r ce从一个URL读取内容 ，将它分解 为单行文本 ，然后将结果返回为 一个字符串列表 ：</p>
-<p>scala&gt; val 1: List[String] = io.Source.fromUR L(url) .getlines.tolist</p>
-<p>我们将从以下URL获取天气预报 ，它采用XML格式 ：</p>
-<p>scala&gt; val url =</p>
-<p>“<a href="http://api.openweathermap.org/data/2.5/forecast?mode=xml&amp;lat=55&amp;lon" target="_blank" rel="noopener">http://api.openweathermap.org/data/2.5/forecast?mode=xml&amp;lat=55&amp;lon</a> ＝”</p>
-<p>将这个 U R L读入一个字符串列表 。完成后 ，打印第一行 ，验证确实得到了一个</p>
-<p>XML文件。结果应当与下面类似 ：</p>
-<p>scala&gt; println ( l(o) )</p>
-<p>&lt;?x『『11 version=”l. “ encoding=”utf -8”？〉</p>
-<p>如果没有看到XML首部 ，要确保你的URL是正确的，而且已经连人互联网 。 下面来处理这个包含 XML文档的List [String］ 。</p>
-<p>a. 检查确认有正确的内容，打印这个文件的前10行，这应当只需要一行代码。</p>
-<p>b. 天气预报中的城市名出现在前 10行。从相应的行中抽取，井打印其X ML元 素。然后从X M L元素中抽取城市名和国家代码 ，把它们打印在 一起 （ 例如 “Paris, FR” ）。这里很适合使用正则表达式从 X ML标记中抽取文本 （ 见第2章 “正则表达式” 一节）。</p>
-<p>c. 如果你不想使用正则表达式捕获组 ，可以在字符串上使用replaceAll （） 操作， 删除城市名和国家名两边的文本 。</p>
-<p>d. 这里有多少个预报段 ？写出最短的表达式来统计段数 。</p>
-<p>e. 每个天气预报段中的”symbol “ XML元素包括一个天气预报的描述 。与抽取城</p>
-<p>常用集合 I 101</p>
-<p>市名和国家代码类似 ，用同样的方式抽取这个元素 。试着迭代处理天气预报， 打印这个描述 。</p>
-<p>然后打印接下来 12个小时的天气描述 （不包括XML元素）， 创建一个非正式 的天气预报。</p>
-<p>f. 下面找出这个预报中使用了哪些描述。打印一个有序列表，其中包括天气预报 中的所有这些描述 ，井去除重复的项。</p>
-<p>g. 这些描述可能很有用 。”sym bol “ X ML元素中包含一个属性 ，其中包含符号编 号。n;1J 建一个从符号编号到描述的 Map。从预报访问符号值 ，井检查描述是否 与XML文档匹配 ，从而验证这个Map是正确的。</p>
-<p>h. 接下来24小时的最高温度和最低温度是什么 ？</p>
-<p>\1. 这个天气预报中的平均温度是什么 ？可以使用温度元素中的 “value”属性来计算 这个值。</p>
-<p>完成这些练习后 ，除了你选择的方法，有没有更简单或者更简短的方怯 ？你喜欢中 缀点记住还是中缀操作符记住 ？使用for ..yield是不是比ma p和f ilter等高阶操作更容 易？</p>
-<p>可以在这里调整你的答案 ，找出你喜欢的编码风格，通常需要结合易写、易读和表述 性。</p>
-<h1 id="章节7"><a href="#章节7" class="headerlink" title="章节7"></a>章节7</h1><p>练习</p>
-<p>\1. 斐波纳契数列队数字’『 1 l “ 开始 ，后面的各个元素分别是前面两个元素之和 。我们 将使用这个数列来熟悉这 一章介绍的集合 。</p>
-<p>a. 编写一个函数 ，返回斐披纳契数列中前X 个元素的一个列表 。你能用一个</p>
-<p>Buff er来实现吗？这里适合使用 Builder吗？</p>
-<p>b. 编写一个新的斐波纳契函数 ，将新的斐波纳契数增加到一个已有的数字列表。 它取一个数字列表（L ist [I n t ］） 和要增加的新元素个数 ，井返回一个新的列表 (List[Int ］） 。尽管输入列表和返回的列表是不可变的 ，不过应该可以在函数内 部使用一个可变的列表 。你能只用不可变列表写这个函数吗 ？哪一个版本 （使 用可变集合和不可变集合） 更合适，更可读？</p>
-<p>c.  St r e a m集合是创建一个斐波纳契数列的很好的解决方案 。创建一个流 ，生成 一个斐波纳契数列 。用它打印这个数列中的前100个元素 ，生成一个格式化报 告，每行 10个元素 ，井用逗号分隔。</p>
-<p>d. 编写一个函数 ，取斐被纳契数列中的 一个元素 ，返回这个数列中的下一个元 素。例如，但bNext(8 ）应当返回13。如何处理不合怯的输入 ，如fixNext (9） ？要 如何向调用者传达缺少一个返回值？</p>
-<p>\2. 在A r r a y 集合的例子 中 （ 见本 章前面 “ 数组” 一节） ，我们使用了 j a v a . io.F ile(<pa t h> ) .list F iles操作来返回 当前目录中的文件数组。写一个函数对 一个目录完成同样的工作 ，并把各项转换为相应的St rin g表示 （使用toSt r in g方 法） 。过滤掉所有点文件 （以＼’字符开头的文件），打印其余的文件时以分号分隔</pa></p>
-<p>（；）。如果你的计算机上有一个包含大量文件的目录 ，针对这个目录测试这个函 数。</p>
-<p>\3. 取练习2得到的文件列表 ，打印一个报告 ，显示字母表中的各个字母 以及以该字母 开头的文件数。</p>
-<p>\4. 写一个函数返回两个数之积 ，这两个数分别指定为 String ，而不是一个数值类 型。你能同时支持整数和浮点 数吗？如何表达其中一个或两个输入可能不合住 ？ 你能使用一个匹配表达式处理转换 的数吗？能不能使用for循环来做到IJ?</p>
-<p>\5. 编写一个函数安全地包装JVM库方住System.getpropert y(&lt;St ring＞）的调用，避 免产生异常或n ull结果。给定属性名，Sy stem.get P ro pert y(&lt;St r ing＞）返回一个 JVM环境属性值。例如 ，Sy st ern. get P r oper t y( “j a va .h ome”）会返回当前运行的 Java实例的路径 ，而System .getproperty （飞J ser .t imezon e”） 返回操作系统 的时 区属性。不过 ，这个方告使用时可能很危险，因为它可能抛出异常 ，或者对不合 怯的输入返回null 。在Scala REPL 中试着调用System.get Property （ 川’）或System. get Property （飞lah “）， 来看它如何晌应 。</p>
-<p>有经验的Scala开发人员会构建他们自己的函数库 ，用Scala一元集合包装不安全 的 代码。你的函数要把输入传入这个方怯，确保能安全地处理和过滤异常和 n ull值。 对这里使用的示例属性名调用你的函数 ，包括合品和不合怯的输入 ，来验证它不 会产生异常或返回 null结果。</p>
-<p>\6. 写一个函数 ，报告一个项目的最近Gi tHu b提交 （ comm it ） 情况。G i tH u b提供了 一个给定用户的最近com mi t 的RSS提要 、存储库和分支 （ br an ch ） ，其中包含 XML ，可以用正则表达式解析这个XML 。这个函数应当取用户、存储库和分支 ， 读取井解析RSS提要 ，然后输出提交信息 。这应当包含每个提交的日期 、题目和作 者。</p>
-<p>可以使用以下RSS URL来获取一个给定存储库和分支的当前commit: <a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a> &lt; user name&gt; /<repo name> /commits/&lt; branch name&gt;.atom</repo></p>
-<p>可以如下将RSS提要获取为一个字符串 ：</p>
-<p>scala&gt; val u ＝”https:/ /github.com/scala /scala /commits/2.11.x.atom” u: String = <a href="https://github.com/scala" target="_blank" rel="noopener">https://github.com/scala</a> /scala /commits/2.11.x.atom</p>
-<p>scala&gt; val s = io.Source.fromUR L(u )</p>
-<p>s: scala.io.Buff eredSource = non-empty iterator</p>
-<p>scala&gt; val text = s.getlines.map(_. t rim) .mkString （”“）</p>
-<p>text: String = &lt;?xml version＝飞。” encoding ＝”UTF-8 “？＞&lt;feed xmlns= …</p>
-<p>处理XML可能很点困难。可以使用t e x t .sp lit(&lt;t o k e n＞） 将文本分解为单独 的</p>
-<p>&lt; e n t r y ＞， 然后用正则表达式捕获组 （ 见第2章 “正则表达式” 一节） 解析出</p>
-<p>&lt;title＞和其他元素。还可以选代处理XML文件的所有行 ，发现元素时把它们增加 到一个缓冲区 ，然后把它们转换为一个新列表。</p>
-<p>完成这个练习后 （这里有很多工作要做）， 还有几个特性很值得好好研 究：</p>
-<p>a. 将user 、repo和branch 参数移到一个元组参数中 。</p>
-<p>b. 在练习a基础上 ，让函数取一个Gi tHu b项目列表 ，按指定项目的顺序打印各个 项目的提交情况报告 。</p>
-<p>c.  在练习b基础上 ，获取所有项目，使用futu re井发地提交数据 ，等待结果 （不超 过5秒）， 然后按指定项目的顺序打印各个项 目的提交情况报告。</p>
-<p>d. 在练习c基础上 ，把提交情况氓杂在一起 ，按提交日期排序 ，然后打印报告 ， 增加一个额外的 “rep “列。</p>
-<p>实现这些额外的特性可能 需要花一些时间 ，不过这对学习 Scala以及提高你的 Scala开发能力很有意义 。</p>
-<p>完成这些特性后 ，针对以下项目测试你的提交报告：</p>
-<p>https:/ /github.com/akka /akka /tree/master https: I/github. com/scala /scala /tree/2 .11.x <a href="https://github.com/sbt/sbt/tree/0.1" target="_blank" rel="noopener">https://github.com/sbt/sbt/tree/0.1</a> 3</p>
-<p>https:/ /github.com/scalaz/scalaz/tree/series/7.2.x</p>
-<p>这些项目都还在进行中或已经完成 ，所以应该能在你的报告里看到一些 很有意 思的提交活动数据。有必要好好浏览这些核心开源Scala项目的存储库，或者至 少应该看看它们的文档 ，来了解这些卓越的项目。</p>
-<p>\7. 写一个命令行脚本来调用练习 6得到的G itH u b提交报告函数 ，并打印结果 。这需 要使用一个U NI X shel l z 如果你使用Wi n dows系统，可能需要一个兼容的U N IX 环境 ，如Cygw in或Virtual box （运行一个U NIX 虚拟机）。 另外还需要安装SBT (Simple B u ild Tool） ，这个构建工具支持依赖文件管理和插件 ，在Scala项 目中很 常用。可以从http:Ilww w.scala-sbt .org ／下载面向各个环境的 SBT，包括一个MSI Windows Installer版本。SBT也可以从流行的包管理器得到 。如果你在使用OS X 的 Homebrew ，可以用brew install sbt来安装。</p>
-<p>注意 ：SBT难学吗？</p>
-<p>可能有一点。在这个练习中，我们只用它作为一个shell脚本启动工具 ，以便在Scala中编写 和执行shell脚本。后面几章中，我们将介绍如何编写SBT构建的脚本来管理你 自己的项目。</p>
-<p>\8. 下面是一个基于SBT的示例Scala脚本 ，它将命令行参数读取为一个L i st，并打印 一个欢迎辞 。用三个星号开始 的注择块专门用作为 SBT设置的注释。在这个脚本 中，这个注辑指定我们希望使用 Scala语言的 2.11.l版本 ：</p>
-<p>#!/usr/bin/env sbt -Dsbt.ma in .class=sbt .ScriptMain</p>
-<p>／＊＊＊</p>
-<p>scalaVersion := “2 .11.1”</p>
-<p>＊／</p>
-<p>def greet(name: String) : String = s”Hello, $name l”</p>
-<p>II Entry point for our script args.tolist match {</p>
-<p>case List( name) =&gt; {</p>
-<p>val greeting = greet(name) println(greeting)</p>
-<p>case =&gt;</p>
-<p>println (“usage: HelloScript.scala &lt; name＞”）</p>
-<p>把这个脚本复制到文件 HelloS cr ipt.scala 中，将权限改为可执行 （ U NIX环境下执行</p>
-<p>chmod a+x HelloScript .scala ） 。然后可以直接运行这个脚本 ：</p>
-<p>$ ./HelloScript .scala Jason</p>
-<p>[info] Set current project to root-4926629s8acd7bceob (in build 自le:/Users/ jason/ .sbt/boot/4926629s8acd7bceob/)</p>
-<p>Hello，〕ason!</p>
-<p>你的提交报告脚本需要取多个 GitH u b项目作为参数 。为了保证参数简沽 ，可能希望结 合各个项目的输入构成一个要解析的字符串 ，如sea la / scala/2 .11.Xo</p>
-<p>输出应当简洁 、格式良好 ，而且可读 。使用固定的列宽可能会有帮助，为此可以在字 符串内插时使用printf 风格的格式化代码 （见第2章 “字符串内插” 一节）。</p>
-<h1 id="章节8"><a href="#章节8" class="headerlink" title="章节8"></a>章节8</h1><p>I. 我们要开发一个游戏网站 ，需要跟踪类似Xbox Two和Playstation 5之类流行的显示 器 （我在规划未来） 。</p>
-<p>a. 创建一个显示器类 ，跟踪品牌 、型号、上市日期 、Wi Fi类型、支持的物理媒体 格式 ，以及最大视频分辨率 。覆盖默认的t oS t r in g方怯 ，打印一个大小适当 的实例描述 （小于120字符）。</p>
-<p>• 上市日期 （或出厂日期） 应当是ja va .util. Date的一个实例。</p>
-<p>类 I 163</p>
-<p>WiFi类型 （ b饵，b/g/n等） 字段为可选 ，因为有些显示器没有WiFi 。</p>
-<p>• 物理媒体格式应当是 一个列表。这里Stri ng最适用吗？还是要使用一个匹 配常量值的Int?</p>
-<p>• 最大视频分辨率应当采用 种特定的格式 ，从而可以按最大像素数对显示 器排序。</p>
-<p>b. 测试这个新的显示器类 ，写一个新类 ，创建这个显示器类的4个实例。所有这 些实例都应当有正确的值。</p>
-<p>c. 现在来实现游戏 。创建一个游戏类 ，包含名字 、开发商和所支持的一个显示器 列表 ，以及一个 Supported “方毡 ，如果支持一个给定的显示器则返回tru巳。</p>
-<p>d. 测试这个游戏类 ，生成一个游戏列表 ，每个游戏包含 一个或多个显示器实例 。 能把这个列表转换为显示器和所支持游戏列表的 一个查找表吗？能不能实现一 个函数 ，打印游戏列表 ，首先按开发商排序 ，再按游戏名排序？</p>
-<p>\2. 创建一个面向对象风格的链表 。</p>
-<p>a. 创建一个窗口类 ，包含它自身的一个实例 ，以及 个参数化类型的实例 。构 造函数取一些实例 （例如 ，字符串 、i n t或任何其他参数化类型）， 实例个数 可变 ，这可以用vararg参数 （见第4章 “vara rg参数” 一节） 实现。实现一个 “foreach” 方告，用户可以调用这个方总迭代处理列表 ，对每个元素调用相应的 函数。</p>
-<p>• 如何确定列表结束 ？</p>
-<p>. c风格的列表通常使用 一个川11值来指示列表末尾 。在这里这是最好的方 在去吗？</p>
-<p>这里可以使用a pply （）方住吗？</p>
-<p>b. 相信你的链表肯定很很好地工作 ，不过试着用一个有趣的方法重构这个类 。把 你的容器类变成有两个子类的抽象类 ：一个表示有合住项的节点，另一个表示 没有合能项的节点，指示列表的最后一项。</p>
-<p>• 需要第二个子类的多个实例吗？</p>
-<p>• 有没有应当私有的辅助方法？</p>
-<p>• 需要子类实现的抽象方能呢？</p>
-<p>如果实现了apply （）方陆 ，各个子类应当有自己的实现 吗？</p>
-<p>c. 为你的链表增加标准的head 、tail 、f ilter 、size和ma p集合方也 。你能用懒值 实现其中某个方桂吗 ？哪些方怯要在父类中实现 ，哪些则要在子类中实现 ？</p>
-<p>d. 使用递归而不是迭代实现head 、tail、filter 、size和map集合方桂 。你能确保 所有这些方法都使用尾递归 （见第4章 “递归函数” 一节） 来避免超大集合的 检监出错误吗？</p>
-<p>\3. 再换一个问题 ，下面创建一个目录请单类 。构造字段应当是这个目录的完整路 径 ，另外有一个谓词函数 ，它取一个St r in g （文件名）， 如果要包含这个文件则 返回true。方古击”list”应当列出 目录中的文件。</p>
-<p>要实现这个类 ，需要创建ja va .io.File的一个实例 ，井用它的list Files ( f ilter:</p>
-<p>F i l e n a m e F i l t e r ） 列出与给定过滤器 匹配的文件 。可以找到这个方怯以及</p>
-<p>j a va .io. F ilen ame F ilt er类的Javadocs ，不过需要明确如何从 Scalai周用。另外 FilenameFilter参数应当作为一个匿名类传入。</p>
-<p>• 这个类的哪些部分可以作为懒值？</p>
-<p>• 是否可以把java .io.FilenameFilter 的匿名子类存储为一个懒值？</p>
-<p>．过滤后的目录清单呢？</p>
-<p>\4. JVM库包含一个能真正工作的MIDI声音合成器 。下面的例子会播放一组音符：</p>
-<p>scala&gt; val synth = javax.sound .midi.MidiSystem.getSynthesizer synth: javax. sound .midi.Synthesizer = com. sun .media .sound</p>
-<p>.SoftSynthesizer@283a8ad6</p>
-<p>seala&gt; synth. open()</p>
-<p>scala&gt; val channel = synth.巨etChannels.head</p>
-<p>channel: javax.sound .midi.MidiChannel = com.sun.media.sound</p>
-<p>.SoftChannelProxy@606d6d2c</p>
-<p>scala&gt; channel.noteOn(so, 80); Thread .sleep(250); channel.note0ff (30) seala&gt; synth. close()</p>
-<p>为它创建一个更简单的界面 ，为此要编写一个类播放一系列音符 。这个类的构造 函数要得到音量 （这个例子中设置为 80 ） ，不过总使用相同的持续时间 （这个例 子中为250毫秒）。 它的”play “方法要取一个音符列表 ，例如Seq(30, 35, 40, 45, 50,</p>
-<p>55, 60, 65, 70） ，并在合成器中播放 。</p>
-<p>．假设getSynt hesizer方战调用开销很大 。如果永远不会调用”play “方撞 ，如何</p>
-<p>避免不必要地调用getSynthesizer方法？</p>
-<p>• 确保隐藏调用者不需要知道的字段。</p>
-<p>类 I 16s</p>
-<p>• 可以使用一个Range作为输入吗？如play(30 to 70 by 5) ?</p>
-<p>能支持多个范围吗？例如升调、降调然后再升调？</p>
-<p>• 假设只需要一个实例 ，音量设置为95。你能使用访 问控制来确保这个类不会有 多个实例吗？</p>
-<h1 id="章节9"><a href="#章节9" class="headerlink" title="章节9"></a>章节9</h1><p>\1. 下面说明如何在Scala中利用ScalaTest框架编写一个单元测试 。这个练习将为IDE 增加一个测试 ，执行这个测试，井验证是否能得到成功的结果 。如果你已经熟悉 如何在IDE中执行测试，这个练习可能相当简单。为了更好地理解ScalaTest框架 ，</p>
-<p>建议你暂时先不考虑这个练习 ，可以先看看ScalaTest网站 （http:// www.scalatest.</p>
-<p>org／） 的官方文档。</p>
-<p>首先来看 “Ht mlUtils” 对象 （ 见本章前面 “对象” 一节）。创建一个新的Scal a 类 ，可以在IDE 中右键单击src/main! seala 目录，井选择New →Scala Class。键入类 名 HtmlUtils ，将类型设置为对象 。将单例对象替换为以下源代码 ：</p>
-<p>object HtmlUtils {</p>
-<p>def removeMarkup(input : String) = {</p>
-<p>input</p>
-<p>.replaceAll（”““＜／？＼w ［《〉］＊〉”．．”，”“）</p>
-<p>.replaceAll （”〈 ＊〉” ““）</p>
-<p>这个新的HtmlU til. calα文件应当位于src!mαin!scala ，这是项目中源代码的根目 录。现在再在src!test/ seala 目录下增加一个新的 “HtmlUtilsSpec “ 类 （ 必要时 ，需 要先创建这个目录）。 SBT和IntelliJ都会在这个目录下查找测试 ，它与主src!main! scala 目录对应 。将以下源代码增加到HtmlUtilsSpec. scala 文件：</p>
-<p>import org.scalatest._</p>
-<p>class HtmlUtilsSpec extends FlatSpec with ShouldMatchers {</p>
-<p>“The Html Utils object” should “remove single elements “ in { HtmlUtils.removeMarkup （ 气br ／＞”） should equal （川）</p>
-<p>190 I 第9章</p>
-<p>it should “remove paired elements” in { HtmlUtils.removeMarkup （气b&gt;Hi&lt; /b＞”） should equal（”Hi”)</p>
-<p>it should “have no eff ect on empty strings” in { val empty = true</p>
-<p>HtmlUtils. remove问arkup（”“） .isEmpty should be(empty)</p>
-<p>这里只使用了这个包的 F 1a t Sp e d’r:JS h o u 1d M a t c h e r s类型 ，不过我们将导入 所有 类 ，以便将来 可以很 容易地增加其他的测试工具 （ 例如 ，我最喜欢的 “Option Values” ）。有很多测试类型可选 ，类Flat Spec是其中之一，它由Ruby 的 Rspec ( <a href="http://rspec.i叫声／）" target="_blank" rel="noopener">http://rspec.i叫声／）</a> 构建。ShouldMatchers 为测试增加了should和be操作 符 ，创建了一个域特定的语言 ，可以使你的测试更可读。</p>
-<p>第一个测试与其他测试稍有些不同 。对于Fl a t S pe c ，文件中的第一个测试应当以 一个文本描述开头 ，描述将在这个文件中测试什么。后面的测试则使用i t关键字引 用这个描述。这有助于增强测试报告的可读性。</p>
-<p>在测试体中 ，eq u al操作符确保前面的值应当等于它 的参数，在这里就是空串”“ 。 如果不相等 ，会导致这个测试失败，并立即退出 。类似地 ，如果前面的值不是同 一个实例 ，be操作符会使测试失败 ，这对于比较t r ue 、Nil和None等全局实例会很 有用。</p>
-<p>运行测试时，打开Preferences 下的IntelliJ Plugins首选项面板 ，确保安装了 “jnit” 插件。这个插件将确保能很容易地查看和浏览你的测试结 果。</p>
-<p>一旦为项目增加了测试 ，在IDE中编译这个测试。如果无法编译 ，或者报告某个错 误，如无也找到 “ScalaTest” 包 ，要确保你的构建脚本包含了 ScalaTest依赖文件 ， 而且可以在lntelliJ “Project” 视图的 “External Libraries” 部分查看。</p>
-<p>现在我们来运行这个测试 。右键单击测试类的名 Ht m l U t i l s S p e c ，选择R u n Ht m lUtilsSpec 。执行这个测试只需要几秒的时间 ，如果测试和源应用输入正确， 它们都会成功运行 。图9-3展示了测试完成时显示 的测试结果 。</p>
-<p>HardyH町on - ［”I Code/learn ingScala/Privatelearn ingScala/ tests/ HardyHero叫</p>
-<p>!’ HtmlUtilsSpec ll,. •• • ‘ 事</p>
-<p>11.，</p>
-<p>q</p>
-<p>嚣，</p>
-<p>al ?</p>
-<p>“ Y ↓？ 王 春 自</p>
-<p>“‘ ·• Test Results</p>
-<p>“‘ .• HtmlUtilsSpec</p>
-<p>• ·.The Html Utlls object</p>
-<p>should remove single elements</p>
-<p>刷 should remove patred elements</p>
-<p>· should have no e何ect on empl)’ string</p>
-<p>Process f inished with exit</p>
-<p>日</p>
-<p>’量：Run 岳 阳ylD队 由堂 皇＇TOOO Tests passed (2 minutes 吨的</p>
-<p>翩 Terminal</p>
-<p>日旦.Changes</p>
-<p>C,t:mastor</p>
-<p>Eν町、E Log</p>
-<p>零 （Tl</p>
-<p>国9-3: lntelliJ IDEA申的测试结果视国</p>
-<p>在这个练习的最后，将由你来完成一个具体的练习 ：为这个HtmlUt ilsSpec测试类 增加其他测试 。哪些特性还没有测试 ？是否支持所有合法的 HTML标记？</p>
-<p>还有一个问题，要去除”scri pt” 标记中包含的JavaScri pt吗？还是随其余文本 一 同出现？可以认为这是原版本 Ht 『n lUt ils的一个b ug 。增加一个测试来验证将去 除 JavaScript文本，然后运行这个测试。如果失败，修正HtmlUtils ，并重新运行测试 来验证已经得到修正 。</p>
-<p>祝贺你，现在你已经可以用Scala写测试了 ！要记住，完成这本书后面的练习时还 要坚持写测试 ，利用这些测试来验证你的答案是否正确 ，井捕获其中所有（不可 预见的） bug o</p>
-<p>\2. 下面 来 考 虑这 一章中的 另 一 个 例子 。创 建 一 个新的 S c a 1a</p>
-<p>“SafeStringUtils”，井增加以下源代码 ：</p>
-<p>t r a I t , 名为</p>
-<p>trait SafeStringUtils {</p>
-<p>II Returns a trimmed version of the string wrapped in an Option,</p>
-<p>II or None if the trimmed string is empty.</p>
-<p>def trimToNone(s: String) : Option [String] = {</p>
-<p>Option(s) map(_.trim) filterNot (_.isEmpty)</p>
-<p>｝</p>
-<p>｝</p>
-<p>验证这个trait在IDE中能够编译。如果一切正常 ，完成以下步骤 ：</p>
-<p>192 第9章</p>
-<p>a. 也I］建这个trait的一个对象版本 。</p>
-<p>b. 创建一个测试类 SafeStringUt ilsSpec ，测试Saf eStringUt ils.trimToNone() 方告。验证它会去除字符串中的空格 ，并安全地处理 n ull和空串。测试类中应 该有3到5个不同的测试。运行测试类，井验证它能成功地执行 。</p>
-<p>c.  增加一个方毡 ，将一个字符串安全地转换为一个整数 ，即使字符串不可解析也 不会抛出错误 。编写井执行测试来测试合峰和不合住的输入。在这个函数中， 最适用的一元集合是什么？</p>
-<p>d. 增加一个方法 ，将一个字符串安全地转换为 一个long整数 ，即使字符串不可解 析也不会抛出错误 。编写井执行测试来测试合法和不合法的输入 。在这个函数 中，最适用的一元集合是什么？</p>
-<p>e. 增加一个方毡 ，返回一个给定大小 的生成字符串 ，要求仅包括大写和小写字 母。编写井执行测试来验证将返回正确的内容，而且会处理不合住的输入。在 这个函数中 ，有没有适用的一元集合？</p>
-<p>\3. 编写一个命令行应用 ，搜索和替换文件中的文本 。输入参数是一个搜索模式 、正 则表达式、替换文本以及一个或多个要搜索 的文件。</p>
-<p>a. 首先写一个骨架命令行应用 ，解析输入参数 ：搜索模式、替换文本参数和要处 理的文件作为一个字符串列表 。打印这些输入来验证可以正确地捕获到输入 。</p>
-<p>b. 在命令行用sbt “run-main <object name> &lt;input arguments ＞”执行这个骨架 应用。输入参数放在”ru n-ma in”参数所在的同一个双引号内，这样SBT工具就 会把它们读作为 一个命令 。还可以从IDE运行 ，选择R u n→R U D＂＇创建一个运 行时配置。利用运行时配置，可以指定一次输入参数 ，或者也可以在每次执行 时显示整个配置。验证搜索模式、替换文本和文件列表能成功地解析 。</object></p>
-<p>c. 实现这个应用的核心逻辑 ，读取各个输入文件，搜索并替换所指定的模式，然 后把结果打印到控制 台。尝试对几个输入文件运行这个应用，验证确实对模式 完成了替换。</p>
-<p>d. 现在把修改后的文本写回到读取这些文本的原文件。下面是使用Java库将字符 串写入文件的一个例子 ：</p>
-<p>import java .io._</p>
-<p>val writer = new PrintWriter(new File（”out .txt”）） writer .write（咱ello, World!\nHere I am ！”）</p>
-<p>writer. close()</p>
-<p>e. 要让你的应用使用时更安全 ，可以在修改输入文件之前先创建这些文件的 一 个备份 。创建备份时 ，首先把未修改的内容写出到一个文件 ，在输入文件名</p>
-<p>后加.bak 。创建这个备份文件之前，使用新的ja va .io.File（＜干 ile n a m e&gt; ) . e x i s t s（） 来确保备份文件不会与已有文件重名 。可以尝试增加递增的数 字</p>
-<p>（如.bakl 和.bak2 ） 来找到唯一的备份文件名。</p>
-<p>f. 创建一个测试类 ，井编写测试来验证你的应用会按预期 工作。你的应用的核心 功能应当可以作为方怯来调用 ，而不需要具体启动应用 。确保将功能分解为可 读而且大小合理的方怯 ，然后为接心方怯以及mai n方陆分别编写测试 。在这个 练习的最后 ，运行你的测试，验证测试都能成功 ，然后从命令行针对一个测试 文件运行你的应用 。</p>
-<p>\4. 编写一个应用 ，对一个文件提供总结。它取一个文本文件作为输入，并打印一个 完整的总结 ，包括字符数 、单词数和段落数 ，以及使用最多的 20个单词构成的一 个列表。</p>
-<p>这个应用应该足够聪明 ，可以过滤非单词字符 。解析一个 Scala文件时 ，应当显示</p>
-<p>（例如） 单词 ，而不显示特殊 字符 （如”｛” 或”／／”｝ 。它应当还能统计包含实际内容 的段落数而不会统计只有空格的段落 。</p>
-<p>编写测试 ，使用多行字符串来验证输出 。这个应用应当模块化为单独的方法以便 于测试。可以编写一个测试 ，给定字符串咄is is is not a test” ，会收到一个实例指 出单词”is”为使用最多的单词 。</p>
-<p>为了真正查看你是否已经掌握这一章的内 容 ，一定要在你的解决方案中使用对 象、trait和case类。</p>
-<p>\5. 编写一个应用 ，对给定 GitHub 项目的最近结束的问题提供一个报告。输入参数应 当包括存储库名、项目名和一个可选的要报告 的问题数 （默认值为 10） 。输出将 有一个报告表头 ，并显示各个问题的编号 、标题、用户名、评论数和标签名。输 出应当是良格式的，有固定宽度的列 ，用竖线（ ｜ ） 分隔 ，表头用等号分隔（）。</p>
-<p>需要从GitHub API读入这些问题 （关于读取一个UR L的有关内容，更多信息见第6 章 “练习” ） 。解析JSON值 ，然后打印一个详细格式 。下面给出的示例U R L可以 返回GitHub上官方Scala项目的最近10个结束的问题 ：</p>
-<p>https:/ /api.github.com/ repos/scala /scala/issues?state =closed&amp;per_page=10</p>
-<p>我们将使用Json4s库 （http:/ /json4s.org ／） 将JSON响应解析为一个case类列表。首 先，将这个依赖库增加到你的 构建脚本 ，并重新构建这个项目 ：</p>
-<p>飞rg.json4s “ 拙 ’＇j son4s-native＂鬼 “ 3.2.10”</p>
-<p>这可以放在ScalaTest依赖库前面 ，也可以放在它后面。I n tel l i J会发现这个改变 ，</p>
-<p>下载这个库 ，井重新构建这个项目。如果没有这么做，可以在IntelliJ 中打开SBT视 图，并刷新项目，或者从命令行运行 sbt clean compile。</p>
-<p>A PI的 JSON响应相当庞大 ，不过并不需要解析所有丰段 。应当设计一个case类 ， 包含JSON 中你想要解析的那些字段 ，使用Opt i on类型表示可能为 n u l l或可选的宇 段 。解析J S ON n向应时，J son4s将只插入case类中定义的字段 ，而忽略其余的字 段。</p>
-<p>下面的例子使用Json4s从一个更大的GitHu b问题文档解析”l abel s”数组。通过研究 对应一个记录的API输出，应该能设计一系列case类 ，其中只包含你需要的信息。 需要说明 ，API返回的JSON文档是一个数组 ，所以可能需要结合 List调用extra ct 方陆 （例如，extract [List[Gith u blssue] ] )</p>
-<p>import org.json4s.DefaultFormats</p>
-<p>import org. j son4s. native. JsonMethods f)</p>
-<p>“labels” ：［</p>
-<p>｛</p>
-<p>“url”：”<a href="https://api.github.com/repos/scala" target="_blank" rel="noopener">https://api.github.com/repos/scala</a> /scala /labels/tested “， “name ＂：”tested “，</p>
-<p>“color ＂：”d7e102”</p>
-<p>case class Label(url: String, name: String) @</p>
-<p>case class LabelDocument(labels: List[ Label ］ ） 。</p>
-<p>implicit val formats = DefaultFormats 0</p>
-<p>val labelDoc = Json问ethods.parse( jsonText).extract[LabelDocument ] @</p>
-<p>val labels = labelDoc.labels</p>
-<p>val firstlabel = labels.headOptio 川阳p(_. name)</p>
-<p>。除了支持数字和字符串外 ，Def ault Formats还支持常用的日期格式。</p>
-<p>＠ 我们在J sonMet hods中使用 “native” JSON解析器来解析JSON文档，并把它们 抽取到case类实例。</p>
-<p>＠ 我把 “labels” JSON数组中的一项称为一个 “Label”。需要说明，不需要指定 “color” 字段 。</p>
-<p>整个JSON文档有一个字段 “labels”，所以需要一个case类表示这个文档 。</p>
-<p>0 Implicit关键字将在第 10章讨论。很抱歉还没有介绍就提前使用这个概念，不 过你需要这一行来确保Json4s能解析你的JSON文档。</p>
-<p>0  J sonMet hods会把JSON文档解析为自己的中间格式，然后再用一个结定的case 类抽取。</p>
-<p>\6. 完成这个练习需要先完成前一个练习。一旦完成G i tH u b报告应用 ，下面对它进行 重构来提供可重用性和可靠性 。</p>
-<p>a. 首先为GitHub报告编写测试 ，验证各个组件有正确的行为 。如果你的计算机不 能连入互联网 （没有亘联网连接），你 能测试这个应用中的多少逻辑？应当能 测试大部分逻辑 ，而不需要实际连接到 GitHub网站。</p>
-<p>b. 重构JSON 处理代码来使用自己的trait ，例如 “JsonSupport “。编写测试 ，验 i正它能正确地解析JSON代码 ，井处理Json4s库可能抛出的异常。有必要提供这 个trait的对象版本吗？</p>
-<p>c. 对Web处理代码完成同样的重构。创建你自己的”HtmJCJient “ trait和对象 ，取 一个UR L，将其内容作为一个字符串列表返回 。除了内容之外 ，可以在类中包 含服务器的状态响应吗 ？编写测试 ，验i.iEWeb处理代码能防止抛出任何异常。</p>
-<p>d. 最后 ，重构报告生成代码中处理固定宽度列的 部分 ，把它重构为 一个可重用的 tra i t。它能取一个任意大小的元组井打印其 内容吗？有没有一种更合适的数据 类型 ，可以支持可变数目 的列，而且知道如何打印字符串而不是double{直？确 保你的报告生成代码要取最大行宽度作为参数 。</p>
-<h1 id="章节10"><a href="#章节10" class="headerlink" title="章节10"></a>章节10</h1><p>尽管这一章很重要 ，需要认真阅读和理解 ，不过这里介绍的技术层次很高 ，除非要用</p>
-<p>Scala编写你自己的库或高级应用 ，否则通常可能用不到这些技术。</p>
-<p>在这一章中 ，我们不再像前面各章那样 专用有一节给出标准练习。如果你已经完成了 之前的所有练习 ，现在应该已经熟悉如何在R EPL中开发简洁的类和函数 ，以及如何在 一个IDE中开发更大规模的应用 。实际上 ，我会问一些有关本章所介绍 的高级类型特 性和功能的问题。</p>
-<p>你可能想要在REPL或IDE中做一些试验来找出这些问题的答案。可以把这些问题看作</p>
-<p>是需要完成的一个全面的试验 ，通过这个试验，可以使你对这个语言 的使用有更多体 验。</p>
-<p>I. 如何扩展一个函数？一个扩展F u n ction1忡，B ］的类或trait有哪些应用？如果你在写 这样一个类或trait ，你会扩展 Function1[A,B］ 还是扩展A =&gt; B?</p>
-<p>\2. 如果一个函数有两个参数 表 ，这两个参数表中分别包含一个整数 ，而且函数将返 回一个整数 ，这个函数的函数类型是什么？如果把它写为一个F u n ct ion X类，具体 的类和类型参数包含什么 ？</p>
-<p>\3. 隐含参数的一个流行用陆是用作为默认设置 ，在大多数情况下都可以使用这个默 认设置 ，不过在特殊情况下可以被覆盖。假设你在写一个排序函数 ，它取一些文 本行 ，这些文本行可能以一个右对齐的数字开头 。如果想要根据这些数字排序</p>
-<p>（数字前面可能有空格作为前缀），如何把这个功能写在 一个隐含参数中 ？如果 允许用户覆盖这个行为 ，在排序中忽略这些数字 ，又该如何做到？</p>
-<p>\4. 假设你写了自己的Opt ion [A］ ，命名为 Per ha ps[A ］ ，井实现了一或两个方撞来访 问 它的内容。需要提供哪种隐含转换才允许将它处理为一个集合 ？如何实例上调用 flatMap和filter而不需要实现这些方撞？</p>
-<p>\5. 如果要实现你自己的字符串类 Cha racters ，支持所有JVM的java .lang.String方 搓，另外还可以看作是一个Scal a集合 ，要如何实现 ？结合类型和转换就能完成大 部分工作吗？建议仔细研究 scala .Predef的源代码来找出提示。</p>
-<p>\6. 要为所有无组增加一个”su m”方法 ，它返回元组中所有数值的总 和，如果实现这个 方法？例如 ，（’ a ’ ，咱i”，2 .5, 1, true) .sum应当返回 3.5。</p>
-<p>\7. F u nc tion1类型接受类型参数 ，一个对应输入值 ，另一个对应输出值。哪一个应当 是协变参数？哪一个则应当是逆变参数？</p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/12/scala-learning-exercises/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -1065,6 +744,176 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="远方与诗的存在">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西词">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解/" class="post-title-link" itemprop="url">Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-04 16:54:00 / 修改时间：16:57:18" itemprop="dateCreated datePublished" datetime="2019-03-04T16:54:00+08:00">2019-03-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/翻译/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Apache-HBase配置"><a href="#Apache-HBase配置" class="headerlink" title="Apache HBase配置"></a>Apache HBase配置</h1><blockquote>
+<p> 译者: <a href="https://github.com/xixici" target="_blank" rel="noopener">xixici</a></p>
+</blockquote>
+<p>在上一章<a href="#getting_started">快速开始</a>的内容中，你学习了如何启动独立式、伪分布式以及完全分布式HBase，在本章中，我们将介绍更多关于Apache HBase的配置，以进一步了解Apache HBase。请仔细阅读本章，特别是<a href="#basic.prerequisites">基本配置条件</a>部分，该部分能够确保您的HBase测试和部署顺利进行，并防止数据丢失。现在，一起进入学习吧！</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1188,176 +1037,6 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="远方与诗的存在">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西词">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解/" class="post-title-link" itemprop="url">Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-04 16:54:00 / 修改时间：16:57:18" itemprop="dateCreated datePublished" datetime="2019-03-04T16:54:00+08:00">2019-03-04</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/翻译/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Apache-HBase配置"><a href="#Apache-HBase配置" class="headerlink" title="Apache HBase配置"></a>Apache HBase配置</h1><blockquote>
-<p> 译者: <a href="https://github.com/xixici" target="_blank" rel="noopener">xixici</a></p>
-</blockquote>
-<p>在上一章<a href="#getting_started">快速开始</a>的内容中，你学习了如何启动独立式、伪分布式以及完全分布式HBase，在本章中，我们将介绍更多关于Apache HBase的配置，以进一步了解Apache HBase。请仔细阅读本章，特别是<a href="#basic.prerequisites">基本配置条件</a>部分，该部分能够确保您的HBase测试和部署顺利进行，并防止数据丢失。现在，一起进入学习吧！</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
