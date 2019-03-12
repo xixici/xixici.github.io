@@ -297,7 +297,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">5</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">6</span></a>
 
   </li>
         
@@ -316,7 +316,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">27</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">29</span></a>
 
   </li>
 
@@ -390,6 +390,399 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xixici.com/2016/07/18/spark-cookbook/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="远方与诗的存在">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西词">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/07/18/spark-cookbook/" class="post-title-link" itemprop="url">Spark集群搭建教程 in Ubuntu 14.04</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-07-18 11:29:32" itemprop="dateCreated datePublished" datetime="2016-07-18T11:29:32+08:00">2016-07-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2016-07-25 21:06:20" itemprop="dateModified" datetime="2016-07-25T21:06:20+08:00">2016-07-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="基本环境总览-及下载链接"><a href="#基本环境总览-及下载链接" class="headerlink" title="基本环境总览-及下载链接"></a>基本环境总览-及下载链接</h2><p><a href="http://www.zdfans.com/5928.html" target="_blank" rel="noopener">VMware 12.1.1</a><br><a href="http://www.ubuntu.com/download/desktop" target="_blank" rel="noopener">Ubuntu 14.04</a><br><a href="http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html" target="_blank" rel="noopener">JAVA 1.8.0</a><br><a href="http://hadoop.apache.org/releases.html#Download" target="_blank" rel="noopener">Hadoop 2.7.2</a><br><a href="http://spark.apache.org/downloads.html" target="_blank" rel="noopener">Spark 1.6.2</a><br><a href="http://www.scala-lang.org/download/" target="_blank" rel="noopener">SCALA 2.10.6</a><br><a href="http://www.jetbrains.com/idea/download/" target="_blank" rel="noopener">ideaIC-2016.2</a><br><a href="http://plugins.jetbrains.com/plugin/?idea&amp;id=1347" target="_blank" rel="noopener">scala-intellij-bin-2016.2.1</a><br><strong>文末有网盘提供本文环境下载</strong></p>
+<h2 id="VMtools安装"><a href="#VMtools安装" class="headerlink" title="VMtools安装"></a>VMtools安装</h2><ul>
+<li>VMware菜单-虚拟机-安装VMtools</li>
+<li>解压tar.gz</li>
+<li>teminal中执行./vmware-install.pl</li>
+<li>重启虚拟机系统</li>
+</ul>
+<hr>
+<h2 id="Hadoop-2-7-2-in-Ubuntu-14-04-LTS-配置开始"><a href="#Hadoop-2-7-2-in-Ubuntu-14-04-LTS-配置开始" class="headerlink" title="Hadoop 2.7.2 in Ubuntu 14.04 LTS 配置开始"></a>Hadoop 2.7.2 in Ubuntu 14.04 LTS 配置开始</h2><h2 id="Ubuntu开启root账户登录"><a href="#Ubuntu开启root账户登录" class="headerlink" title="Ubuntu开启root账户登录"></a>Ubuntu开启root账户登录</h2><ul>
+<li><p>vim 安装 可以用gedit代替</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Ubuntu14.04桌面环境目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>桌面环境设置如下 开启root账户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[SeatDefaults]</span><br><span class="line">greeter-session=unity-greeter</span><br><span class="line">user-session=ubuntu</span><br><span class="line">greeter-show-manual-login=true</span><br><span class="line">allow-guest=false</span><br><span class="line">- 启用root账号</span><br><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="SSH实现无密码登录"><a href="#SSH实现无密码登录" class="headerlink" title="SSH实现无密码登录"></a>SSH实现无密码登录</h2><ul>
+<li><p>ssh通讯安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ssh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ssh启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/ssh start</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ssh状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -e |grep ssh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成公钥 私钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -P &quot;&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>公钥添加授权</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>登入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh localhost</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>登出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/07/18/spark-cookbook/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xixici.com/2016/07/14/code-cookbook-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="远方与诗的存在">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西词">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/07/14/code-cookbook-3/" class="post-title-link" itemprop="url">Coding笔记系列2--两个简单展示</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-07-14 11:39:00 / 修改时间：12:01:32" itemprop="dateCreated datePublished" datetime="2016-07-14T11:39:00+08:00">2016-07-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>Coding</code>笔记第三篇,有两个不成样子的东西,贴出来看看.<br>做的实在是太<code>low</code>了,我都不想拿出来见人.</p>
+<h2 id="王小波-简介页面"><a href="#王小波-简介页面" class="headerlink" title="王小波-简介页面"></a>王小波-简介页面</h2><p>请点击<a href="https://codepen.io/xixici/full/YWNqjy/" target="_blank" rel="noopener">王小波-简介页面</a><br><img src="http://s3-us-west-2.amazonaws.com/i.cdpn.io/693394.YWNqjy.small.63c44205-4c93-479d-84dc-b274b7565034.png" alt="王小波"></p>
+<h2 id="诗经-国风-展示页面"><a href="#诗经-国风-展示页面" class="headerlink" title="诗经-国风-展示页面"></a>诗经-国风-展示页面</h2><p>请点击<a href="https://codepen.io/xixici/full/EyZyvV/" target="_blank" rel="noopener">诗经-国风-展示页面</a><br><img src="http://s3-us-west-2.amazonaws.com/i.cdpn.io/693394.EyZyvV.small.dc4dcce8-e7bd-486a-bf96-f677f905505b.png" alt="诗经-国风"><br>在这里用css JS语法的时候,没有能够熟练的掌握,离开了IDE就不能写.也没能掌握Bootstrap这成熟的前端开发框架.</p>
+<p>有两点需要注意和加强的地方:</p>
+<ul>
+<li>语法规范</li>
+</ul>
+<p>CSS这种简单的语法还是有一些生疏,不能很好的运用.以至于不停的去查用法.熟练度太欠缺</p>
+<ul>
+<li>见识短浅</li>
+</ul>
+<p>没有对整个设计有一个全面的理性的认识,导致自己在实践中,不停的改Idea,最终已经偏离初心甚远.</p>
+<p>以后要多加注意</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1695,7 +2088,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1718,7 +2111,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2394,6 +2789,10 @@
       
     
       
+    
+      
+    
+      
         
       
     
@@ -2444,6 +2843,10 @@
 
   
   
+    
+      
+    
+      
     
       
     
