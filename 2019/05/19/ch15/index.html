@@ -119,7 +119,7 @@
 <meta property="og:site_name" content="西西词">
 <meta property="og:description" content="Apache HBase 外部 APIs 译者：xixici  本章将介绍通过非Java语言和自定义协议访问Apache HBase。 有关使用本机HBase API的信息，请参阅User API Reference HBase APIs  97. REST表述性状态转移Representational State Transfer (REST)于2000年在HTTP规范的主要作者之一Roy Fi">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-19T03:40:07.595Z">
+<meta property="og:updated_time" content="2019-05-19T03:45:44.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch14-Apache HBase 外部 APIs">
 <meta name="twitter:description" content="Apache HBase 外部 APIs 译者：xixici  本章将介绍通过非Java语言和自定义协议访问Apache HBase。 有关使用本机HBase API的信息，请参阅User API Reference HBase APIs  97. REST表述性状态转移Representational State Transfer (REST)于2000年在HTTP规范的主要作者之一Roy Fi">
@@ -452,7 +452,7 @@
                 
               
 
-              <time title="创建时间：2019-05-19 11:39:13 / 修改时间：11:40:07" itemprop="dateCreated datePublished" datetime="2019-05-19T11:39:13+08:00">2019-05-19</time>
+              <time title="创建时间：2019-05-19 11:39:13 / 修改时间：11:45:44" itemprop="dateCreated datePublished" datetime="2019-05-19T11:39:13+08:00">2019-05-19</time>
             
 
             
@@ -535,6 +535,7 @@
 <p>本章将介绍通过非Java语言和自定义协议访问Apache HBase。 有关使用本机HBase API的信息，请参阅<a href="https://hbase.apache.org/apidocs/index.html" target="_blank" rel="noopener">User API Reference</a> <a href="#hbase_apis">HBase APIs</a> </p>
 <h2 id="97-REST"><a href="#97-REST" class="headerlink" title="97. REST"></a>97. REST</h2><p>表述性状态转移Representational State Transfer (REST)于2000年在HTTP规范的主要作者之一Roy Fielding的博士论文中引入。</p>
 <p>REST本身超出了本文档的范围，但通常，REST允许通过与URL本身绑定的API进行客户端 - 服务器交互。 本节讨论如何配置和运行HBase附带的REST服务器，该服务器将HBase表，行，单元和元数据公开为URL指定的资源。 还有一系列关于如何使用Jesse Anderson的Apache HBase REST接口的博客 <a href="http://blog.cloudera.com/blog/2013/03/how-to-use-the-apache-hbase-rest-interface-part-1/" target="_blank" rel="noopener">How-to: Use the Apache HBase REST Interface</a></p>
+<a id="more"></a>
 <h3 id="97-1-启动和停止REST服务"><a href="#97-1-启动和停止REST服务" class="headerlink" title="97.1. 启动和停止REST服务"></a>97.1. 启动和停止REST服务</h3><p>包含的REST服务器可以作为守护程序运行，该守护程序启动嵌入式Jetty servlet容器并将servlet部署到其中。 使用以下命令之一在前台或后台启动REST服务器。 端口是可选的，默认为8080。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Foreground</span><br><span class="line">$ bin/hbase rest start -p &lt;port&gt;</span><br><span class="line"></span><br><span class="line"># Background, logging to a file in $HBASE_LOGS_DIR</span><br><span class="line">$ bin/hbase-daemon.sh start rest -p &lt;port&gt;</span><br></pre></td></tr></table></figure>
 <p>要停止REST服务器，请在前台运行时使用Ctrl-C，如果在后台运行则使用以下命令。</p>
