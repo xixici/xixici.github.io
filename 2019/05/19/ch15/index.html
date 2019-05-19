@@ -111,23 +111,25 @@
 
 
 
-  <meta name="description" content="远方与诗的存在">
-<meta property="og:type" content="website">
-<meta property="og:title" content="西西词">
-<meta property="og:url" content="http://xixici.com/index.html">
+  <meta name="description" content="Apache HBase 外部 APIs 译者：xixici  本章将介绍通过非Java语言和自定义协议访问Apache HBase。 有关使用本机HBase API的信息，请参阅User API Reference HBase APIs  97. REST表述性状态转移Representational State Transfer (REST)于2000年在HTTP规范的主要作者之一Roy Fi">
+<meta name="keywords" content="Coding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch14-Apache HBase 外部 APIs">
+<meta property="og:url" content="http://xixici.com/2019/05/19/ch15/index.html">
 <meta property="og:site_name" content="西西词">
-<meta property="og:description" content="远方与诗的存在">
+<meta property="og:description" content="Apache HBase 外部 APIs 译者：xixici  本章将介绍通过非Java语言和自定义协议访问Apache HBase。 有关使用本机HBase API的信息，请参阅User API Reference HBase APIs  97. REST表述性状态转移Representational State Transfer (REST)于2000年在HTTP规范的主要作者之一Roy Fi">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-19T03:40:07.595Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="西西词">
-<meta name="twitter:description" content="远方与诗的存在">
+<meta name="twitter:title" content="Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch14-Apache HBase 外部 APIs">
+<meta name="twitter:description" content="Apache HBase 外部 APIs 译者：xixici  本章将介绍通过非Java语言和自定义协议访问Apache HBase。 有关使用本机HBase API的信息，请参阅User API Reference HBase APIs  97. REST表述性状态转移Representational State Transfer (REST)于2000年在HTTP规范的主要作者之一Roy Fi">
 
 
 
 
 
 
-  <link rel="canonical" href="http://xixici.com/">
+  <link rel="canonical" href="http://xixici.com/2019/05/19/ch15/">
 
 
 
@@ -137,7 +139,7 @@
   };
 </script>
 
-  <title>西西词 – 诗在远方</title>
+  <title>Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch14-Apache HBase 外部 APIs | 西西词</title>
   
 
 
@@ -185,8 +187,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
-  page-home">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -228,7 +229,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -389,9 +390,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -399,6 +400,8 @@
   
   
 
+  
+    <div class="reading-progress-bar"></div>
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -423,10 +426,8 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/19/ch15/" class="post-title-link" itemprop="url">Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch14-Apache HBase 外部 APIs</a>
+          <h2 class="post-title" itemprop="name headline">Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch14-Apache HBase 外部 APIs
+
               
             
           </h2>
@@ -484,11 +485,31 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/05/19/ch15/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/19/ch15/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
           
 
           
@@ -508,9 +529,7 @@
       
 
       
-        
-          
-            <h1 id="Apache-HBase-外部-APIs"><a href="#Apache-HBase-外部-APIs" class="headerlink" title="Apache HBase 外部 APIs"></a>Apache HBase 外部 APIs</h1><blockquote>
+        <h1 id="Apache-HBase-外部-APIs"><a href="#Apache-HBase-外部-APIs" class="headerlink" title="Apache HBase 外部 APIs"></a>Apache HBase 外部 APIs</h1><blockquote>
 <p>译者：<a href="https://github.com/xixici" target="_blank" rel="noopener">xixici</a></p>
 </blockquote>
 <p>本章将介绍通过非Java语言和自定义协议访问Apache HBase。 有关使用本机HBase API的信息，请参阅<a href="https://hbase.apache.org/apidocs/index.html" target="_blank" rel="noopener">User API Reference</a> <a href="#hbase_apis">HBase APIs</a> </p>
@@ -769,8 +788,6 @@
 <p>import java.lang<br>from org.apache.hadoop.hbase import TableName, HBaseConfiguration<br>from org.apache.hadoop.hbase.client import Connection, ConnectionFactory, Result, ResultScanner, Table, Admin<br>from org.apache.hadoop.conf import Configuration<br>conf = HBaseConfiguration.create()<br>connection = ConnectionFactory.createConnection(conf)<br>admin = connection.getAdmin()<br>tableName = TableName.valueOf(‘wiki’)<br>table = connection.getTable(tableName)</p>
 <p>cf = “title”<br>attr = “attr”<br>scanner = table.getScanner(cf)<br>while 1:<br>    result = scanner.next()<br>    if not result:<br>       break<br>    print java.lang.String(result.row), java.lang.String(result.getValue(cf, attr))<br>```</p>
 </element></schema>
-          
-        
       
     </div>
 
@@ -786,867 +803,113 @@
       
     
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
 
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechat-reward-image.png" alt="博主 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay-reward-image.png" alt="博主 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>博主</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://xixici.com/2019/05/19/ch15/" title="Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch14-Apache HBase 外部 APIs">http://xixici.com/2019/05/19/ch15/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/05/19/ch13/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="远方与诗的存在">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西词">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/19/ch13/" class="post-title-link" itemprop="url">Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch14-Apache HBase APIs</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-19 11:35:11 / 修改时间：11:37:15" itemprop="dateCreated datePublished" datetime="2019-05-19T11:35:11+08:00">2019-05-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/翻译/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Coding/" rel="tag"># Coding</a>
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Apache-HBase-APIs"><a href="#Apache-HBase-APIs" class="headerlink" title="Apache HBase APIs"></a>Apache HBase APIs</h1><blockquote>
-<p>译者：<a href="https://github.com/xixici" target="_blank" rel="noopener">xixici</a></p>
-</blockquote>
-<p>本章节提供有关使用基础HBase API执行操作的方法。 此方法并非详尽无遗，快速参考 <a href="https://hbase.apache.org/apidocs/index.html" target="_blank" rel="noopener">User API Reference</a>。 此处的示例不全面，仅用于说明目的。</p>
-<p>Apache HBase 也拥有多种外部 APIs. 详见:<a href="#external_apis">Apache HBase External APIs</a> </p>
-<h2 id="96-例子"><a href="#96-例子" class="headerlink" title="96. 例子"></a>96. 例子</h2><p>Example 25. 使用Java创建.修改和删除表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">package com.example.hbase.admin;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.fs.Path;</span><br><span class="line">import org.apache.hadoop.hbase.HBaseConfiguration;</span><br><span class="line">import org.apache.hadoop.hbase.HColumnDescriptor;</span><br><span class="line">import org.apache.hadoop.hbase.HConstants;</span><br><span class="line">import org.apache.hadoop.hbase.HTableDescriptor;</span><br><span class="line">import org.apache.hadoop.hbase.TableName;</span><br><span class="line">import org.apache.hadoop.hbase.client.Admin;</span><br><span class="line">import org.apache.hadoop.hbase.client.Connection;</span><br><span class="line">import org.apache.hadoop.hbase.client.ConnectionFactory;</span><br><span class="line">import org.apache.hadoop.hbase.io.compress.Compression.Algorithm;</span><br><span class="line"></span><br><span class="line">public class Example &#123;</span><br><span class="line"></span><br><span class="line">  private static final String TABLE_NAME = &quot;MY_TABLE_NAME_TOO&quot;;</span><br><span class="line">  private static final String CF_DEFAULT = &quot;DEFAULT_COLUMN_FAMILY&quot;;</span><br><span class="line"></span><br><span class="line">  public static void createOrOverwrite(Admin admin, HTableDescriptor table) throws IOException &#123;</span><br><span class="line">    if (admin.tableExists(table.getTableName())) &#123;</span><br><span class="line">      admin.disableTable(table.getTableName());</span><br><span class="line">      admin.deleteTable(table.getTableName());</span><br><span class="line">    &#125;</span><br><span class="line">    admin.createTable(table);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public static void createSchemaTables(Configuration config) throws IOException &#123;</span><br><span class="line">    try (Connection connection = ConnectionFactory.createConnection(config);</span><br><span class="line">         Admin admin = connection.getAdmin()) &#123;</span><br><span class="line"></span><br><span class="line">      HTableDescriptor table = new HTableDescriptor(TableName.valueOf(TABLE_NAME));</span><br><span class="line">      table.addFamily(new HColumnDescriptor(CF_DEFAULT).setCompressionType(Algorithm.NONE));</span><br><span class="line"></span><br><span class="line">      System.out.print(&quot;Creating table. &quot;);</span><br><span class="line">      createOrOverwrite(admin, table);</span><br><span class="line">      System.out.println(&quot; Done.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public static void modifySchema (Configuration config) throws IOException &#123;</span><br><span class="line">    try (Connection connection = ConnectionFactory.createConnection(config);</span><br><span class="line">         Admin admin = connection.getAdmin()) &#123;</span><br><span class="line"></span><br><span class="line">      TableName tableName = TableName.valueOf(TABLE_NAME);</span><br><span class="line">      if (!admin.tableExists(tableName)) &#123;</span><br><span class="line">        System.out.println(&quot;Table does not exist.&quot;);</span><br><span class="line">        System.exit(-1);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      HTableDescriptor table = admin.getTableDescriptor(tableName);</span><br><span class="line"></span><br><span class="line">      // 更新表格</span><br><span class="line">      HColumnDescriptor newColumn = new HColumnDescriptor(&quot;NEWCF&quot;);</span><br><span class="line">      newColumn.setCompactionCompressionType(Algorithm.GZ);</span><br><span class="line">      newColumn.setMaxVersions(HConstants.ALL_VERSIONS);</span><br><span class="line">      admin.addColumn(tableName, newColumn);</span><br><span class="line"></span><br><span class="line">      // 更新列族</span><br><span class="line">      HColumnDescriptor existingColumn = new HColumnDescriptor(CF_DEFAULT);</span><br><span class="line">      existingColumn.setCompactionCompressionType(Algorithm.GZ);</span><br><span class="line">      existingColumn.setMaxVersions(HConstants.ALL_VERSIONS);</span><br><span class="line">      table.modifyFamily(existingColumn);</span><br><span class="line">      admin.modifyTable(tableName, table);</span><br><span class="line"></span><br><span class="line">      // 禁用表格</span><br><span class="line">      admin.disableTable(tableName);</span><br><span class="line"></span><br><span class="line">      // 删除列族</span><br><span class="line">      admin.deleteColumn(tableName, CF_DEFAULT.getBytes(&quot;UTF-8&quot;));</span><br><span class="line"></span><br><span class="line">      // 删除表格(需提前禁用)</span><br><span class="line">      admin.deleteTable(tableName);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public static void main(String... args) throws IOException &#123;</span><br><span class="line">    Configuration config = HBaseConfiguration.create();</span><br><span class="line"></span><br><span class="line">    //添加必要配置文件(hbase-site.xml, core-site.xml)</span><br><span class="line">    config.addResource(new Path(System.getenv(&quot;HBASE_CONF_DIR&quot;), &quot;hbase-site.xml&quot;));</span><br><span class="line">    config.addResource(new Path(System.getenv(&quot;HADOOP_CONF_DIR&quot;), &quot;core-site.xml&quot;));</span><br><span class="line">    createSchemaTables(config);</span><br><span class="line">    modifySchema(config);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/03/18/git-shell/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="远方与诗的存在">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西词">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/18/git-shell/" class="post-title-link" itemprop="url">git一键提交脚本,commit信息增加随机emoji和时间戳</a>
-              
-            
-          </h2>
+        <div class="post-widgets">
         
 
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-18 11:03:33 / 修改时间：11:06:18" itemprop="dateCreated datePublished" datetime="2019-03-18T11:03:33+08:00">2019-03-18</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">emoji=( ♈️ ♉ ♊️  ♋️  ♌️ 	♍️ 	♎️  ♏️ 	♐️  ♑️ ♒️ 	♓️ 	⛎  🔯 )</span><br><span class="line">git add -A</span><br><span class="line">echo "Add Finish"</span><br><span class="line">git commit -am "$&#123;emoji[$(($RANDOM % $&#123;#emoji[@]&#125; + 1 ))]&#125; xixici  push at $(date "+%Y-%m-%d %H:%M:%S")"</span><br><span class="line">echo "Commit Finish"</span><br><span class="line">git pull</span><br><span class="line">echo "Pull Finish"</span><br><span class="line">git status</span><br><span class="line">echo "Status Finish"</span><br><span class="line">git push</span><br><span class="line">echo "push Finish"</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/03/12/scala-learning-exercises/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="远方与诗的存在">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西词">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/12/scala-learning-exercises/" class="post-title-link" itemprop="url">Scala 学习手册 - 课后题</a>
-              
-            
-          </h2>
         
 
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-12 10:14:16 / 修改时间：10:56:00" itemprop="dateCreated datePublished" datetime="2019-03-12T10:14:16+08:00">2019-03-12</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
         
-          <h1 id="章节1"><a href="#章节1" class="headerlink" title="章节1"></a>章节1</h1><p>l. println (）是一 种很好的打印字符串的方怯， 不过你能找到另外一 种不使用 println打印字符串的方能吗？另外， REPL支持哪些类型的数字、 字符串和其他数据？</p>
-          <!--noindex-->
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/12/scala-learning-exercises/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/03/09/economics-tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="远方与诗的存在">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西词">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/09/economics-tips/" class="post-title-link" itemprop="url">经济学概念</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+          <div class="social_share">
             
             
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-09 21:40:16 / 修改时间：21:46:19" itemprop="dateCreated datePublished" datetime="2019-03-09T21:40:16+08:00">2019-03-09</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书/" itemprop="url" rel="index"><span itemprop="name">读书</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ul>
-<li>[x] 有人的地方就有交易</li>
-<li>[x] 成本是放弃了的最大代价</li>
-<li>[x] 稀缺是一个基本事实</li>
-<li>[x] 人的需求永无止境
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/09/economics-tips/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </li></ul></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解 - 副本/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="远方与诗的存在">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西词">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解 - 副本/" class="post-title-link" itemprop="url">Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase升级</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-04 16:54:00" itemprop="dateCreated datePublished" datetime="2019-03-04T16:54:00+08:00">2019-03-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-12 10:11:47" itemprop="dateModified" datetime="2019-03-12T10:11:47+08:00">2019-03-12</time>
-              
+              </div>
             
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/翻译/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
+        
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
       
       
 
       
-        
-          <h1 id="Apache-HBase升级"><a href="#Apache-HBase升级" class="headerlink" title="Apache HBase升级"></a>Apache HBase升级</h1><blockquote>
-<p> 译者: <a href="https://github.com/xixici" target="_blank" rel="noopener">xixici</a></p>
-</blockquote>
-<p>当你想要升级时，你不能跳过主要版本。当你从版本0.98.x到 2.x时，你必须首先升级到1.2.x再从1.2.x升级到 2.x。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch3-HBase配置详解 - 副本/#more" rel="contents">
-                阅读全文 &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/19/ch13/" rel="next" title="Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch14-Apache HBase APIs">
+                <i class="fa fa-chevron-left"></i> Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch14-Apache HBase APIs
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
+            
+          </div>
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1656,722 +919,19 @@
   </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="远方与诗的存在">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西词">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解/" class="post-title-link" itemprop="url">Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-04 16:54:00 / 修改时间：16:57:18" itemprop="dateCreated datePublished" datetime="2019-03-04T16:54:00+08:00">2019-03-04</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/翻译/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Apache-HBase配置"><a href="#Apache-HBase配置" class="headerlink" title="Apache HBase配置"></a>Apache HBase配置</h1><blockquote>
-<p> 译者: <a href="https://github.com/xixici" target="_blank" rel="noopener">xixici</a></p>
-</blockquote>
-<p>在上一章<a href="#getting_started">快速开始</a>的内容中，你学习了如何启动独立式、伪分布式以及完全分布式HBase，在本章中，我们将介绍更多关于Apache HBase的配置，以进一步了解Apache HBase。请仔细阅读本章，特别是<a href="#basic.prerequisites">基本配置条件</a>部分，该部分能够确保您的HBase测试和部署顺利进行，并防止数据丢失。现在，一起进入学习吧！</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/04/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch2-HBase配置详解/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch1快速开始/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="远方与诗的存在">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西词">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch1快速开始/" class="post-title-link" itemprop="url">Apache HBase ™ 中文指南(最新版HBase 3.0.0)-ch1快速开始</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-28 16:47:36" itemprop="dateCreated datePublished" datetime="2019-02-28T16:47:36+08:00">2019-02-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-04 16:57:43" itemprop="dateModified" datetime="2019-03-04T16:57:43+08:00">2019-03-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/翻译/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h1><blockquote>
-<p> 译者: <a href="https://github.com/xixici" target="_blank" rel="noopener">xixici</a></p>
-</blockquote>
-<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><p><a href="#quickstart">快速开始</a> 会介绍如何运行一个单机版的Standalone模式HBase.</p>
-<h2 id="2-快速开始-Standalone-HBase"><a href="#2-快速开始-Standalone-HBase" class="headerlink" title="2. 快速开始 - Standalone HBase"></a>2. 快速开始 - Standalone HBase</h2><p>本章节介绍了在单机安装HBase的方法。会引导你通过<code>hbase shell</code>创建一个表，插入一行，然后执行put和scan指令，开启和关闭这张表，开启和停止HBase。只要10分钟就可以完成以下的操作。</p>
-<p>除了下载HBase外，此过程不到10分钟就能完成。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch1快速开始/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch0前言/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="远方与诗的存在">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西词">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch0前言/" class="post-title-link" itemprop="url">Apache HBase ™ 中文指南(最新版HBase 3.0.0)-ch0前言</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-28 16:47:36" itemprop="dateCreated datePublished" datetime="2019-02-28T16:47:36+08:00">2019-02-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-04 16:57:36" itemprop="dateModified" datetime="2019-03-04T16:57:36+08:00">2019-03-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/翻译/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
-<p> 译者: <a href="https://github.com/xixici" target="_blank" rel="noopener">xixici</a></p>
-</blockquote>
-<p>此处为<a href="https://hbase.apache.org/" target="_blank" rel="noopener">HBase</a>版本的官方参考指南。</p>
-<p>从这里，你不仅能找到发布的HBase版本的最终文档，而且包括相关<a href="https://hbase.apache.org/apidocs/index.html" target="_blank" rel="noopener">Javadoc</a>和<a href="https://issues.apache.org/jira/browse/HBASE" target="_blank" rel="noopener">JIRA</a>信息。 </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/28/Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch0前言/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/02/25/first-with-git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="远方与诗的存在">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西词">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/25/first-with-git/" class="post-title-link" itemprop="url">初次运行 Git 前的配置</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-25 11:38:19 / 修改时间：13:17:43" itemprop="dateCreated datePublished" datetime="2019-02-25T11:38:19+08:00">2019-02-25</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>一般在新的系统上，我们都需要先配置下自己的 Git 工作环境。配置工作只需一次，以后升级时还会沿用现在的配置。当然，如果需要，你随时可以用相同的命令修改已有的配置。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/25/first-with-git/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -2392,8 +952,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -2544,6 +1113,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Apache-HBase-外部-APIs"><span class="nav-number">1.</span> <span class="nav-text">Apache HBase 外部 APIs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#97-REST"><span class="nav-number">1.1.</span> <span class="nav-text">97. REST</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#97-1-启动和停止REST服务"><span class="nav-number">1.1.1.</span> <span class="nav-text">97.1. 启动和停止REST服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#97-2-配置REST服务器和客户端"><span class="nav-number">1.1.2.</span> <span class="nav-text">97.2. 配置REST服务器和客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#97-3-使用REST"><span class="nav-number">1.1.3.</span> <span class="nav-text">97.3. 使用REST</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#First-get-a-conf-object-This-will-read-in-the-configuration"><span class="nav-number">2.</span> <span class="nav-text">First get a conf object.  This will read in the configuration</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#that-is-out-in-your-hbase-xml-files-such-as-location-of-the"><span class="nav-number">3.</span> <span class="nav-text">that is out in your hbase-*.xml files such as location of the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hbase-master-node"><span class="nav-number">4.</span> <span class="nav-text">hbase master node.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Create-a-table-named-‘test’-that-has-a-column-family"><span class="nav-number">5.</span> <span class="nav-text">Create a table named ‘test’ that has a column family</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#named-‘content’"><span class="nav-number">6.</span> <span class="nav-text">named ‘content’.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Drop-and-recreate-if-it-exists"><span class="nav-number">7.</span> <span class="nav-text">Drop and recreate if it exists</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Add-content-to-‘column-’-on-a-row-named-‘row-x’"><span class="nav-number">8.</span> <span class="nav-text">Add content to ‘column:’ on a row named ‘row_x’</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Now-fetch-the-content-just-added-returns-a-byte"><span class="nav-number">9.</span> <span class="nav-text">Now fetch the content just added, returns a byte[]</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -2724,6 +1310,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
 
   
 
@@ -2763,6 +1353,8 @@
 
 
 
+
+  
 
 
   
@@ -3099,28 +1691,6 @@
 
   
   
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
 
   
 
@@ -3129,28 +1699,6 @@
   
 
   
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
   
 
   

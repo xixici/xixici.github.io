@@ -316,7 +316,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">30</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">31</span></a>
 
   </li>
 
@@ -390,6 +390,181 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xixici.com/2016/08/13/root-ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="远方与诗的存在">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西词">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/08/13/root-ubuntu/" class="post-title-link" itemprop="url">Ubuntu开启root账户登录后的两条笔记</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-08-13 19:53:36 / 修改时间：20:20:18" itemprop="dateCreated datePublished" datetime="2016-08-13T19:53:36+08:00">2016-08-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <hr>
+<p>做Hadoop集群时,以root账户登录获取到最高权限.可以避免很多不必要的麻烦.但有两点需要略作修改的bug之处.笔者Ubuntu 14.04 LTS</p>
+<hr>
+<h1 id="ROOT账户登录时界面报错"><a href="#ROOT账户登录时界面报错" class="headerlink" title="ROOT账户登录时界面报错"></a>ROOT账户登录时界面报错</h1><p>登录系统时出现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error found when loading /root/.profile</span><br><span class="line">stdin: is not a tty</span><br></pre></td></tr></table></figure></p>
+<p>此时需要更改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/root/.profile</span><br></pre></td></tr></table></figure></p>
+<p>编辑并修改一样代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gedit /root/.profile # 打开</span><br><span class="line">tty -s &amp;&amp; mesg n     # 修改mesg n 的所在行代码</span><br></pre></td></tr></table></figure></p>
+<p>然后<code>重启</code>系统即可.</p>
+<hr>
+<h1 id="ROOT账户启动Chromium浏览器报错"><a href="#ROOT账户启动Chromium浏览器报错" class="headerlink" title="ROOT账户启动Chromium浏览器报错"></a>ROOT账户启动Chromium浏览器报错</h1><p>以ROOT用户启动Chromium时,会报错<strong>不能以根用户身份运行google chrome 浏览器</strong>此时,我最初的解决办法就是以隐身方式打开浏览器.后来找到下面的解决办法,将chromium用户数据文件夹.<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/08/13/root-ubuntu/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -2044,200 +2219,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xixici.com/2016/05/23/markdown-tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="远方与诗的存在">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西词">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/05/23/markdown-tips/" class="post-title-link" itemprop="url">markdown学习笔记</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-05-23 16:58:40" itemprop="dateCreated datePublished" datetime="2016-05-23T16:58:40+08:00">2016-05-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-18 21:22:43" itemprop="dateModified" datetime="2019-02-18T21:22:43+08:00">2019-02-18</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>当你需要使用一种 <strong>高格调</strong>,又很 <strong>Geek范</strong> 的文字工具来记录自己,分享价值时,<strong>Markdwon</strong>就是你的首选.当你学习一项工具,并且使用它,或许你会花费很大的成本,但是如果你学会了,并使用,你会爱上他.<em>MarkDown</em>如是说.</p>
-<hr>
-<h2 id="工欲善其事必先利其器—MarkPad-WIN平台"><a href="#工欲善其事必先利其器—MarkPad-WIN平台" class="headerlink" title="工欲善其事必先利其器—MarkPad(WIN平台)"></a>工欲善其事必先利其器—MarkPad(WIN平台)</h2><p>MarkPad 是款开源的 Markdown 编辑, Window 8 和谐友好的风格界面。</p>
-<h2 id="Markdown实用语法"><a href="#Markdown实用语法" class="headerlink" title="Markdown实用语法"></a>Markdown实用语法</h2><p> 以下是常用用法,如 <strong>加粗</strong>, <strong>斜体</strong>, <strong>链接</strong>, <strong>列表</strong>, <strong>公式</strong>, <strong>代码</strong>, <strong>表格</strong>等等</p>
-<h3 id="加粗与斜体"><a href="#加粗与斜体" class="headerlink" title="加粗与斜体"></a>加粗与斜体</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">**加粗的用法在这里**</span><br><span class="line">*斜体的用法是这里*</span><br></pre></td></tr></table></figure>
-<p>  <strong>加粗的用法在这里</strong><br> <em>斜体的用法是这里</em></p>
-<h3 id="标题的用法"><a href="#标题的用法" class="headerlink" title="标题的用法"></a>标题的用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#标题1</span><br><span class="line">##标题1</span><br><span class="line">......</span><br><span class="line">######标题1</span><br></pre></td></tr></table></figure>
-<p><code>#</code>的数量的多少与大小有关,类似的还有<code>-</code>,自己试验用法吧.</p>
-<h3 id="链接的写法"><a href="#链接的写法" class="headerlink" title="链接的写法"></a>链接的写法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[XIXICI 主页](http:\\xixici.com\)</span><br></pre></td></tr></table></figure>
-<p><a href="http:\\xixici.com\">XIXICI 主页</a></p>
-<h3 id="阅读更多"><a href="#阅读更多" class="headerlink" title="阅读更多"></a>阅读更多</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2016/05/23/markdown-tips/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2282,7 +2268,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2991,48 +2977,9 @@
       
     
       
-        
-      
     
   
 
-  
-    
-      <script type="text/x-mathjax-config">
-  
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-      for (i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-  });
-</script>
-<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<style>
-.MathJax_Display {
-  overflow: auto hidden;
-}
-</style>
-
-    
   
 
 
