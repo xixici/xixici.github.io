@@ -111,23 +111,25 @@
 
 
 
-  <meta name="description" content="远方与诗的存在">
-<meta property="og:type" content="website">
-<meta property="og:title" content="西西词">
-<meta property="og:url" content="http://xixici.com/categories/shell/index.html">
+  <meta name="description" content="Thrift API 和过滤器语言 译者：xixici  Apache Thrift 是跨平台跨语言的开发框架。HBase包含了 Thrift API和过滤语言。Thrift API 依赖于客户端和服务器进程。 你可以在服务端和客户端维Thrift设置安全身份验证，参照 Client-side Configuration for Secure Operation - Thrift Gateway">
+<meta name="keywords" content="Coding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch16-Thrift API 和过滤器语言">
+<meta property="og:url" content="http://xixici.com/2019/05/19/ch16/index.html">
 <meta property="og:site_name" content="西西词">
-<meta property="og:description" content="远方与诗的存在">
+<meta property="og:description" content="Thrift API 和过滤器语言 译者：xixici  Apache Thrift 是跨平台跨语言的开发框架。HBase包含了 Thrift API和过滤语言。Thrift API 依赖于客户端和服务器进程。 你可以在服务端和客户端维Thrift设置安全身份验证，参照 Client-side Configuration for Secure Operation - Thrift Gateway">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-19T03:42:10.216Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="西西词">
-<meta name="twitter:description" content="远方与诗的存在">
+<meta name="twitter:title" content="Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch16-Thrift API 和过滤器语言">
+<meta name="twitter:description" content="Thrift API 和过滤器语言 译者：xixici  Apache Thrift 是跨平台跨语言的开发框架。HBase包含了 Thrift API和过滤语言。Thrift API 依赖于客户端和服务器进程。 你可以在服务端和客户端维Thrift设置安全身份验证，参照 Client-side Configuration for Secure Operation - Thrift Gateway">
 
 
 
 
 
 
-  <link rel="canonical" href="http://xixici.com/categories/shell/">
+  <link rel="canonical" href="http://xixici.com/2019/05/19/ch16/">
 
 
 
@@ -137,7 +139,7 @@
   };
 </script>
 
-  <title>分类: shell | 西西词</title>
+  <title>Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch16-Thrift API 和过滤器语言 | 西西词</title>
   
 
 
@@ -185,7 +187,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -284,7 +286,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -385,83 +387,425 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>shell<small>分类</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/05/19/ch16/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="远方与诗的存在">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西词">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2019/03/18/git-shell/" itemprop="url">
-            
-              <span itemprop="name">git一键提交脚本,commit信息增加随机emoji和时间戳</span>
-            
-          </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch16-Thrift API 和过滤器语言
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-18T11:03:33+08:00" content="2019-03-18">
-          03-18
-        </time>
-      </div>
+              
+            
+          </h2>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-19 11:54:13 / 修改时间：11:42:10" itemprop="dateCreated datePublished" datetime="2019-05-19T11:54:13+08:00">2019-05-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/翻译/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/05/19/ch16/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/19/ch16/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Thrift-API-和过滤器语言"><a href="#Thrift-API-和过滤器语言" class="headerlink" title="Thrift API 和过滤器语言"></a>Thrift API 和过滤器语言</h1><blockquote>
+<p>译者：<a href="https://github.com/xixici" target="_blank" rel="noopener">xixici</a></p>
+</blockquote>
+<p>Apache <a href="https://thrift.apache.org/" target="_blank" rel="noopener">Thrift</a> 是跨平台跨语言的开发框架。HBase包含了 Thrift API和过滤语言。Thrift API 依赖于客户端和服务器进程。</p>
+<p>你可以在服务端和客户端维Thrift设置安全身份验证，参照 <a href="#security.client.thrift">Client-side Configuration for Secure Operation - Thrift Gateway</a> 和 <a href="#security.gateway.thrift">Configure the Thrift Gateway to Authenticate on Behalf of the Client</a>.</p>
+<p>接下来，讨论Thrift API所提供的过滤器语言。</p>
+<h2 id="103-过滤器语言"><a href="#103-过滤器语言" class="headerlink" title="103. 过滤器语言"></a>103. 过滤器语言</h2><p>Thrift 过滤语言在 HBase 0.92版本引入. 提供了通过在HBase上使用Thrift 或使用HBase Shell 来进行服务端过滤. 你可以在Shell中，使用<code>scan help</code>查看详细信息.</p>
+<p>将过滤器写成字符串，在服务端解析成过滤器。</p>
+<h3 id="103-1-常规过滤字符串语法"><a href="#103-1-常规过滤字符串语法" class="headerlink" title="103.1. 常规过滤字符串语法"></a>103.1. 常规过滤字符串语法</h3><p>字符串形式过滤器:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“FilterName (argument, argument,... , argument)”</span><br></pre></td></tr></table></figure>
+<p>记住以下语法规则：</p>
+<ul>
+<li><p>指定过滤器的名称，后跟括号中以逗号分隔的参数列表。</p>
+</li>
+<li><p>如果参数是字符串，应该用单引号<code>&#39;</code>包括。</p>
+</li>
+<li>布尔值, 整形, 比较符 ( &lt;, &gt;,  !=)不需要用引号包括。</li>
+<li>过滤器名称必须是单个单词。除空格，单引号和括号外，允许使用所有ASCII字符。</li>
+<li>过滤器的参数可以包含任何ASCII字符。如果参数中存在单引号，则必须通过附加的前一个单引号对其进行转义。</li>
+</ul>
+<h3 id="103-2-复合过滤器和运算符"><a href="#103-2-复合过滤器和运算符" class="headerlink" title="103.2. 复合过滤器和运算符"></a>103.2. 复合过滤器和运算符</h3><p>二元运算符</p>
+<p><code>AND</code></p>
+<p>使用 <code>AND</code> ，键值对必须满足两端过滤器</p>
+<p><code>OR</code></p>
+<p>使用 <code>OR</code>，键值对至少满足一端过滤器</p>
+<p>一元运算符</p>
+<p><code>SKIP</code></p>
+<p>对特定行，如果键值对不满足过滤，则跳过此行</p>
+<p><code>WHILE</code></p>
+<p>对特定行, 键值将通过，直至过滤条件不满足为止。</p>
+<p>Example 29. 复合运算符</p>
+<p>你可以组合运算符来创建层次结构的过滤器如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(Filter1 AND Filter2) OR (Filter3 AND Filter4)</span><br></pre></td></tr></table></figure>
+<h3 id="103-3-运算次序"><a href="#103-3-运算次序" class="headerlink" title="103.3. 运算次序"></a>103.3. 运算次序</h3><ol>
+<li>括号有着最高优先级</li>
+<li>然后是一元运算符 <code>SKIP</code> 和 <code>WHILE</code> ，优先级相同</li>
+<li>二元运算符 <code>AND</code> 最高, 其次 <code>OR</code></li>
+</ol>
+<p>Example 30. 优先级示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Filter1 AND Filter2 OR Filter</span><br><span class="line">is evaluated as</span><br><span class="line">(Filter1 AND Filter2) OR Filter3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Filter1 AND SKIP Filter2 OR Filter3</span><br><span class="line">is evaluated as</span><br><span class="line">(Filter1 AND (SKIP Filter2)) OR Filter3</span><br></pre></td></tr></table></figure>
+<p>你可以使用括号精确控制运算顺序</p>
+<h3 id="103-4-比较运算符"><a href="#103-4-比较运算符" class="headerlink" title="103.4. 比较运算符"></a>103.4. 比较运算符</h3><p>以下比较运算符：</p>
+<ol>
+<li>LESS (&lt;)</li>
+<li>LESS_OR_EQUAL (⇐)</li>
+<li>EQUAL (=)</li>
+<li>NOT_EQUAL (!=)</li>
+<li>GREATER_OR_EQUAL (&gt;=)</li>
+<li>GREATER (&gt;)</li>
+<li>NO_OP (no operation)</li>
+</ol>
+<p>客户端应采用(&lt;, ⇐, =, !=, &gt;, &gt;=) 表示比较</p>
+<h3 id="103-5-比较器"><a href="#103-5-比较器" class="headerlink" title="103.5. 比较器"></a>103.5. 比较器</h3><p>比较器可以如下任一种：</p>
+<ol>
+<li>_BinaryComparator_ - 按字典顺序比较特定字节数组，使用Bytes.compareTo(byte[], byte[])</li>
+<li>_BinaryPrefixComparator_ -  按字典顺序比较特定字节数组，只比较字节数组长度.</li>
+<li>_RegexStringComparator_ - 使用给定正则表达式，比较特定字节组。在这种比较器中，只有EQUAL 和 NOT_EQUAL有效</li>
+<li>_SubStringComparator_ - 给定字符子串是否出现在特定字节组中。不区分大小写。在这种比较器中，只有EQUAL 和 NOT_EQUAL有效</li>
+</ol>
+<p>比较器一般语法规则: <code>ComparatorType:ComparatorValue</code></p>
+<p>不同比较器的不同比较类型：</p>
+<ol>
+<li>_BinaryComparator_ - binary 二进制</li>
+<li>_BinaryPrefixComparator_ - binaryprefix 二进制长度</li>
+<li>_RegexStringComparator_ - regexstring 正则表达式</li>
+<li><p>_SubStringComparator_ - substring 子字符串</p>
+<p>ComparatorValue 可以任意值</p>
+</li>
+</ol>
+<p>比较示例：</p>
+<ol>
+<li><code>binary:abc</code> 匹配字典顺序大于”abc”</li>
+<li><code>binaryprefix:abc</code> 匹配字典书序前3字符等于 “abc”</li>
+<li><code>regexstring:ab*yz</code> 匹配以ab开头，已yz结尾的内容</li>
+<li><code>substring:abc123</code> 匹配所有以”abc123”开头的内容</li>
+</ol>
+<h3 id="103-6-PHP客户端使用示例"><a href="#103-6-PHP客户端使用示例" class="headerlink" title="103.6. PHP客户端使用示例"></a>103.6. PHP客户端使用示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">  $_SERVER[&apos;PHP_ROOT&apos;] = realpath(dirname(__FILE__).&apos;/..&apos;);</span><br><span class="line">  require_once $_SERVER[&apos;PHP_ROOT&apos;].&apos;/flib/__flib.php&apos;;</span><br><span class="line">  flib_init(FLIB_CONTEXT_SCRIPT);</span><br><span class="line">  require_module(&apos;storage/hbase&apos;);</span><br><span class="line">  $hbase = new HBase(&apos;&lt;server_name_running_thrift_server&gt;&apos;, &lt;port on which thrift server is running&gt;);</span><br><span class="line">  $hbase-&gt;open();</span><br><span class="line">  $client = $hbase-&gt;getClient();</span><br><span class="line">  $result = $client-&gt;scannerOpenWithFilterString(&apos;table_name&apos;, &quot;(PrefixFilter (&apos;row2&apos;) AND (QualifierFilter (&gt;=, &apos;binary:xyz&apos;))) AND (TimestampsFilter ( 123, 456))&quot;);</span><br><span class="line">  $to_print = $client-&gt;scannerGetList($result,1);</span><br><span class="line">  while ($to_print) &#123;</span><br><span class="line">    print_r($to_print);</span><br><span class="line">    $to_print = $client-&gt;scannerGetList($result,1);</span><br><span class="line">  &#125;</span><br><span class="line">  $client-&gt;scannerClose($result);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="103-7-过滤器示例"><a href="#103-7-过滤器示例" class="headerlink" title="103.7. 过滤器示例"></a>103.7. 过滤器示例</h3><ul>
+<li><code>&quot;PrefixFilter (&#39;Row&#39;) AND PageFilter (1) AND FirstKeyOnlyFilter ()&quot;</code> 会返回符合下列条件的所有键值对<ol>
+<li>键值对所在行有前缀 _Row_</li>
+<li>键值对必须处于第一行</li>
+<li>键值对必须是第一个键值</li>
+</ol>
+</li>
+<li><code>&quot;(RowFilter (=, &#39;binary:Row 1&#39;) AND TimeStampsFilter (74689, 89734)) OR ColumnRangeFilter (&#39;abc&#39;, true, &#39;xyz&#39;, false))&quot;</code>  会返回符合下列条件的所有键值对<ul>
+<li>键值对所在行有前缀 _Row 1_</li>
+<li>键值必须具有时间戳 74689 或者 89734.</li>
+<li>或者满足一下条件:<ul>
+<li>键值对必须位于字典序 &gt;= abc 和 &lt; xyz之间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>&quot;SKIP ValueFilter (0)&quot;</code> 如果行中任何值部位0, 则跳过</li>
+</ul>
+<h3 id="103-8-单个过滤器语法"><a href="#103-8-单个过滤器语法" class="headerlink" title="103.8. 单个过滤器语法"></a>103.8. 单个过滤器语法</h3><p>KeyOnlyFilter</p>
+<p>此过滤器不带任何参数。它仅返回每个键值的关键组件。</p>
+<p>FirstKeyOnlyFilter</p>
+<p>此过滤器不带任何参数。它仅返回每行的第一个键值。</p>
+<p>PrefixFilter</p>
+<p>此过滤器采用一个参数 - 行键的前缀。它仅返回以指定行前缀开头的行中存在的键值</p>
+<p>ColumnPrefixFilter</p>
+<p>此过滤器采用一个参数 - 列前缀。它仅返回以指定列前缀开头的列中存在的键值。列前缀的格式必须为： <code>“qualifier”</code>.</p>
+<p>MultipleColumnPrefixFilter</p>
+<p>此过滤器采用列前缀列表。它返回以任何指定列前缀开头的列中存在的键值。每个列前缀必须采用以下形式：<code>“qualifier”</code>.</p>
+<p>ColumnCountGetFilter</p>
+<p>此过滤器采用一个参数 - 一个限制。它返回表中的第一个限制列数。</p>
+<p>PageFilter</p>
+<p>此过滤器采用一个参数 - 页面大小。它返回表中的页面大小行数。</p>
+<p>ColumnPaginationFilter</p>
+<p>此过滤器有两个参数 - 限制和偏移。它返回偏移列数后的列数限制。它为所有行执行此操作。</p>
+<p>InclusiveStopFilter</p>
+<p>此过滤器使用一个参数 - 要停止扫描的行键。它返回行中存在的所有键值，包括指定的行。</p>
+<p>TimeStampsFilter</p>
+<p>此过滤器采用时间戳列表。它返回时间戳与任何指定时间戳匹配的键值。</p>
+<p>RowFilter</p>
+<p>该过滤器采用比较运算符和比较器。它使用compare运算符将每个行键与比较器进行比较，如果比较返回true，则返回该行中的所有键值。</p>
+<p>Family Filter</p>
+<p>该过滤器采用比较运算符和比较器。它使用比较运算符将每个列族名称与比较器进行比较，如果比较返回true，则返回该列族中的所有单元格。</p>
+<p>QualifierFilter</p>
+<p>该过滤器采用比较运算符和比较器。它使用compare运算符将每个限定符名称与比较器进行比较，如果比较返回true，则返回该列中的所有键值。</p>
+<p>ValueFilter</p>
+<p>该过滤器采用比较运算符和比较器。它使用比较运算符将每个值与比较器进行比较，如果比较返回true，则返回该键值。</p>
+<p>DependentColumnFilter</p>
+<p>此过滤器有两个参数 - 族和限定符。它尝试在每一行中找到此列，并返回该行中具有相同时间戳的所有键值。如果该行不包含指定的列 - 将返回该行中的任何键值。</p>
+<p>SingleColumnValueFilter</p>
+<p>该过滤器采用列族，限定符，比较运算符和比较器。如果未找到指定的列 - 将发出该行的所有列。如果找到该列并且与比较器的比较返回true，则将发出该行的所有列。如果条件失败，则不会发出该行。</p>
+<p>SingleColumnValueExcludeFilter</p>
+<p>此过滤器采用相同的参数，其行为与SingleColumnValueFilter相同 - 但是，如果找到该列并且条件通过，则除了测试的列值之外，将发出该行的所有列。</p>
+<p>ColumnRangeFilter</p>
+<p>此过滤器仅用于选择列在minColumn和maxColumn之间的键。它还需要两个布尔变量来指示是否包含minColumn和maxColumn。</p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechat-reward-image.png" alt="博主 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay-reward-image.png" alt="博主 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>博主</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://xixici.com/2019/05/19/ch16/" title="Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch16-Thrift API 和过滤器语言">http://xixici.com/2019/05/19/ch16/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Coding/" rel="tag"># Coding</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/19/ch15/" rel="next" title="Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch14-Apache HBase 外部 APIs">
+                <i class="fa fa-chevron-left"></i> Apache-HBase-™-中文指南-最新版HBase-3-0-0-ch14-Apache HBase 外部 APIs
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -482,8 +826,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -634,6 +987,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Thrift-API-和过滤器语言"><span class="nav-number">1.</span> <span class="nav-text">Thrift API 和过滤器语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#103-过滤器语言"><span class="nav-number">1.1.</span> <span class="nav-text">103. 过滤器语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#103-1-常规过滤字符串语法"><span class="nav-number">1.1.1.</span> <span class="nav-text">103.1. 常规过滤字符串语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#103-2-复合过滤器和运算符"><span class="nav-number">1.1.2.</span> <span class="nav-text">103.2. 复合过滤器和运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#103-3-运算次序"><span class="nav-number">1.1.3.</span> <span class="nav-text">103.3. 运算次序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#103-4-比较运算符"><span class="nav-number">1.1.4.</span> <span class="nav-text">103.4. 比较运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#103-5-比较器"><span class="nav-number">1.1.5.</span> <span class="nav-text">103.5. 比较器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#103-6-PHP客户端使用示例"><span class="nav-number">1.1.6.</span> <span class="nav-text">103.6. PHP客户端使用示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#103-7-过滤器示例"><span class="nav-number">1.1.7.</span> <span class="nav-text">103.7. 过滤器示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#103-8-单个过滤器语法"><span class="nav-number">1.1.8.</span> <span class="nav-text">103.8. 单个过滤器语法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -814,6 +1184,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
 
   
 
@@ -853,6 +1227,8 @@
 
 
 
+
+  
 
 
   
