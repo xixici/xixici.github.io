@@ -111,23 +111,25 @@
 
 
 
-  <meta name="description" content="远方与诗的存在">
-<meta property="og:type" content="website">
-<meta property="og:title" content="西西词">
-<meta property="og:url" content="http://xixici.com/tags/经济学/index.html">
+  <meta name="description" content="Docker 镜像可以理解为一个构建时（build-time）结构 Docker 容器可以理解为一个运行时（run-time）结构 镜像几点特性：  Docker镜像分层：由一些松耦合的只读镜像层组成 Docker镜像层共享：多个镜像之间共享镜像层 Docker镜像仓库：多架构镜像manifest列表和manifest组成  直接看命令，来学习Docker镜像相关知识 12345678910111">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker镜像基础">
+<meta property="og:url" content="http://xixici.com/2019/07/26/Docker镜像基础/index.html">
 <meta property="og:site_name" content="西西词">
-<meta property="og:description" content="远方与诗的存在">
+<meta property="og:description" content="Docker 镜像可以理解为一个构建时（build-time）结构 Docker 容器可以理解为一个运行时（run-time）结构 镜像几点特性：  Docker镜像分层：由一些松耦合的只读镜像层组成 Docker镜像层共享：多个镜像之间共享镜像层 Docker镜像仓库：多架构镜像manifest列表和manifest组成  直接看命令，来学习Docker镜像相关知识 12345678910111">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-26T09:26:52.942Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="西西词">
-<meta name="twitter:description" content="远方与诗的存在">
+<meta name="twitter:title" content="Docker镜像基础">
+<meta name="twitter:description" content="Docker 镜像可以理解为一个构建时（build-time）结构 Docker 容器可以理解为一个运行时（run-time）结构 镜像几点特性：  Docker镜像分层：由一些松耦合的只读镜像层组成 Docker镜像层共享：多个镜像之间共享镜像层 Docker镜像仓库：多架构镜像manifest列表和manifest组成  直接看命令，来学习Docker镜像相关知识 12345678910111">
 
 
 
 
 
 
-  <link rel="canonical" href="http://xixici.com/tags/经济学/">
+  <link rel="canonical" href="http://xixici.com/2019/07/26/Docker镜像基础/">
 
 
 
@@ -137,7 +139,7 @@
   };
 </script>
 
-  <title>标签: 经济学 | 西西词</title>
+  <title>Docker镜像基础 | 西西词</title>
   
 
 
@@ -185,7 +187,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -265,7 +267,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -385,82 +387,291 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>经济学<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/07/26/Docker镜像基础/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="远方与诗的存在">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西词">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2019/03/09/economics-tips/" itemprop="url">
-            
-              <span itemprop="name">经济学概念</span>
-            
-          </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">Docker镜像基础
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-09T21:40:16+08:00" content="2019-03-09">
-          03-09
-        </time>
-      </div>
+              
+            
+          </h2>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-26 17:04:08 / 修改时间：17:26:52" itemprop="dateCreated datePublished" datetime="2019-07-26T17:04:08+08:00">2019-07-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/07/26/Docker镜像基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/26/Docker镜像基础/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Docker 镜像可以理解为一个构建时（build-time）结构</p>
+<p>Docker 容器可以理解为一个运行时（run-time）结构</p>
+<p>镜像几点特性：</p>
+<ul>
+<li>Docker镜像分层：由一些松耦合的只读镜像层组成</li>
+<li>Docker镜像层共享：多个镜像之间共享镜像层</li>
+<li>Docker镜像仓库：多架构镜像manifest列表和manifest组成</li>
+</ul>
+<p>直接看命令，来学习Docker镜像相关知识</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@centos7 archive_server]# docker image --help</span><br><span class="line"></span><br><span class="line">Usage:	docker image COMMAND</span><br><span class="line"></span><br><span class="line">Manage images</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  build       Build an image from a Dockerfile</span><br><span class="line">  history     Show the history of an image</span><br><span class="line">  import      Import the contents from a tarball to create a filesystem image</span><br><span class="line">  inspect     Display detailed information on one or more images</span><br><span class="line">  load        Load an image from a tar archive or STDIN</span><br><span class="line">  ls          List images</span><br><span class="line">  prune       Remove unused images</span><br><span class="line">  pull        Pull an image or a repository from a registry</span><br><span class="line">  push        Push an image or a repository to a registry</span><br><span class="line">  rm          Remove one or more images</span><br><span class="line">  save        Save one or more images to a tar archive (streamed to STDOUT by default)</span><br><span class="line">  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE</span><br><span class="line"></span><br><span class="line">Run &apos;docker image COMMAND --help&apos; for more information on a command.</span><br></pre></td></tr></table></figure>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><ul>
+<li><p>docker image pull 下载镜像。例如</p>
+<figure class="highlight docker"><figcaption><span>image pull alpine:latest```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- docker image ls 列出本机镜像。 --digests 查看sha256签名</span><br><span class="line"></span><br><span class="line">- docker image inspect !!!! 重要 展示细节，包含镜像层和元数据</span><br><span class="line"></span><br><span class="line">- docker image rm 删除镜像。例如</span><br><span class="line">  ```docker image rm alpine:latest</span><br></pre></td></tr></table></figure>
+<p>当镜像存在关联容器，并容器处于Up或Exited, 不允许。</p>
+</li>
+</ul>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechat-reward-image.png" alt="博主 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay-reward-image.png" alt="博主 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>博主</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://xixici.com/2019/07/26/Docker镜像基础/" title="Docker镜像基础">http://xixici.com/2019/07/26/Docker镜像基础/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/25/supervisor基础/" rel="next" title="supervisor基础">
+                <i class="fa fa-chevron-left"></i> supervisor基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -481,8 +692,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -635,6 +855,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#重点"><span class="nav-number">1.</span> <span class="nav-text">重点</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -815,6 +1052,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
 
   
 
@@ -854,6 +1095,8 @@
 
 
 
+
+  
 
 
   
