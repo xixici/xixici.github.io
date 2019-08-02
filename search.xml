@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[linux覆盖复制]]></title>
+    <url>%2F2019%2F08%2F02%2Flinux%E8%A6%86%E7%9B%96%E5%A4%8D%E5%88%B6%2F</url>
+    <content type="text"><![CDATA[把A目录下的文件复制到B目录 \cp -rf A B]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Docker镜像基础]]></title>
     <url>%2F2019%2F07%2F26%2FDocker%E9%95%9C%E5%83%8F%E5%9F%BA%E7%A1%80%2F</url>
     <content type="text"><![CDATA[Docker 镜像可以理解为一个构建时（build-time）结构 Docker 容器可以理解为一个运行时（run-time）结构 镜像几点特性： Docker镜像分层：由一些松耦合的只读镜像层组成 Docker镜像层共享：多个镜像之间共享镜像层 Docker镜像仓库：多架构镜像manifest列表和manifest组成 直接看命令，来学习Docker镜像相关知识 123456789101112131415161718192021222324[root@centos7 archive_server]# docker image --helpUsage: docker image COMMANDManage imagesOptions:Commands: build Build an image from a Dockerfile history Show the history of an image import Import the contents from a tarball to create a filesystem image inspect Display detailed information on one or more images load Load an image from a tar archive or STDIN ls List images prune Remove unused images pull Pull an image or a repository from a registry push Push an image or a repository to a registry rm Remove one or more images save Save one or more images to a tar archive (streamed to STDOUT by default) tag Create a tag TARGET_IMAGE that refers to SOURCE_IMAGERun &apos;docker image COMMAND --help&apos; for more information on a command. 重点 docker image pull 下载镜像。例如 image pull alpine:latest```1234567- docker image ls 列出本机镜像。 --digests 查看sha256签名- docker image inspect !!!! 重要 展示细节，包含镜像层和元数据- docker image rm 删除镜像。例如 ```docker image rm alpine:latest 当镜像存在关联容器，并容器处于Up或Exited, 不允许。]]></content>
