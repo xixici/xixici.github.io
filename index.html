@@ -316,7 +316,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">37</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">38</span></a>
 
   </li>
 
@@ -406,6 +406,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/12/17/Docker面试常见50问答-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="远方与诗的存在">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西词">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/17/Docker面试常见50问答-2/" class="post-title-link" itemprop="url">Docker面试常见50问答-2</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-17 15:30:05 / 修改时间：15:31:17" itemprop="dateCreated datePublished" datetime="2019-12-17T15:30:05+08:00">2019-12-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="问：Docker-和-传统的虚拟机有什么差别？"><a href="#问：Docker-和-传统的虚拟机有什么差别？" class="headerlink" title="问：Docker 和 传统的虚拟机有什么差别？"></a>问：Docker 和 传统的虚拟机有什么差别？</h2><p><strong>答：</strong> 我们知道inux系统将自身划分为两部分，一部分为核心软件，也称作内核空间(<code>kernel</code>)，另一部分为普通应用程序，这部分称为用户空间(<code>userland</code>)。<br>容器内的进程是直接运行于宿主内核的，这点和宿主进程一致，只是容器的 <code>userland</code> 不同，容器的 <code>userland</code> 由容器镜像提供，也就是说镜像提供了 <code>rootfs</code>。<br>假设宿主是 <code>Ubuntu</code>，容器是 <code>CentOS</code>。<code>CentOS</code> 容器中的进程会直接向 <code>Ubuntu</code> 宿主内核发送 <code>syscall</code>，而不会直接或间接的使用任何 <code>Ubuntu</code> 的 <code>userland</code> 的库。<br>这点和虚拟机有本质的不同，虚拟机是虚拟环境，在现有系统上虚拟一套物理设备，然后在虚拟环境内运行一个虚拟环境的操作系统内核，在内核之上再跑完整系统，并在里面调用进程。<br>还以上面的例子去考虑，虚拟机中，<code>CentOS</code> 的进程发送 <code>syscall</code> 内核调用，该请求会被虚拟机内的 <code>CentOS</code> 的内核接到，然后 <code>CentOS</code> 内核访问虚拟硬件时，由虚拟机的服务软件截获，并使用宿主系统，也就是 <code>Ubuntu</code> 的内核及 <code>userland</code> 的库去执行。<br>而且，Linux 和 Windows 在这点上非常不同。Linux 的进程是直接发 <code>syscall</code> 的，而 Windows 则把 <code>syscall</code> 隐藏于一层层的 <code>DLL</code> 服务之后，因此 Windows 的任何一个进程如果要执行，不仅仅需要 Windows 内核，还需要一群服务来支撑，所以如果 Windows 要实现类似的机制，容器内将不会像 Linux 这样轻量级，而是非常臃肿。看一下微软移植的 Docker 就非常清楚了。<br>所以不要把 Docker 和虚拟机弄混，Docker 容器只是一个进程而已，只不过利用镜像提供的 <code>rootfs</code> 提供了调用所需的 <code>userland</code> 库支持，使得进程可以在受控环境下运行而已，它并没有虚拟出一个机器出来。</p>
+<p><strong>Linux 容器不是模拟一个完整的操作系统，而是对进程进行隔离。</strong></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/12/17/Docker面试常见50问答-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/12/17/Docker面试常见50问答/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -451,7 +601,7 @@
                 
               
 
-              <time title="创建时间：2019-12-17 14:24:38 / 修改时间：14:26:21" itemprop="dateCreated datePublished" datetime="2019-12-17T14:24:38+08:00">2019-12-17</time>
+              <time title="创建时间：2019-12-17 14:24:38 / 修改时间：15:30:19" itemprop="dateCreated datePublished" datetime="2019-12-17T14:24:38+08:00">2019-12-17</time>
             
 
             
@@ -491,283 +641,17 @@
 
       
         
-          
-            <p>Introduced in 2013, Docker hit the IT industry. Soon it turned out to be a big hit by the end of 2017 with 8 billion container image downloads. Increasing demand for docker showed an exponential increase in job openings. Go ahead and take advantage of all the new job openings with this article which lists down 50 most important <em>Docker Interview Questions.</em></p>
+          <p>Introduced in 2013, Docker hit the IT industry. Soon it turned out to be a big hit by the end of 2017 with 8 billion container image downloads. Increasing demand for docker showed an exponential increase in job openings. Go ahead and take advantage of all the new job openings with this article which lists down 50 most important <em>Docker Interview Questions.</em></p>
 <p>2013年推出的 Docker 打击了 IT 行业。 很快，到2017年底，它成为了一个巨大的冲击，下载了80亿集装箱图像。 对码头工人需求的增长表明职位空缺呈指数增长。 继续前进，利用所有的新的职位空缺与这篇文章列出了50个最重要的 Docker 面试问题。</p>
-<p>I have categorized these 50 questions into:</p>
-<p>我把这50个问题分为以下几类:</p>
-<ul>
-<li><a href="https://www.edureka.co/blog/interview-questions/docker-interview-questions/#DockerBasicQuestions" target="_blank" rel="noopener">Docker Basic Questions 基本问题</a></li>
-<li><a href="https://www.edureka.co/blog/interview-questions/docker-interview-questions/#DockerBasicCommands" target="_blank" rel="noopener">Docker Basic Commands 基本命令</a></li>
-<li><a href="https://www.edureka.co/blog/interview-questions/docker-interview-questions/#DockerAdvancedQuestions" target="_blank" rel="noopener">Docker Advanced Questions Docker高级问题</a></li>
-</ul>
-<h2 id="Docker-Basic-Questions"><a href="#Docker-Basic-Questions" class="headerlink" title="Docker Basic Questions"></a><strong>Docker Basic Questions</strong></h2><h2 id="基本问题"><a href="#基本问题" class="headerlink" title="基本问题"></a>基本问题</h2><p>This category of Docker Interview Questions consists of questions that you’re expected to know. These are the most basic questions. An interviewer will start with these and eventually increase the difficulty level. Let’s have a look at them.</p>
-<p>这类面试问题包括你应该知道的问题。 这些是最基本的问题。 面试官会从这些开始，最终增加难度级别。 让我们来看看。</p>
-<p><strong>1. What is Hypervisor?</strong></p>
-<p>\1. 什么是 Hypervisor？</p>
-<p>A hypervisor is a software that makes virtualization possible. It is also called Virtual Machine Monitor. It divides the host system and allocates the resources to each divided virtual environment. You can basically have multiple OS on a single host system. There are two types of Hypervisors:</p>
-<p>虚拟机监控程序是一种使虚拟化成为可能的软件。 它也被称为虚拟机监视器。 它对主机系统进行划分，并将资源分配到各个划分的虚拟环境中。 您基本上可以在一个主机系统上拥有多个操作系统。 有两种类型的管理程序:</p>
-<ul>
-<li>Type 1: It’s also called Native Hypervisor or Bare metal Hypervisor. It runs directly on the underlying host system. It has direct access to your host’s system hardware and hence does not require a base server operating system. 类型1: 它也被称为本地 Hypervisor 或裸金属 Hypervisor。 它直接在底层主机系统上运行。 它可以直接访问主机的系统硬件，因此不需要基本服务器操作系统</li>
-<li>Type 2: This kind of hypervisor makes use of the underlying host operating system. It’s also called Hosted Hypervisor. 类型2: 这种系统管理程序使用底层主机操作系统。 它也被称为托管管理程序</li>
-</ul>
-<h3 id="2-What-is-virtualization"><a href="#2-What-is-virtualization" class="headerlink" title="2. What is virtualization?"></a><strong>2. What is virtualization?</strong></h3><h3 id="2-什么是虚拟化？"><a href="#2-什么是虚拟化？" class="headerlink" title="2. 什么是虚拟化？"></a>2. 什么是虚拟化？</h3><p>Virtualization is the process of creating a software-based, virtual version of something(compute storage, servers, application, etc.). These virtual versions or environments are created from a single physical hardware system. Virtualization lets you split one system into many different sections which act like separate, distinct individual systems. A software called Hypervisor makes this kind of splitting possible. The virtual environment created by the hypervisor is called Virtual Machine.</p>
-<p>虚拟化是创建基于软件的虚拟版本(计算机存储、服务器、应用程序等)的过程。 这些虚拟版本或环境是从单个物理硬件系统创建的。 虚拟化允许您将一个系统分割成许多不同的部分，这些部分就像独立的、不同的个人系统。 一个叫 Hypervisor 的软件使这种分割成为可能。 由管理程序创建的虚拟环境称为 Virtual Machine。</p>
-<h3 id="3-What-is-containerization"><a href="#3-What-is-containerization" class="headerlink" title="3. What is containerization?"></a><strong>3. What is containerization?</strong></h3><h3 id="3-集装箱化是什么？"><a href="#3-集装箱化是什么？" class="headerlink" title="3. 集装箱化是什么？"></a>3. 集装箱化是什么？</h3><p>Let me explain this is with an example. Usually, in the software development process, code developed on one machine might not work perfectly fine on any other machine because of the dependencies. This problem was solved by the containerization concept. So basically, an application that is being developed and deployed is bundled and wrapped together with all its configuration files and dependencies. This bundle is called a container. Now when you wish to run the application on another system, the container is deployed which will give a bug-free environment as all the dependencies and libraries are wrapped together. Most famous containerization environments are Docker and Kubernetes.</p>
-<p>让我用一个例子来解释这一点。 通常，在软件开发过程中，由于依赖关系，在一台机器上开发的代码可能无法在其他机器上完美地工作。 这个问题通过集装箱化的概念得到了解决。 因此，基本上，正在开发和部署的应用程序与其所有的配置文件和依赖关系捆绑在一起。 这个包称为容器。 现在，当您希望在另一个系统上运行应用程序时，将部署容器，这将提供一个无 bug 的环境，因为所有依赖项和库都包装在一起。 最著名的集装箱化环境是 Docker 和 Kubernetes。</p>
-<p><strong>4. Difference between virtualization and containerization</strong></p>
-<p>\4. 虚拟化和集装箱化的区别</p>
-<p>Once you’ve explained containerization and virtualization, the next expected question would be differences. The question could either be differences between virtualization and containerization or differences between virtual machines and containers. Either way, this is how you respond.</p>
-<p>一旦你解释了集装箱化和虚拟化，下一个预期的问题将是差异。 问题可能是虚拟化和集装箱化 / 容器之间的区别，也可能是虚拟机和容器之间的区别。 不管怎样，这就是你的反应。</p>
-<p>Containers provide an isolated environment for running the application. The entire user space is explicitly dedicated to the application. Any changes made inside the container is never reflected on the host or even other containers running on the same host. Containers are an abstraction of the application layer. Each container is a different application.</p>
-<p>容器为运行应用程序提供了一个隔离的环境。 整个用户空间显式地专用于应用程序。 容器内部所做的任何更改都不会反映在运行在同一主机上的主机或其他容器上。 容器是应用程序层的抽象。 每个容器都是不同的应用程序。</p>
-<p>Whereas in Virtualization, hypervisors provide an entire virtual machine to the guest(including Kernal). Virtual machines are an abstraction of the hardware layer. Each VM is a physical machine.</p>
-<p>而在虚拟化中，虚拟机管理程序为客户机提供整个虚拟机(包括 Kernal)。 虚拟机是硬件层的抽象。 每个 VM 都是一个物理机器。</p>
-<h3 id="5-What-is-Docker"><a href="#5-What-is-Docker" class="headerlink" title="5. What is Docker?"></a><strong>5. What is Docker?</strong></h3><h3 id="5-什么是-Docker？"><a href="#5-什么是-Docker？" class="headerlink" title="5. 什么是 Docker？"></a>5. 什么是 Docker？</h3><p>Since its a Docker interview, there will be an obvious question about what is Docker. Start with a small definition.</p>
-<p>由于这是一个Docker的采访，有一个明显的问题，什么是Docker。 从一个小的定义开始。</p>
-<p>Docker is a containerization platform which packages your application and all its dependencies together in the form of containers so as to ensure that your application works seamlessly in any environment, be it development, test or production. Docker containers, wrap a piece of software in a complete filesystem that contains everything needed to run: code, runtime, system tools, system libraries, etc. It wraps basically anything that can be installed on a server. This guarantees that the software will always run the same, regardless of its environment.</p>
-<p>是一个集装箱化平台，它以容器的形式将你的应用程序及其所有依赖关系打包在一起，以确保你的应用程序在任何环境下无缝工作，无论是开发、测试还是生产环境。 在 Docker 容器中，将一个软件包装在一个完整的文件系统中，该文件系统包含运行所需的一切: 代码、运行时、系统工具、系统库等。 它基本上包装了所有可以安装在服务器上的东西。 这保证了软件将始终运行相同的，不管它的环境。</p>
-<h3 id="6-What-is-a-Docker-Container"><a href="#6-What-is-a-Docker-Container" class="headerlink" title="6. What is a Docker Container?"></a><strong>6. What is a Docker Container?</strong></h3><h3 id="6-什么是-Docker-容器？"><a href="#6-什么是-Docker-容器？" class="headerlink" title="6. 什么是 Docker 容器？"></a>6. 什么是 Docker 容器？</h3><p>Docker containers include the application and all of its dependencies. It shares the kernel with other containers, running as isolated processes in user space on the host operating system. Docker containers are not tied to any specific infrastructure: they run on any computer, on any infrastructure, and in any cloud. Docker containers are basically runtime instances of Docker images.</p>
-<p>Docker 容器包括应用程序及其所有依赖项。 它与其他容器共享内核，作为独立进程在主机操作系统的用户空间中运行。 Docker 容器不绑定到任何特定的基础结构: 它们运行在任何计算机上、任何基础结构上以及任何云中。 Docker 容器基本上是 Docker 映像的运行时实例。</p>
-<h3 id="7-What-are-Docker-Images"><a href="#7-What-are-Docker-Images" class="headerlink" title="7. What are Docker Images?"></a><strong>7. What are Docker Images?</strong></h3><h3 id="7-什么是-Docker-图片？"><a href="#7-什么是-Docker-图片？" class="headerlink" title="7. 什么是 Docker 图片？"></a>7. 什么是 Docker 图片？</h3><p>When you mention Docker images, your very next question will be “what are Docker images”.</p>
-<p>当您提到 Docker 图像时，您的下一个问题将是“ Docker 图像是什么”。</p>
-<p>Docker image is the source of Docker container. In other words, Docker images are used to create containers. When a user runs a Docker image, an instance of a container is created. These docker images can be deployed to any Docker environment.</p>
-<p>Docker 映像是 Docker 容器的源代码。 换句话说，Docker 图像用于创建容器。 当用户运行 Docker 映像时，将创建容器的实例。 这些 Docker 映像可以部署到任何 Docker 环境中。</p>
-<h3 id="8-What-is-Docker-Hub"><a href="#8-What-is-Docker-Hub" class="headerlink" title="8. What is Docker Hub?"></a><strong>8. What is Docker Hub?</strong></h3><h3 id="8-什么是-Docker-Hub？"><a href="#8-什么是-Docker-Hub？" class="headerlink" title="8. 什么是 Docker Hub？"></a>8. 什么是 Docker Hub？</h3><p>Docker images create docker containers. There has to be a registry where these docker images live. This registry is Docker Hub. Users can pick up images from Docker Hub and use them to create customized images and containers. Currently, the <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a> is the world’s largest public repository of image containers.</p>
-<p>Docker 映像创建 Docker 容器。 必须有一个注册表，这些码头工程师图像生活。 这个注册表是 dockerhub。 用户可以从 Docker Hub 获取图像，并用它们创建定制的图像和集装箱。 目前，dockerhub 是世界上最大的图像容器公共存储库。</p>
-<h3 id="9-Explain-Docker-Architecture"><a href="#9-Explain-Docker-Architecture" class="headerlink" title="9. Explain Docker Architecture?"></a><strong>9. Explain Docker Architecture?</strong></h3><h3 id="9-解释-Docker-架构？"><a href="#9-解释-Docker-架构？" class="headerlink" title="9. 解释 Docker 架构？"></a>9. 解释 Docker 架构？</h3><p>Docker Architecture consists of a Docker Engine which is a client-server application with three major components:</p>
-<p>Docker 架构由一个 Docker 引擎组成，它是一个客户机-服务器应用程序，有三个主要组件:</p>
-<ol>
-<li>A server which is a type of long-running program called a daemon process (the docker command). 服务器是一种长时间运行的程序，称为守护进程(docker 命令)</li>
-<li>A REST API which specifies interfaces that programs can use to talk to the daemon and instruct it what to do. 一个 REST API，它指定程序可以用来与守护进程通信并指示它做什么的接口</li>
-<li>A command line interface (CLI) client (the docker command). 命令行接口(CLI)客户机(docker 命令)</li>
-<li>The CLI uses the Docker REST API to control or interact with the Docker daemon through scripting or direct CLI commands. Many other Docker applications use the underlying API and CLI. Cli 使用 dockerrestapi 通过脚本或直接的 CLI 命令控制 dockerdaemon 或与其交互。 许多其他 Docker 应用程序使用底层的 API 和 CLI</li>
-</ol>
-<p>Refer to this blog, to read more about <strong><a href="https://www.edureka.co/blog/what-is-docker-container" target="_blank" rel="noopener">Docker Architecture</a></strong>.</p>
-<p>请参考本博客，了解更多关于 Docker 架构的信息。</p>
-<h3 id="10-What-is-a-Dockerfile"><a href="#10-What-is-a-Dockerfile" class="headerlink" title="10. What is a Dockerfile?"></a><strong>10. What is a Dockerfile?</strong></h3><h3 id="10-什么是-Dockerfile？"><a href="#10-什么是-Dockerfile？" class="headerlink" title="10. 什么是 Dockerfile？"></a>10. 什么是 Dockerfile？</h3><p>Let’s start by giving a small explanation of Dockerfile and proceed by giving examples and commands to support your arguments.</p>
-<p>让我们从对 Dockerfile 的一个小小的解释开始，然后通过举例和命令来支持你的论点。</p>
-<p>Docker can build images automatically by reading the instructions from a file called Dockerfile. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using docker build, users can create an automated build that executes several command-line instructions in succession.</p>
-<p>可以通过读取一个名为 Dockerfile 的文件中的指令来自动生成图像。 Dockerfile 是一个文本文档，其中包含用户可以在命令行上调用的所有命令来组装图像。 使用 docker 构建，用户可以创建连续执行多个命令行指令的自动构建。</p>
-<p>The interviewer does not just expect definitions, hence explain how to use a Dockerfile which comes with experience. Have a look at <a href="https://www.edureka.co/blog/docker-explained/" target="_blank" rel="noopener">this</a> tutorial to understand how Dockerfile works.</p>
-<p>访问者不只是期望定义，因此解释如何使用一个 Dockerfile 随着经验。 看一下这个教程来理解 Dockerfile 是如何工作的。</p>
-<h3 id="11-Tell-us-something-about-Docker-Compose"><a href="#11-Tell-us-something-about-Docker-Compose" class="headerlink" title="11. Tell us something about Docker Compose."></a><strong>11. Tell us something about Docker Compose.</strong></h3><h3 id="11-给我们讲讲-Docker-Compose"><a href="#11-给我们讲讲-Docker-Compose" class="headerlink" title="11. 给我们讲讲 Docker Compose"></a>11. 给我们讲讲 Docker Compose</h3><p>Docker Compose is a YAML file which contains details about the services, networks, and volumes for setting up the Docker application. So, you can use Docker Compose to create separate containers, host them and get them to communicate with each other. Each container will expose a port for communicating with other containers.</p>
-<p>Docker Compose 是一个 YAML 文件，它包含有关设置 Docker 应用程序的服务、网络和卷的详细信息。 因此，您可以使用 dockercompose 创建单独的容器，托管它们并使它们彼此通信。 每个容器将公开一个用于与其他容器通信的端口。</p>
-<h3 id="12-What-is-Docker-Swarm"><a href="#12-What-is-Docker-Swarm" class="headerlink" title="12. What is Docker Swarm?"></a><strong>12. What is Docker Swarm?</strong></h3><h3 id="12-什么是-Docker-Swarm？"><a href="#12-什么是-Docker-Swarm？" class="headerlink" title="12. 什么是 Docker Swarm？"></a>12. 什么是 Docker Swarm？</h3><p>You are expected to have worked with Docker Swarm as it’s an important concept of Docker.</p>
-<p>你应该和 Docker Swarm 一起工作，因为它是 Docker 的一个重要概念。</p>
-<p>Docker Swarm is native clustering for Docker. It turns a pool of Docker hosts into a single, virtual Docker host. Docker Swarm serves the standard Docker API, any tool that already communicates with a Docker daemon can use Swarm to transparently scale to multiple hosts.</p>
-<p>Docker Swarm 是 Docker 的本地集群。 它将一个 Docker 主机池转换为一个单一的虚拟 Docker 主机。 服务于标准的 Docker API，任何已经与 Docker 守护进程通信的工具都可以使用 Swarm 透明地扩展到多个主机。</p>
-<h3 id="13-What-is-a-Docker-Namespace"><a href="#13-What-is-a-Docker-Namespace" class="headerlink" title="13. What is a Docker Namespace?"></a><strong>13. What is a Docker Namespace?</strong></h3><h3 id="13-什么是-Docker-名称空间？"><a href="#13-什么是-Docker-名称空间？" class="headerlink" title="13. 什么是 Docker 名称空间？"></a>13. 什么是 Docker 名称空间？</h3><p>A namespace is one of the Linux features and an important concept of containers. Namespace adds a layer of isolation in containers. Docker provides various namespaces in order to stay portable and not affect the underlying host system. Few namespace types supported by Docker – PID, Mount, IPC, User, Network</p>
-<p>名称空间是 Linux 的特性之一，也是容器的一个重要概念。 命名空间在容器中添加隔离层。 Docker 提供了各种名称空间，以保持可移植性并且不影响底层主机系统。 Docker-PID、 Mount、 IPC、 User、 Network 支持的命名空间类型很少</p>
-<h3 id="14-What-is-the-lifecycle-of-a-Docker-Container"><a href="#14-What-is-the-lifecycle-of-a-Docker-Container" class="headerlink" title="14. What is the lifecycle of a Docker Container?"></a><strong>14. What is the lifecycle of a Docker Container?</strong></h3><h3 id="14-Docker-容器的生命周期是什么？"><a href="#14-Docker-容器的生命周期是什么？" class="headerlink" title="14. Docker 容器的生命周期是什么？"></a>14. Docker 容器的生命周期是什么？</h3><p>This is one of the most popular questions asked in Docker interviews. Docker containers have the following lifecycle:</p>
-<p>这是Docker访谈中最受欢迎的问题之一。 Docker 容器的生命周期如下:</p>
-<ul>
-<li>Create a container 创建一个容器</li>
-<li>Run the container 运行容器</li>
-<li>Pause the container(optional) 暂停容器(可选)</li>
-<li>Un-pause the container(optional) 取消容器的暂停(可选)</li>
-<li>Start the container 启动容器</li>
-<li>Stop the container 停下集装箱</li>
-<li>Restart the container 重新启动容器</li>
-<li>Kill the container 关闭集装箱</li>
-<li>Destroy the container 销毁集装箱</li>
-</ul>
-<h3 id="15-What-is-Docker-Machine"><a href="#15-What-is-Docker-Machine" class="headerlink" title="15. What is Docker Machine?"></a><strong>15. What is Docker Machine?</strong></h3><h3 id="15-什么是-Docker-Machine？"><a href="#15-什么是-Docker-Machine？" class="headerlink" title="15. 什么是 Docker Machine？"></a>15. 什么是 Docker Machine？</h3><p>Docker machine is a tool that lets you install Docker Engine on virtual hosts. These hosts can now be managed using the docker-machine commands. Docker machine also lets you provision Docker Swarm Clusters.</p>
-<p>Docker 机器是一个工具，可以让您在虚拟主机上安装 Docker Engine。 现在可以使用 docker-machine 命令管理这些主机。 Docker 机器还可以让你提供 Docker 群集。</p>
-<h2 id="Docker-Basic-Commands"><a href="#Docker-Basic-Commands" class="headerlink" title="Docker Basic Commands"></a><strong>Docker Basic Commands</strong></h2><h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>Once you’ve aced the basic conceptual questions, the interviewer will increase the difficulty level. So let’s move on to the next section of this Docker Interview Questions article. This section talks about the commands that are very common amongst docker users.</p>
-<p>一旦你通过了基本的概念性问题，面试官就会增加难度。 那么，让我们进入这篇文章的下一部分。 本节将讨论在 docker 用户中非常常见的命令。</p>
-<h3 id="16-How-to-check-for-Docker-Client-and-Docker-Server-version"><a href="#16-How-to-check-for-Docker-Client-and-Docker-Server-version" class="headerlink" title="16. How to check for Docker Client and Docker Server version?"></a><strong>16. How to check for Docker Client and Docker Server version?</strong></h3><h3 id="16-如何检查-Docker-客户端和-Docker-服务器版本？"><a href="#16-如何检查-Docker-客户端和-Docker-服务器版本？" class="headerlink" title="16. 如何检查 Docker 客户端和 Docker 服务器版本？"></a>16. 如何检查 Docker 客户端和 Docker 服务器版本？</h3><p>The following command gives you information about Docker Client and Server versions:</p>
-<p>下面的命令提供关于 Docker 客户端和服务器版本的信息:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker version</span><br></pre></td></tr></table></figure>
-<p>$docker 版本</p>
-<h3 id="17-How-do-you-get-the-number-of-containers-running-paused-and-stopped"><a href="#17-How-do-you-get-the-number-of-containers-running-paused-and-stopped" class="headerlink" title="17. How do you get the number of containers running, paused and stopped?"></a><strong>17. How do you get the number of containers running, paused and stopped?</strong></h3><h3 id="17-如何让运行、暂停和停止的容器数量？"><a href="#17-如何让运行、暂停和停止的容器数量？" class="headerlink" title="17. 如何让运行、暂停和停止的容器数量？"></a>17. 如何让运行、暂停和停止的容器数量？</h3><p>You can use the following command to get detailed information about the docker installed on your system.</p>
-<p>您可以使用以下命令来获取有关系统上安装的 docker 的详细信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker info</span><br></pre></td></tr></table></figure>
-<p>Docker 信息</p>
-<p>You can get the number of containers running, paused, stopped, the number of images and a lot more.</p>
-<p>您可以获得运行、暂停、停止的容器数量、映像数量等等。</p>
-<h3 id="18-If-you-vaguely-remember-the-command-and-you’d-like-to-confirm-it-how-will-you-get-help-on-that-particular-command"><a href="#18-If-you-vaguely-remember-the-command-and-you’d-like-to-confirm-it-how-will-you-get-help-on-that-particular-command" class="headerlink" title="18. If you vaguely remember the command and you’d like to confirm it, how will you get help on that particular command?"></a><strong>18. If you vaguely remember the command and you’d like to confirm it, how will you get help on that particular command?</strong></h3><h3 id="图18。-如果您依稀记得这个命令，并且想要确认它，那么您将如何获得关于这个特定命令的帮助呢？"><a href="#图18。-如果您依稀记得这个命令，并且想要确认它，那么您将如何获得关于这个特定命令的帮助呢？" class="headerlink" title="图18。 如果您依稀记得这个命令，并且想要确认它，那么您将如何获得关于这个特定命令的帮助呢？"></a>图18。 如果您依稀记得这个命令，并且想要确认它，那么您将如何获得关于这个特定命令的帮助呢？</h3><p>The following command is very useful as it gives you help on how to use a command, the syntax, etc.</p>
-<p>下面的命令非常有用，因为它为您提供了如何使用命令、语法等方面的帮助。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker --help</span><br></pre></td></tr></table></figure>
-<p>Docker，救命</p>
-<p>The above command lists all Docker commands. If you need help with one specific command, you can use the following syntax:</p>
-<p>上面的命令列出了所有的 Docker 命令。 如果您需要某个特定命令的帮助，可以使用以下语法:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker  --help</span><br></pre></td></tr></table></figure>
-<p>Docker 命令 — 救命</p>
-<h3 id="19-How-to-login-into-docker-repository"><a href="#19-How-to-login-into-docker-repository" class="headerlink" title="19. How to login into docker repository?"></a><strong>19. How to login into docker repository?</strong></h3><h3 id="19-如何登录到-docker-仓库？"><a href="#19-如何登录到-docker-仓库？" class="headerlink" title="19. 如何登录到 docker 仓库？"></a>19. 如何登录到 docker 仓库？</h3><p>You can use the following command to login into hub.docker.com:</p>
-<p>你可以使用以下命令登录到 hub.docker. com:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker login</span><br></pre></td></tr></table></figure>
-<p>$docker 登录</p>
-<p>You’ll be prompted for your username and password, insert those and congratulations, you’re logged in.</p>
-<p>系统会提示您输入用户名和密码，然后插入这些内容，恭喜您，您已经登录。</p>
-<h3 id="20-If-you-wish-to-use-a-base-image-and-make-modifications-or-personalize-it-how-do-you-do-that"><a href="#20-If-you-wish-to-use-a-base-image-and-make-modifications-or-personalize-it-how-do-you-do-that" class="headerlink" title="20. If you wish to use a base image and make modifications or personalize it, how do you do that?"></a><strong>20. If you wish to use a base image and make modifications or personalize it, how do you do that?</strong></h3><h3 id="图20。-如果您希望使用基础图像并对其进行修改或个性化，您将如何做到这一点？"><a href="#图20。-如果您希望使用基础图像并对其进行修改或个性化，您将如何做到这一点？" class="headerlink" title="图20。 如果您希望使用基础图像并对其进行修改或个性化，您将如何做到这一点？"></a>图20。 如果您希望使用基础图像并对其进行修改或个性化，您将如何做到这一点？</h3><p>You pull an image from docker hub onto your local system</p>
-<p>将一个图像从 dockerhub 拉到本地系统上</p>
-<p>It’s one simple command to pull an image from docker hub:</p>
-<p>这是一个从 docker hub 中提取图像的简单命令:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull</span><br></pre></td></tr></table></figure>
-<p>“ docker pull image name”</p>
-<h3 id="21-How-do-you-create-a-docker-container-from-an-image"><a href="#21-How-do-you-create-a-docker-container-from-an-image" class="headerlink" title="21. How do you create a docker container from an image?"></a><strong>21. How do you create a docker container from an image?</strong></h3><h3 id="21-如何从图像创建一个-docker-容器？"><a href="#21-如何从图像创建一个-docker-容器？" class="headerlink" title="21. 如何从图像创建一个 docker 容器？"></a>21. 如何从图像创建一个 docker 容器？</h3><p>Pull an image from docker repository with the above command and run it to create a container. Use the following command:</p>
-<p>使用上面的命令从 docker 存储库中拉出一个映像，并运行它来创建一个容器。 使用以下命令:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it -d</span><br></pre></td></tr></table></figure>
-<p>Docker run-it-d image name</p>
-<p>Most probably the next question would be, what does the ‘-d’ flag mean in the command?</p>
-<p>下一个问题很可能是，命令中的“-d”标志是什么意思？</p>
-<p><strong>-d</strong> means the container needs to start in the detached mode. Explain a little about the detach mode. Have a look at <a href="https://www.edureka.co/blog/docker-commands/" target="_blank" rel="noopener">this</a> blog to get a better understanding of different docker commands.</p>
-<p>D 表示容器需要以分离模式启动。 解释一下分离模式。 看看这个博客，可以更好地理解不同的 docker 命令。</p>
-<h3 id="22-How-do-you-list-all-the-running-containers"><a href="#22-How-do-you-list-all-the-running-containers" class="headerlink" title="22. How do you list all the running containers?"></a><strong>22. How do you list all the running containers?</strong></h3><h3 id="22-你如何列出所有正在运行的集装箱？"><a href="#22-你如何列出所有正在运行的集装箱？" class="headerlink" title="22. 你如何列出所有正在运行的集装箱？"></a>22. 你如何列出所有正在运行的集装箱？</h3><p>The following command lists down all the running containers:</p>
-<p>下面的命令列出了所有正在运行的容器:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker ps</span><br></pre></td></tr></table></figure>
-<p>码头工人</p>
-<h3 id="23-Suppose-you-have-3-containers-running-and-out-of-these-you-wish-to-access-one-of-them-How-do-you-access-a-running-container"><a href="#23-Suppose-you-have-3-containers-running-and-out-of-these-you-wish-to-access-one-of-them-How-do-you-access-a-running-container" class="headerlink" title="23. Suppose you have 3 containers running and out of these, you wish to access one of them. How do you access a running container?"></a><strong>23. Suppose you have 3 containers running and out of these, you wish to access one of them. How do you access a running container?</strong></h3><h3 id="图23。-假设您有3个运行中的容器，您希望访问其中的一个。-如何访问正在运行的容器？"><a href="#图23。-假设您有3个运行中的容器，您希望访问其中的一个。-如何访问正在运行的容器？" class="headerlink" title="图23。 假设您有3个运行中的容器，您希望访问其中的一个。 如何访问正在运行的容器？"></a>图23。 假设您有3个运行中的容器，您希望访问其中的一个。 如何访问正在运行的容器？</h3><p>The following command lets us access a running container:</p>
-<p>下面的命令允许我们访问一个正在运行的容器:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker exec -it  bash</span><br></pre></td></tr></table></figure>
-<p>$docker exec-it 容器 id bash</p>
-<p>The exec command lets you get inside a container and work with it.</p>
-<p>Exec 命令允许您进入容器并使用它。</p>
-<p><strong>24. How to start, stop and kill a container?</strong></p>
-<p>\24. 如何启动、停止和杀死一个容器？</p>
-<p>The following command is used to start a docker container:</p>
-<p>下面的命令用于启动一个 docker 容器:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker start</span><br></pre></td></tr></table></figure>
-<p>$docker start container id</p>
-<p>and the following for stopping a running container:</p>
-<p>以及以下用于阻止正在运行的容器:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker stop</span><br></pre></td></tr></table></figure>
-<p>Docker stop container id</p>
-<p>kill a container with the following command:</p>
-<p>用以下命令杀死一个容器:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker kill</span><br></pre></td></tr></table></figure>
-<p>Docker 杀死集装箱 id</p>
-<h3 id="25-Can-you-use-a-container-edit-it-and-update-it-Also-how-do-you-make-it-a-new-and-store-it-on-the-local-system"><a href="#25-Can-you-use-a-container-edit-it-and-update-it-Also-how-do-you-make-it-a-new-and-store-it-on-the-local-system" class="headerlink" title="25. Can you use a container, edit it, and update it? Also, how do you make it a new and store it on the local system?"></a><strong>25. Can you use a container, edit it, and update it? Also, how do you make it a new and store it on the local system?</strong></h3><h3 id="图25。-你能使用一个容器，编辑它，并更新它吗？-另外，如何使它成为一个新的并将其存储在本地系统中？"><a href="#图25。-你能使用一个容器，编辑它，并更新它吗？-另外，如何使它成为一个新的并将其存储在本地系统中？" class="headerlink" title="图25。 你能使用一个容器，编辑它，并更新它吗？ 另外，如何使它成为一个新的并将其存储在本地系统中？"></a>图25。 你能使用一个容器，编辑它，并更新它吗？ 另外，如何使它成为一个新的并将其存储在本地系统中？</h3><p>Of course, you can use a container, edit it and update it. This sounds complicated but its actually just one command.</p>
-<p>当然，您可以使用一个容器，编辑它并更新它。 这听起来很复杂，但实际上它只是一个命令。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit</span><br></pre></td></tr></table></figure>
-<p>$docker commit conatainer id username / imageename</p>
-<h3 id="26-Once-you’ve-worked-with-an-image-how-do-you-push-it-to-docker-hub"><a href="#26-Once-you’ve-worked-with-an-image-how-do-you-push-it-to-docker-hub" class="headerlink" title="26. Once you’ve worked with an image, how do you push it to docker hub?"></a><strong>26. Once you’ve worked with an image, how do you push it to docker hub?</strong></h3><h3 id="图26。-一旦您使用了一个映像，您如何将它推送到-dockerhub？"><a href="#图26。-一旦您使用了一个映像，您如何将它推送到-dockerhub？" class="headerlink" title="图26。 一旦您使用了一个映像，您如何将它推送到 dockerhub？"></a>图26。 一旦您使用了一个映像，您如何将它推送到 dockerhub？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker push</span><br></pre></td></tr></table></figure>
-<p>$docker push 用户名 / 图像名称</p>
-<h3 id="27-How-to-delete-a-stopped-container"><a href="#27-How-to-delete-a-stopped-container" class="headerlink" title="27. How to delete a stopped container?"></a><strong>27. How to delete a stopped container?</strong></h3><h3 id="27-如何删除已停止的容器？"><a href="#27-如何删除已停止的容器？" class="headerlink" title="27. 如何删除已停止的容器？"></a>27. 如何删除已停止的容器？</h3><p>Use the following command to delete a stopped container:</p>
-<p>使用以下命令删除已停止的容器:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker rm</span><br></pre></td></tr></table></figure>
-<p>$docker rm 容器 id</p>
-<h3 id="28-How-to-delete-an-image-from-the-local-storage-system"><a href="#28-How-to-delete-an-image-from-the-local-storage-system" class="headerlink" title="28. How to delete an image from the local storage system?"></a><strong>28. How to delete an image from the local storage system?</strong></h3><h3 id="28-如何从本地存储系统中删除映像？"><a href="#28-如何从本地存储系统中删除映像？" class="headerlink" title="28. 如何从本地存储系统中删除映像？"></a>28. 如何从本地存储系统中删除映像？</h3><p>The following command lets you delete an image from the local system:</p>
-<p>下面的命令允许您从本地系统中删除图像:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker rmi</span><br></pre></td></tr></table></figure>
-<p>$docker rmi image-id</p>
-<h3 id="29-How-to-build-a-Dockerfile"><a href="#29-How-to-build-a-Dockerfile" class="headerlink" title="29. How to build a Dockerfile?"></a><strong>29. How to build a Dockerfile?</strong></h3><h3 id="29-如何建立一个-Dockerfile？"><a href="#29-如何建立一个-Dockerfile？" class="headerlink" title="29. 如何建立一个 Dockerfile？"></a>29. 如何建立一个 Dockerfile？</h3><p>Once you’ve written a Dockerfile, you need to build it to create an image with those specifications. Use the following command to build a Dockerfile:</p>
-<p>一旦编写了 Dockerfile，就需要构建它来使用这些规范创建一个映像。 使用以下命令构建一个 Dockerfile:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker build</span><br></pre></td></tr></table></figure>
-<p>$docker build path to docker file</p>
-<p>The next question would be when do you use “.dockerfile_name” and when to use the entire path?</p>
-<p>下一个问题是你什么时候使用“。 “ dockerfile 名称”和何时使用整个路径？</p>
-<p>Use “.dockerfile_name” when the dockerfile exits in the same file directory and you use the entire path if it lives somewhere else.</p>
-<p>使用“。 如果 dockerfile 存在于同一个文件目录中，并且如果它存在于其他地方，则使用整个路径，则使用“ dockerfile name”。</p>
-<h3 id="30-Do-you-know-why-docker-system-prune-is-used-What-does-it-do"><a href="#30-Do-you-know-why-docker-system-prune-is-used-What-does-it-do" class="headerlink" title="30. Do you know why docker system prune is used? What does it do?"></a><strong>30. Do you know why <em>docker system prune</em> is used? What does it do?</strong></h3><h3 id="图30。-您知道为什么使用-docker-system-prune-吗？-它是做什么的？"><a href="#图30。-您知道为什么使用-docker-system-prune-吗？-它是做什么的？" class="headerlink" title="图30。 您知道为什么使用 docker system prune 吗？ 它是做什么的？"></a>图30。 您知道为什么使用 docker system prune 吗？ 它是做什么的？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker system prune</span><br></pre></td></tr></table></figure>
-<p>$docker system prune</p>
-<p>The above command is used to remove all the stopped containers, all the networks that are not used, all dangling images and all build caches. It’s one of the most useful docker commands.</p>
-<p>上面的命令用于删除所有停止的容器、所有未使用的网络、所有悬空的图像和所有构建缓存。 这是最有用的 docker 命令之一。</p>
-<h2 id="Docker-Advanced-Questions"><a href="#Docker-Advanced-Questions" class="headerlink" title="Docker Advanced Questions"></a><strong>Docker Advanced Questions</strong></h2><h2 id="Docker高级问题"><a href="#Docker高级问题" class="headerlink" title="Docker高级问题"></a>Docker高级问题</h2><p>Once the interviewer knows that you’re familiar with the Docker commands, he/she will start asking about practical applications This section of Docker Interview Questions consists of questions that you’ll only be able to answer when you’ve gained some experience working with Docker.</p>
-<p>一旦面试官知道你熟悉 Docker 命令，他 / 她就会开始询问关于实际应用的问题。</p>
-<h3 id="31-Will-you-lose-your-data-when-a-docker-container-exists"><a href="#31-Will-you-lose-your-data-when-a-docker-container-exists" class="headerlink" title="31. Will you lose your data, when a docker container exists?"></a><strong>31. Will you lose your data, when a docker container exists?</strong></h3><h3 id="31-当存在一个-docker-容器时，您会丢失数据吗？"><a href="#31-当存在一个-docker-容器时，您会丢失数据吗？" class="headerlink" title="31. 当存在一个 docker 容器时，您会丢失数据吗？"></a>31. 当存在一个 docker 容器时，您会丢失数据吗？</h3><p>No, you won’t lose any data when Docker container exits. Any data that your application writes to the container gets preserved on the disk until you explicitly delete the container. The file system for the container persists even after the container halts.</p>
-<p>不，当 Docker 容器退出时，您不会丢失任何数据。 在显式删除容器之前，应用程序写入容器的任何数据都会保存在磁盘上。 容器的文件系统甚至在容器停止之后仍然存在。</p>
-<h3 id="32-Where-all-do-you-think-Docker-is-being-used"><a href="#32-Where-all-do-you-think-Docker-is-being-used" class="headerlink" title="32. Where all do you think Docker is being used?"></a><strong>32. Where all do you think Docker is being used?</strong></h3><h3 id="32-你认为Docker在哪里工作？"><a href="#32-你认为Docker在哪里工作？" class="headerlink" title="32. 你认为Docker在哪里工作？"></a>32. 你认为Docker在哪里工作？</h3><p>When asked such a question, respond by talking about applications of Docker. Docker is being used in the following areas:</p>
-<p>当被问到这样的问题时，回答说说 Docker 的应用。 Docker被用于以下领域:</p>
-<ul>
-<li>Simplifying configuration: Docker lets you put your environment and configuration into code and deploy it. 简化配置: Docker 允许您将环境和配置放入代码中并部署它</li>
-<li>Code Pipeline Management: There are different systems used for development and production. As the code travels from development to testing to production, it goes through a difference in the environment. Docker helps in maintaining the code pipeline consistency. 代码管道管理: 有不同的系统用于开发和生产。 随着代码从开发到测试再到生产，它经历了环境的不同。 Docker 帮助维护代码管道的一致性</li>
-<li>Developer Productivity: Using Docker for development gives us two things – We’re closer to production and development environment is built faster. 开发人员的生产力: 使用 Docker 进行开发可以带给我们两件事情——我们离生产环境更近了，开发环境构建得更快了</li>
-<li>Application Isolation: As containers are applications wrapped together with all dependencies, your apps are isolated. They can work by themselves on any hardware that supports Docker. 应用程序隔离: 由于容器是包装在所有依赖项中的应用程序，因此应用程序是隔离的。 它们可以在任何支持 Docker 的硬件上独立工作</li>
-<li>Debugging Capabilities: Docker supports various debugging tools that are not specific to containers but work well with containers. 调试能力: Docker 支持各种调试工具，这些工具并不特定于容器，但可以很好地与容器一起工作</li>
-<li>Multi-tenancy: Docker lets you have multi-tenant applications avoiding redundancy in your codes and deployments. 多租户: Docker 允许您拥有多租户应用程序，从而避免代码和部署中的冗余</li>
-<li>Rapid Deployment: Docker eliminates the need to boost an entire OS from scratch, reducing the deployment time. 快速部署: Docker 无需从头开始增强整个操作系统，减少了部署时间</li>
-</ul>
-<h3 id="33-How-is-Docker-different-from-other-containerization-methods"><a href="#33-How-is-Docker-different-from-other-containerization-methods" class="headerlink" title="33. How is Docker different from other containerization methods?"></a><strong>33. How is Docker different from other containerization methods?</strong></h3><h3 id="33-Docker-与其他集装箱化-服务器方法有什么不同？"><a href="#33-Docker-与其他集装箱化-服务器方法有什么不同？" class="headerlink" title="33. Docker 与其他集装箱化 / 服务器方法有什么不同？"></a>33. Docker 与其他集装箱化 / 服务器方法有什么不同？</h3><p>Docker containers are very easy to deploy in any cloud platform. It can get more applications running on the same hardware when compared to other technologies, it makes it easy for developers to quickly create, ready-to-run containerized applications and it makes managing and deploying applications much easier. You can even share containers with your applications.</p>
-<p>Docker 容器非常容易部署在任何云平台上。 与其他技术相比，它可以让更多的应用程序在同一硬件上运行，它使开发人员更容易快速创建即时可运行的集装箱化应用程序，并使管理和部署应用程序更加容易。 您甚至可以与应用程序共享容器。</p>
-<p>If you have some more points to add you can do that but make sure the above explanation is there in your answer.</p>
-<p>如果你还有更多的要点要补充，你可以这样做，但是要确保上面的解释在你的答案里。</p>
-<h3 id="34-Can-I-use-JSON-instead-of-YAML-for-my-compose-file-in-Docker"><a href="#34-Can-I-use-JSON-instead-of-YAML-for-my-compose-file-in-Docker" class="headerlink" title="34. Can I use JSON instead of YAML for my compose file in Docker?"></a><strong>34. Can I use JSON instead of YAML for my compose file in Docker?</strong></h3><h3 id="图34。-我是否可以在-Docker-中使用-JSON-而不是-YAML-作为撰写文件？"><a href="#图34。-我是否可以在-Docker-中使用-JSON-而不是-YAML-作为撰写文件？" class="headerlink" title="图34。 我是否可以在 Docker 中使用 JSON 而不是 YAML 作为撰写文件？"></a>图34。 我是否可以在 Docker 中使用 JSON 而不是 YAML 作为撰写文件？</h3><p>You can use JSON instead of YAML for your compose file, to use JSON file with compose, specify the JSON filename to use, for eg:</p>
-<p>你可以使用 JSON 代替 YAML 作为撰写文件，使用 JSON 文件作为撰写文件，指定 JSON 文件名，例如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose -f docker-compose.json up</span><br></pre></td></tr></table></figure>
-<p>$docker-compose-f docker-compose. json up</p>
-<h3 id="35-How-have-you-used-Docker-in-your-previous-position"><a href="#35-How-have-you-used-Docker-in-your-previous-position" class="headerlink" title="35. How have you used Docker in your previous position?"></a><strong>35. How have you used Docker in your previous position?</strong></h3><h3 id="35-你之前的工作是怎么利用-Docker-的？"><a href="#35-你之前的工作是怎么利用-Docker-的？" class="headerlink" title="35. 你之前的工作是怎么利用 Docker 的？"></a>35. 你之前的工作是怎么利用 Docker 的？</h3><p>Explain how you have used Docker to help rapid deployment. Explain how you have scripted Docker and used it with other tools like Puppet, Chef or Jenkins. If you have no past practical experience in Docker and instead have experience with other tools in a similar space, be honest and explain the same. In this case, it makes sense if you can compare other tools to Docker in terms of functionality.</p>
-<p>解释您如何使用 Docker 来帮助快速部署。 解释一下你是如何编写 Docker 的脚本并与 Puppet、 Chef 或 Jenkins 等其他工具一起使用的。 如果你对 Docker 没有过去的实践经验，而是在类似领域有过其他工具的经验，请诚实地解释。 在这种情况下，如果您可以将其他工具与 Docker 在功能方面进行比较，这是有意义的。</p>
-<h3 id="36-How-far-do-Docker-containers-scale-Are-there-any-requirements-for-the-same"><a href="#36-How-far-do-Docker-containers-scale-Are-there-any-requirements-for-the-same" class="headerlink" title="36. How far do Docker containers scale? Are there any requirements for the same?"></a><strong>36. How far do Docker containers scale? Are there any requirements for the same?</strong></h3><h3 id="图36。-Docker集装箱的规模有多大？-是否有相同的要求？"><a href="#图36。-Docker集装箱的规模有多大？-是否有相同的要求？" class="headerlink" title="图36。 Docker集装箱的规模有多大？ 是否有相同的要求？"></a>图36。 Docker集装箱的规模有多大？ 是否有相同的要求？</h3><p>Large web deployments like Google and Twitter and platform providers such as Heroku and dotCloud, all run on container technology. Containers can be scaled to hundreds of thousands or even millions of them running in parallel. Talking about requirements, containers require the memory and the OS at all the times and a way to use this memory efficiently when scaled.</p>
-<p>像 Google 和 Twitter 这样的大型 web 部署，以及 Heroku 和 dotCloud 这样的平台提供商，都运行在容器技术上。 容器可以并行扩展到数十万甚至数百万个。 说到需求，容器在任何时候都需要内存和操作系统，并且在缩放时能够有效地使用这些内存。</p>
-<h3 id="37-What-platforms-does-docker-run-on"><a href="#37-What-platforms-does-docker-run-on" class="headerlink" title="37. What platforms does docker run on?"></a><strong>37. What platforms does docker run on?</strong></h3><h3 id="37-docker-在什么平台上运行？"><a href="#37-docker-在什么平台上运行？" class="headerlink" title="37. docker 在什么平台上运行？"></a>37. docker 在什么平台上运行？</h3><p>This is a very straightforward question but can get tricky. Do some company research before going for the interview and find out how the company is using Docker. Make sure you mention the platform company is using in this answer.</p>
-<p>这是一个非常直接的问题，但可能会变得棘手。 在参加面试之前做一些公司调查，看看公司是如何使用 Docker 的。 确保你在这个答案中提到了平台公司正在使用的平台。</p>
-<p>Docker runs on various Linux administration:</p>
-<p>运行在不同的 Linux 管理系统上:</p>
-<ul>
-<li>Ubuntu 12.04, 13.04 et al 12.04,13.04 et al</li>
-<li>Fedora 19/20+ Fedora 19 / 20 +</li>
-<li>RHEL 6.5+ 6.5 +</li>
-<li>CentOS 6+ 6 +</li>
-<li>Gentoo</li>
-<li>ArchLinux</li>
-<li>openSUSE 12.3+ 12.3 +</li>
-<li>CRUX 3.0+ Crux 3.0 +</li>
-</ul>
-<p>It can also be used in production with Cloud platforms with the following services:</p>
-<p>它也可以在云平台上使用，提供以下服务:</p>
-<ul>
-<li>Amazon EC2 亚马逊 EC2</li>
-<li>Amazon ECS 亚马逊 ECS</li>
-<li>Google Compute Engine 谷歌计算引擎</li>
-<li>Microsoft Azure 微软 Azure</li>
-<li>Rackspace</li>
-</ul>
-<h3 id="38-Is-there-a-way-to-identify-the-status-of-a-Docker-container"><a href="#38-Is-there-a-way-to-identify-the-status-of-a-Docker-container" class="headerlink" title="38. Is there a way to identify the status of a Docker container?"></a><strong>38. Is there a way to identify the status of a Docker container?</strong></h3><h3 id="38-是否有办法识别-Docker-容器的状态？"><a href="#38-是否有办法识别-Docker-容器的状态？" class="headerlink" title="38. 是否有办法识别 Docker 容器的状态？"></a>38. 是否有办法识别 Docker 容器的状态？</h3><p>There are six possible states a container can be at any given point – Created, Running, Paused, Restarting, Exited, Dead.</p>
-<p>有六种可能的状态，容器可以在任何给定的点-创建，运行，暂停，重新启动，退出，死亡。</p>
-<p>Use the following command to check for docker state at any given point:</p>
-<p>使用以下命令检查任何给定点的 docker 状态:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker ps</span><br></pre></td></tr></table></figure>
-<p>码头工人</p>
-<p>The above command lists down only running containers by default. To look for all containers, use the following command:</p>
-<p>上面的命令默认只列出正在运行的容器。 要查找所有容器，请使用以下命令:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker ps -a</span><br></pre></td></tr></table></figure>
-<p>码头工人 a</p>
-<h3 id="39-Can-you-remove-a-paused-container-from-Docker"><a href="#39-Can-you-remove-a-paused-container-from-Docker" class="headerlink" title="39. Can you remove a paused container from Docker?"></a><strong>39. Can you remove a paused container from Docker?</strong></h3><h3 id="39-你能从-Docker-中移除暂停的容器吗？"><a href="#39-你能从-Docker-中移除暂停的容器吗？" class="headerlink" title="39. 你能从 Docker 中移除暂停的容器吗？"></a>39. 你能从 Docker 中移除暂停的容器吗？</h3><p>The answer is no. You cannot remove a paused container. The container has to be in the stopped state before it can be removed.</p>
-<p>答案是否定的。 无法移除已暂停的容器。 容器必须处于停止状态才能被删除。</p>
-<h3 id="40-Can-a-container-restart-by-itself"><a href="#40-Can-a-container-restart-by-itself" class="headerlink" title="40. Can a container restart by itself?"></a><strong>40. Can a container restart by itself?</strong></h3><h3 id="40-容器可以自动重启吗？"><a href="#40-容器可以自动重启吗？" class="headerlink" title="40. 容器可以自动重启吗？"></a>40. 容器可以自动重启吗？</h3><p>No, it’s not possible for a container to restart by itself. By default the flag -restart is set to false.</p>
-<p>不，容器不可能自己重新启动。 默认情况下，flag-restart 设置为 false。</p>
-<h3 id="41-Is-it-better-to-directly-remove-the-container-using-the-rm-command-or-stop-the-container-followed-by-remove-container"><a href="#41-Is-it-better-to-directly-remove-the-container-using-the-rm-command-or-stop-the-container-followed-by-remove-container" class="headerlink" title="41. Is it better to directly remove the container using the rm command or stop the container followed by remove container?"></a><strong>41. Is it better to directly remove the container using the rm command or stop the container followed by remove container?</strong></h3><h3 id="41-使用-rm-命令直接移除容器，还是先停止容器，然后移除容器？"><a href="#41-使用-rm-命令直接移除容器，还是先停止容器，然后移除容器？" class="headerlink" title="41. 使用 rm 命令直接移除容器，还是先停止容器，然后移除容器？"></a>41. 使用 rm 命令直接移除容器，还是先停止容器，然后移除容器？</h3><p>Its always better to stop the container and then remove it using the remove command.</p>
-<p>最好停止容器，然后使用 remove 命令移除它。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker stop `</span><br><span class="line">`$ docker rm -f</span><br></pre></td></tr></table></figure>
-<p>$docker stop coontainer id $docker rm-f container id</p>
-<p>Stopping the container and then removing it will allow sending SIG_HUP signal to recipients. This will ensure that all the containers have enough time to clean up their tasks. This method is considered a good practice, avoiding unwanted errors.</p>
-<p>停止容器，然后删除它将允许发送 SIG hup 信号给收件人。 这将确保所有容器有足够的时间清理它们的任务。 这种方法被认为是一种很好的实践，可以避免不必要的错误。</p>
-<h3 id="42-Will-cloud-overtake-the-use-of-Containerization"><a href="#42-Will-cloud-overtake-the-use-of-Containerization" class="headerlink" title="42. Will cloud overtake the use of Containerization?"></a><strong>42. Will cloud overtake the use of Containerization?</strong></h3><h3 id="42-云计算会取代集装箱化计算吗？"><a href="#42-云计算会取代集装箱化计算吗？" class="headerlink" title="42. 云计算会取代集装箱化计算吗？"></a>42. 云计算会取代集装箱化计算吗？</h3><p>Docker containers are gaining popularity but at the same time, Cloud services are giving a good fight. In my personal opinion, Docker will never be replaced by Cloud. Using cloud services with containerization will definitely hype the game. Organizations need to take their requirements and dependencies into consideration into the picture and decide what’s best for them. Most of the companies have integrated Docker with the cloud. This way they can make the best out of both the technologies.</p>
-<p>码头容器正在获得普及，但与此同时，云服务正在进行一场激烈的战斗。 在我个人看来，Docker永远不会被云计算取代。 使用集装箱化云服务肯定会大肆宣传这个游戏。 组织需要考虑他们的需求和依赖性，并决定什么对他们最好。 大多数公司已经将 Docker 整合到了云中。 通过这种方式，他们可以充分利用这两种技术。</p>
-<h3 id="43-How-many-containers-can-run-per-host"><a href="#43-How-many-containers-can-run-per-host" class="headerlink" title="43. How many containers can run per host?"></a><strong>43. How many containers can run per host?</strong></h3><h3 id="43-每台主机可以运行多少个容器？"><a href="#43-每台主机可以运行多少个容器？" class="headerlink" title="43. 每台主机可以运行多少个容器？"></a>43. 每台主机可以运行多少个容器？</h3><p>There can be as many containers as you wish per host. Docker does not put any restrictions on it. But you need to consider every container needs storage space, CPU and memory which the hardware needs to support. You also need to consider the application size. Containers are considered to be lightweight but very dependant on the host OS.</p>
-<p>每个主机可以有任意多的容器。 Docker对此没有任何限制。 但是您需要考虑到每个容器都需要硬件支持的存储空间、 CPU 和内存。 您还需要考虑应用程序的大小。 容器被认为是轻量级的，但是非常依赖于主机操作系统。</p>
-<h3 id="44-Is-it-a-good-practice-to-run-stateful-applications-on-Docker"><a href="#44-Is-it-a-good-practice-to-run-stateful-applications-on-Docker" class="headerlink" title="44. Is it a good practice to run stateful applications on Docker?"></a><strong>44. Is it a good practice to run stateful applications on Docker?</strong></h3><h3 id="44-在-Docker-上运行有状态应用程序是一个好的实践吗？"><a href="#44-在-Docker-上运行有状态应用程序是一个好的实践吗？" class="headerlink" title="44. 在 Docker 上运行有状态应用程序是一个好的实践吗？"></a>44. 在 Docker 上运行有状态应用程序是一个好的实践吗？</h3><p>The concept behind stateful applications is that they store their data onto the local file system. You need to decide to move the application to another machine, retrieving data becomes painful. I honestly would not prefer running stateful applications on Docker.</p>
-<p>有状态应用程序背后的概念是它们将数据存储到本地文件系统中。 您需要决定将应用程序移动到另一台计算机，检索数据将变得非常痛苦。 老实说，我不喜欢在 Docker 上运行有状态的应用程序。</p>
-<h3 id="45-Suppose-you-have-an-application-that-has-many-dependant-services-Will-docker-compose-wait-for-the-current-container-to-be-ready-to-move-to-the-running-of-the-next-service"><a href="#45-Suppose-you-have-an-application-that-has-many-dependant-services-Will-docker-compose-wait-for-the-current-container-to-be-ready-to-move-to-the-running-of-the-next-service" class="headerlink" title="45. Suppose you have an application that has many dependant services. Will docker compose wait for the current container to be ready to move to the running of the next service?"></a><strong>45. Suppose you have an application that has many dependant services. Will docker compose wait for the current container to be ready to move to the running of the next service?</strong></h3><h3 id="45-假设您有一个具有许多依赖服务的应用程序。-Docker-compose-是否会等待当前容器准备好转移到下一个服务的运行？"><a href="#45-假设您有一个具有许多依赖服务的应用程序。-Docker-compose-是否会等待当前容器准备好转移到下一个服务的运行？" class="headerlink" title="45. 假设您有一个具有许多依赖服务的应用程序。 Docker compose 是否会等待当前容器准备好转移到下一个服务的运行？"></a>45. 假设您有一个具有许多依赖服务的应用程序。 Docker compose 是否会等待当前容器准备好转移到下一个服务的运行？</h3><p>The answer is yes. Docker compose always runs in the dependency order. These dependencies are specifications like depends_on, links, volumes_from, etc.</p>
-<p>答案是肯定的。 Docker 编写总是按照依赖关系顺序运行。 这些依赖关系是诸如依赖、链接、卷之类的规范。</p>
-<h3 id="46-How-will-you-monitor-Docker-in-production"><a href="#46-How-will-you-monitor-Docker-in-production" class="headerlink" title="46. How will you monitor Docker in production?"></a><strong>46. How will you monitor Docker in production?</strong></h3><h3 id="46-你将如何监控生产中的-Docker？"><a href="#46-你将如何监控生产中的-Docker？" class="headerlink" title="46. 你将如何监控生产中的 Docker？"></a>46. 你将如何监控生产中的 Docker？</h3><p>Docker provides functionalities like docker stats and docker events to monitor docker in production. Docker stats provides CPU and memory usage of the container. Docker events provide information about the activities taking place in the docker daemon.</p>
-<p>Docker 提供了类似 Docker 统计和 Docker 事件的功能，以监视生产中的 Docker。 Docker 统计数据提供了容器的 CPU 和内存使用率。 Docker 事件提供关于 Docker 守护进程中发生的活动的信息。</p>
-<h3 id="47-Is-it-a-good-practice-to-run-Docker-compose-in-production"><a href="#47-Is-it-a-good-practice-to-run-Docker-compose-in-production" class="headerlink" title="47. Is it a good practice to run Docker compose in production?"></a><strong>47. Is it a good practice to run Docker compose in production?</strong></h3><h3 id="47-在生产中运行-Docker-撰稿是一个好的做法吗？"><a href="#47-在生产中运行-Docker-撰稿是一个好的做法吗？" class="headerlink" title="47. 在生产中运行 Docker 撰稿是一个好的做法吗？"></a>47. 在生产中运行 Docker 撰稿是一个好的做法吗？</h3><p>Yes, using docker compose in production is the best practical application of docker compose. When you define applications with compose, you can use this compose definition in various production stages like CI, staging, testing, etc.</p>
-<p>是的，在生产中使用 docker 合成物是 docker 合成物最好的实际应用。 在用 compose 定义应用程序时，可以在不同的生产阶段(如 CI、 staging、测试等)中使用此 compose 定义。</p>
-<h3 id="48-What-changes-are-expected-in-your-docker-compose-file-while-moving-it-to-production"><a href="#48-What-changes-are-expected-in-your-docker-compose-file-while-moving-it-to-production" class="headerlink" title="48. What changes are expected in your docker compose file while moving it to production?"></a><strong>48. What changes are expected in your docker compose file while moving it to production?</strong></h3><h3 id="48-在将-docker-组合文件移动到生产环境中时，您希望对其进行哪些更改？"><a href="#48-在将-docker-组合文件移动到生产环境中时，您希望对其进行哪些更改？" class="headerlink" title="48. 在将 docker 组合文件移动到生产环境中时，您希望对其进行哪些更改？"></a>48. 在将 docker 组合文件移动到生产环境中时，您希望对其进行哪些更改？</h3><p>These are the following changes you need make to your compose file before migrating your application to the production environment:</p>
-<p>在将应用程序迁移到生产环境之前，需要对撰写文件进行以下更改:</p>
-<ul>
-<li>Remove volume bindings, so the code stays inside the container and cannot be changed from outside the container. 删除卷绑定，这样代码就会留在容器内部，不能从容器外部进行更改</li>
-<li>Binding to different ports on the host. 绑定到主机上的不同端口</li>
-<li>Specify a restart policy 指定重新启动策略</li>
-<li>Add extra services like log aggregator 添加额外的服务，如日志聚合器</li>
-</ul>
-<h3 id="49-Have-you-used-Kubernetes-If-you-have-which-one-would-you-prefer-amongst-Docker-and-Kubernetes"><a href="#49-Have-you-used-Kubernetes-If-you-have-which-one-would-you-prefer-amongst-Docker-and-Kubernetes" class="headerlink" title="49. Have you used Kubernetes? If you have, which one would you prefer amongst Docker and Kubernetes?"></a><strong>49. Have you used Kubernetes? If you have, which one would you prefer amongst Docker and Kubernetes?</strong></h3><h3 id="图49。-你用过Kubernetes吗？-如果你有，你希望在Docker和Kubernetes之间选择哪一个？"><a href="#图49。-你用过Kubernetes吗？-如果你有，你希望在Docker和Kubernetes之间选择哪一个？" class="headerlink" title="图49。 你用过Kubernetes吗？ 如果你有，你希望在Docker和Kubernetes之间选择哪一个？"></a>图49。 你用过Kubernetes吗？ 如果你有，你希望在Docker和Kubernetes之间选择哪一个？</h3><p>Be very honest in such questions. If you have used Kubernetes, talk about your experience with Kubernetes and Docker Swarm. Point out the key areas where you thought docker swarm was more efficient and vice versa. Have a look at <a href="https://www.edureka.co/blog/kubernetes-vs-docker/" target="_blank" rel="noopener">this</a> blog for understanding differences between Docker and Kubernetes.</p>
-<p>在这些问题上要非常诚实。 如果你使用过Kubernetes，谈谈你使用Kubernetes和Docker群的经验。 指出你认为 docker swarm 更有效率的关键领域，反之亦然。 看看这个博客，了解一下 Docker 和 Kubernetes 之间的差异。</p>
-<p>You Docker interview questions are not just limited to the workarounds of docker but also other similar tools. Hence be prepared with tools/technologies that give Docker competition. One such example is Kubernetes.</p>
-<p>You Docker 面试问题不仅仅局限于 Docker 的变通方法，还有其他类似的工具。 因此，准备好与 Docker 竞争的工具 / 技术。 Kubernetes斯就是这样一个例子。</p>
-<h3 id="50-Are-you-aware-of-load-balancing-across-containers-and-hosts-How-does-it-work"><a href="#50-Are-you-aware-of-load-balancing-across-containers-and-hosts-How-does-it-work" class="headerlink" title="50. Are you aware of load balancing across containers and hosts? How does it work?"></a><strong>50. Are you aware of load balancing across containers and hosts? How does it work?</strong></h3><h3 id="50-您是否知道跨容器和主机的负载平衡？-它是如何工作的？"><a href="#50-您是否知道跨容器和主机的负载平衡？-它是如何工作的？" class="headerlink" title="50. 您是否知道跨容器和主机的负载平衡？ 它是如何工作的？"></a>50. 您是否知道跨容器和主机的负载平衡？ 它是如何工作的？</h3><p>While using docker service with multiple containers across different hosts, you come across the need to load balance the incoming traffic. Load balancing and HAProxy is basically used to balance the incoming traffic across different available(healthy) containers. If one container crashes, another container should automatically start running and the traffic should be re-routed to this new running container. Load balancing and HAProxy works around this concept.</p>
-<p>在跨不同主机使用多个容器的 docker 服务时，您会遇到需要负载均衡传入流量的问题。 负载平衡和 HAProxy 基本上用于平衡不同可用(健康)容器之间的传入通信量。 如果一个容器崩溃，另一个容器应该自动开始运行，通信量应该被重新路由到这个新运行的容器。 负载平衡和 HAProxy 围绕这个概念工作。</p>
-<p>This brings us to the end of the <em>Docker Interview Questions</em> article<em>.</em> With increasing business competition, companies have realized the importance of adapting and taking advantage of the changing market. Few things that kept them in the game were faster scaling of systems, better software delivery, adapting to new technologies, etc. That’s when docker swung into the picture and gave these companies boosting support to continue the race.</p>
-<p>这就把我们带到了Docker面试问题文章的结尾。 随着商业竞争的加剧，企业已经意识到适应和利用变化中的市场的重要性。 很少有什么能让他们留在游戏中，比如更快的系统扩展，更好的软件交付，适应新技术等等。 就在这时，码头工人开始介入，给这些公司提供支持，以继续这场竞赛。</p>
-<p><em>If you want to learn more about DevOps, check out the <a href="https://www.edureka.co/devops" target="_blank" rel="noopener">DevOps training</a> by Edureka, a trusted online learning company with a network of more than 250,000 satisfied learners spread across the globe. The Edureka DevOps Certification Training course helps learners gain expertise in various DevOps processes and tools such as Puppet, Jenkins, Nagios and GIT for automating multiple steps in SDLC.</em></p>
-<p>如果你想了解更多关于 DevOps 的信息，可以参考 Edureka 提供的 DevOps 培训，这是一家值得信赖的在线学习公司，拥有遍布全球的超过250,000个满意的学习者网络。 Edureka DevOps 认证培训课程帮助学习者获得各种 DevOps 流程和工具的专业知识，比如 Puppet、 Jenkins、 Nagios 和 GIT，用于自动化 SDLC 中的多个步骤。</p>
-<hr>
-<p>原文：<a href="https://www.edureka.co/blog/interview-questions/docker-interview-questions/" target="_blank" rel="noopener">https://www.edureka.co/blog/interview-questions/docker-interview-questions/</a></p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/12/17/Docker面试常见50问答/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2101,173 +1985,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/03/12/scala-learning-exercises/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="远方与诗的存在">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西词">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/12/scala-learning-exercises/" class="post-title-link" itemprop="url">Scala 学习手册 - 课后题</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-12 10:14:16 / 修改时间：10:56:00" itemprop="dateCreated datePublished" datetime="2019-03-12T10:14:16+08:00">2019-03-12</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/scala/" itemprop="url" rel="index"><span itemprop="name">scala</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="章节1"><a href="#章节1" class="headerlink" title="章节1"></a>章节1</h1><p>l. println (）是一 种很好的打印字符串的方怯， 不过你能找到另外一 种不使用 println打印字符串的方能吗？另外， REPL支持哪些类型的数字、 字符串和其他数据？</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/12/scala-learning-exercises/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2317,7 +2034,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
