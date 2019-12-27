@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Design Pattern - Interview Questions设计模式-面试问题 https://www.tutorialspoint.com/design_pattern/design_pattern_questions_answers.htm) Dear readers, these Design Pattern Interview Questions have been desig">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式面试问答-1">
+<meta property="og:url" content="http://xixici.com/2019/12/27/设计模式面试问答-1/index.html">
+<meta property="og:site_name" content="西西词">
+<meta property="og:description" content="Design Pattern - Interview Questions设计模式-面试问题 https://www.tutorialspoint.com/design_pattern/design_pattern_questions_answers.htm) Dear readers, these Design Pattern Interview Questions have been desig">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-27T02:24:44.269Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式面试问答-1">
+<meta name="twitter:description" content="Design Pattern - Interview Questions设计模式-面试问题 https://www.tutorialspoint.com/design_pattern/design_pattern_questions_answers.htm) Dear readers, these Design Pattern Interview Questions have been desig">
+
+
+
+
+
+
+  <link rel="canonical" href="http://xixici.com/2019/12/27/设计模式面试问答-1/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>设计模式面试问答-1 | 西西词</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">西西词</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">诗在远方</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">22</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">7</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">41</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/xixici" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xixici.com/2019/12/27/设计模式面试问答-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="远方与诗的存在">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西词">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">设计模式面试问答-1
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-27 10:10:45 / 修改时间：10:24:44" itemprop="dateCreated datePublished" datetime="2019-12-27T10:10:45+08:00">2019-12-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/12/27/设计模式面试问答-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/27/设计模式面试问答-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Design-Pattern-Interview-Questions"><a href="#Design-Pattern-Interview-Questions" class="headerlink" title="Design Pattern - Interview Questions"></a>Design Pattern - Interview Questions</h1><h1 id="设计模式-面试问题"><a href="#设计模式-面试问题" class="headerlink" title="设计模式-面试问题"></a>设计模式-面试问题</h1><hr>
+<p><a href="https://www.tutorialspoint.com/design_pattern/design_pattern_questions_answers.htm" target="_blank" rel="noopener">https://www.tutorialspoint.com/design_pattern/design_pattern_questions_answers.htm</a>)</p>
+<p>Dear readers, these <strong>Design Pattern Interview Questions</strong> have been designed specially to get you acquainted with the nature of questions you may encounter during your interview for the subject of <strong>Design Pattern</strong>. As per my experience good interviewers hardly plan to ask any particular question during your interview, normally questions start with some basic concept of the subject and later they continue based on further discussion and what you answer:</p>
+<p>亲爱的读者，这些设计模式面试问题是专门为了让你熟悉的性质，你可能会遇到的问题，在你的面试的主题设计模式。 根据我的经验，好的面试官在面试过程中几乎不会问任何特定的问题，通常问题都是从主题的一些基本概念开始，然后根据进一步的讨论和你的回答继续下去:</p>
+<p>What are Design Patterns? 什么是设计模式？</p>
+<p>Design patterns represent the best practices used by experienced object-oriented software developers. Design patterns are solutions to general problems that software developers faced during software development. These solutions were obtained by trial and error by numerous software developers over quite a substantial period of time.</p>
+<p>设计模式代表了经验丰富的面向对象软件开发人员使用的最佳实践。 设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。 这些解决方案是由许多软件开发人员在相当长的一段时间内通过尝试和错误获得的。</p>
+<a id="more"></a>
+<p>What is Gang of Four (GOF)? 什么是四人帮？</p>
+<p>In 1994, four authors Erich Gamma, Richard Helm, Ralph Johnson and John Vlissides published a book titled Design Patterns - Elements of Reusable Object-Oriented Software which initiated the concept of Design Pattern in Software development. These authors are collectively known as Gang of Four (GOF).</p>
+<p>1994年，四位作者 Erich Gamma，Richard Helm，Ralph Johnson 和 John Vlissides 出版了一本名为《设计模式——可重用面向对象软件的元素》的书，开创了软件开发中设计模式的概念。 这些作者被统称为四人帮(GOF)。</p>
+<p>Name types of Design Patterns? 设计模式的名称类型? ？</p>
+<p>Design patterns can be classified in three categories: Creational, Structural and Behavioral patterns.</p>
+<p>设计模式可以分为三类: 创造模式、结构模式和行为模式。</p>
+<ul>
+<li><p><strong>Creational Patterns</strong> - These design patterns provide a way to create objects while hiding the creation logic, rather than instantiating objects directly using new opreator. This gives program more flexibility in deciding which objects need to be created for a given use case.</p>
+<p>创建模式——这些设计模式提供了一种在隐藏创建逻辑的同时创建对象的方法，而不是直接使用新的 opreator 实例化对象。 这使程序在决定需要为给定用例创建哪些对象时具有更大的灵活性。</p>
+</li>
+<li><p><strong>Structural Patterns</strong> - These design patterns concern class and object composition. Concept of inheritance is used to compose interfaces and define ways to compose objects to obtain new functionalities.</p>
+<p>结构模式——这些设计模式涉及类和对象组合。 继承的概念被用来组合接口和定义组合对象的方法来获得新的功能。</p>
+</li>
+<li><p><strong>Behavioral Patterns</strong> - These design patterns are specifically concerned with communication between objects.</p>
+<p>行为模式——这些设计模式特别关注对象之间的通信。</p>
+</li>
+</ul>
+<p>What are J2EE Patterns? 什么是 J2EE 模式？</p>
+<p>These design patterns are specifically concerned with the presentation tier. These patterns are identified by Sun Java Center.</p>
+<p>这些设计模式特别关注表示层。 这些模式由 Sun Java 中心识别。</p>
+<p>What is Factory pattern? 什么是工厂模式？</p>
+<p>Factory pattern is one of most used design pattern in Java. This type of design pattern comes under creational pattern as this pattern provides one of the best ways to create an object.</p>
+<p>工厂模式是 Java 中最常用的设计模式之一。 这种类型的设计模式属于创建型模式模式，因为这种模式提供了创建对象的最佳方式之一。</p>
+<p>In Factory pattern, we create object without exposing the creation logic to the client and refer to newly created object using a common interface.</p>
+<p>在工厂模式中，我们创建对象而不向客户机公开创建逻辑，并使用公共接口引用新创建的对象。</p>
+<p>What is Abstract Factory pattern? 什么是抽象工厂模式？</p>
+<p>Abstract Factory patterns work around a super-factory which creates other factories. This factory is also called as factory of factories. This type of design pattern comes under creational pattern as this pattern provides one of the best ways to create an object.</p>
+<p>抽象工厂模式围绕一个创建其他工厂的超级工厂工作。 这家工厂也被称为工厂工厂。 这种类型的设计模式属于创建型模式模式，因为这种模式提供了创建对象的最佳方式之一。</p>
+<p>In Abstract Factory pattern an interface is responsible for creating a factory of related objects without explicitly specifying their classes. Each generated factory can give the objects as per the Factory pattern.</p>
+<p>在 Abstract Factory 模式中，接口负责创建相关对象的工厂，而不显式指定它们的类。 每个生成的工厂都可以按照工厂模式给出对象。</p>
+<p>What is Singleton pattern? 什么是单例模式？</p>
+<p>Singleton pattern is one of the simplest design patterns in Java. This type of design pattern comes under creational pattern as this pattern provides one of the best ways to create an object.</p>
+<p>单例模式是 Java 中最简单的设计模式之一。 这种类型的设计模式属于创建型模式模式，因为这种模式提供了创建对象的最佳方式之一。</p>
+<p>This pattern involves a single class which is responsible to create an object while making sure that only single object gets created. This class provides a way to access its only object which can be accessed directly without need to instantiate the object of the class.</p>
+<p>该模式涉及一个类，该类负责创建一个对象，同时确保只创建一个对象。 这个类提供了一种访问它唯一的对象的方法，这个对象可以直接访问而不需要实例化类的对象。</p>
+<p>How can you create Singleton class in java? 如何在 java 中创建 Singleton 类？</p>
+<p>It is two step process. First, make the constructor private so that new operator cannot be used to instantiate the class. Return an object of the object if not null otherwise create the object and return the same via a method.</p>
+<p>这是两个步骤的过程。 首先，将构造函数设为私有，这样就不能使用新的运算符来实例化类。 返回对象的对象(如果不是 null) ，否则创建对象并通过方法返回相同的对象。</p>
+<p>What are the difference between a static class and a singleton class? 静态类和单例类之间有什么区别？</p>
+<p>Following are the differences between a static class and a singleton class.</p>
+<p>以下是静态类和单例类之间的区别。</p>
+<ul>
+<li><p>A static class can not be a top level class and can not implement interfaces where a singleton class can.</p>
+<p>静态类不能是顶级类，也不能实现单例类可以实现的接口。</p>
+</li>
+<li><p>All members of a static class are static but for a Singleton class it is not a requirement.</p>
+<p>静态类的所有成员都是静态的，但是对于 Singleton 类来说，它不是必需的。</p>
+</li>
+<li><p>A static class get initialized when it is loaded so it can not be lazily loaded where a singleton class can be lazily loaded.</p>
+<p>一个静态类在加载时得到初始化，所以它不能在单例类可以延迟加载的地方被延迟加载。</p>
+</li>
+<li><p>A static class object is stored in stack whereas singlton class object is stored in heap memory space.</p>
+<p>一个静态类对象存储在堆栈中，而 singlton 类对象存储在堆内存空间中。</p>
+</li>
+</ul>
+<p>Can we create a clone of a singleton object? 我们可以创建一个单例对象的克隆吗？</p>
+<p>Yes.</p>
+<p>是的。</p>
+<p>How to prevent cloning of a singleton object? 如何防止克隆单例对象？</p>
+<p>Throw exception within the body of clone() method.</p>
+<p>在 clone ()方法的 body 中抛出异常。</p>
+<p>Name some of the design patterns which are used in JDK library. 列举一些在 JDK 图书馆使用的设计模式</p>
+<p>Following are some of the design patterns which are used in JDK library.</p>
+<p>以下是 JDK 图书馆使用的一些设计模式。</p>
+<ul>
+<li><p>Decorator patttern is used by Wrapper classes.</p>
+<p>Decorator 模式被包装器类使用。</p>
+</li>
+<li><p>Singleton pattern is used by Runtime, Calendar classes.</p>
+<p>单例模式使用的是运行时，日历类。</p>
+</li>
+<li><p>Factory pattern is used by Wrapper class like Integer.valueOf.</p>
+<p>像 Integer.valueOf 这样的 Wrapper 类使用工厂模式。</p>
+</li>
+<li><p>Observer pattern is used by event handling frameworks like swing, awt.</p>
+<p>事件处理框架如 swing、 awt 使用观察者模式。</p>
+</li>
+</ul>
+<p>What is the benefit of Factory pattern? 工厂模式的好处是什么？</p>
+<p>Factory pattern encapsulates the implementation details and underlying implementation can be changed without any impact on caller api.</p>
+<p>工厂模式封装了实现细节，并且可以在不影响调用方 api 的情况下更改底层实现。</p>
+<p>What is Builder pattern? 什么是建造者模式？</p>
+<p>Builder pattern builds a complex object using simple objects and using a step by step approach. This builder is independent of other objects.</p>
+<p>Builder 模式使用简单对象并使用逐步方法构建复杂对象。 这个构建器独立于其他对象。</p>
+<p>What is Prototype pattern? 什么是原型模式？</p>
+<p>Prototype pattern refers to creating duplicate object while keeping performance in mind. This pattern involves implementing a prototype interface which tells to create a clone of the current object.</p>
+<p>原型模式是指在创建复制对象的同时考虑性能。 该模式涉及实现一个原型接口，该接口告诉创建当前对象的克隆。</p>
+<p>When Prototype pattern is to be used? 什么时候使用原型模式？</p>
+<p>This pattern is used when creation of object directly is costly. For example, an object is to be created after a costly database operation. We can cache the object, returns its clone on next request and update the database as and when needed thus reducing database calls.</p>
+<p>当直接创建对象的代价很高时，可以使用此模式。 例如，要在代价高昂的数据库操作之后创建对象。 我们可以缓存对象，在下一次请求时返回其克隆，并根据需要更新数据库，从而减少数据库调用。</p>
+<p>What is Adapter pattern? 什么是适配器模式？</p>
+<p>Adapter pattern works as a bridge between two incompatible interfaces. This pattern involves a single class which is responsible to join functionalities of independent or incompatible interfaces.</p>
+<p>适配器模式充当两个不兼容接口之间的桥梁。 此模式涉及一个负责连接独立或不兼容接口的功能的类。</p>
+<p>Give an example of Adapter pattern. 给出一个适配器模式的示例</p>
+<p>A real life example could be a case of card reader which acts as an adapter between memory card and a laptop. You plugin the memory card into card reader and card reader into the laptop so that memory card can be read via laptop.</p>
+<p>现实生活中的一个例子是读卡器，它充当存储卡和笔记本电脑之间的适配器。 你把存储卡插入读卡器和读卡器，这样就可以通过笔记本电脑读取存储卡。</p>
+<p>What is Bridge pattern? 什么是桥梁模式？</p>
+<p>Bridge is used when we need to decouple an abstraction from its implementation so that the two can vary independently. This type of design pattern comes under structural pattern as this pattern decouples implementation class and abstract class by providing a bridge structure between them.</p>
+<p>当我们需要将一个抽象与其实现分离以便两者可以独立地变化时，就使用桥。 这种类型的设计模式属于结构模式，因为这种模式通过在实现类和抽象类之间提供桥接结构来解耦它们。</p>
+<p>This pattern involves an interface which acts as a bridge which makes the functionality of concrete classes independent from interface implementer classes. Both types of classes can be altered structurally without affecting each other.</p>
+<p>该模式涉及一个作为桥梁的接口，使具体类的功能独立于接口实现类。 这两种类型的类都可以在不影响彼此的情况下改变结构。</p>
+<p>What is Filter pattern? 什么是过滤模式？</p>
+<p>Filter pattern or Criteria pattern is a design pattern that enables developers to filter a set of objects using different criteria and chaining them in a decoupled way through logical operations. This type of design pattern comes under structural pattern as this pattern combines multiple criteria to obtain single criteria.</p>
+<p>筛选器模式或条件模式是一种设计模式，它允许开发人员使用不同的条件筛选一组对象，并通过逻辑操作以解耦的方式将它们链接起来。 这种类型的设计模式属于结构模式，因为这种模式结合了多个标准以获得单个标准。</p>
+<p>What is Composite pattern? 什么是组合模式？</p>
+<p>Composite pattern is used where we need to treat a group of objects in similar way as a single object. Composite pattern composes objects in term of a tree structure to represent part as well as whole hierarchy. This type of design pattern comes under structural pattern as this pattern creates a tree structure of group of objects.</p>
+<p>当我们需要以相似的方式将一组对象视为单个对象时，就使用组合模式。 组合模式按照树形结构组成对象，表示部分和整个层次结构。 这种类型的设计模式属于结构模式，因为这种模式创建了一组对象的树形结构。</p>
+<p>This pattern creates a class that contains group of its own objects. This class provides ways to modify its group of same objects.</p>
+<p>此模式创建一个包含自己的对象组的类。 此类提供了修改其相同对象组的方法。</p>
+<p>What is Decorator pattern? 什么是修饰模式？</p>
+<p>Decorator pattern allows a user to add new functionality to an existing object without altering its structure. This type of design pattern comes under structural pattern as this pattern acts as a wrapper to existing class.</p>
+<p>允许用户在不改变现有对象结构的情况下为其添加新的功能修饰模式。 这种类型的设计模式属于结构模式，因为这种模式充当现有类的包装器。</p>
+<p>This pattern creates a decorator class which wraps the original class and provides additional functionality keeping class methods signature intact.</p>
+<p>此模式创建了一个装饰器类，该类包装了原始类，并提供了保持类方法签名完整的附加功能。</p>
+<p>What is Facade pattern? 什么是立面模式？</p>
+<p>Facade pattern hides the complexities of the system and provides an interface to the client using which the client can access the system. This type of design pattern comes under structural pattern as this pattern adds an interface to existing system to hide its complexities.</p>
+<p>Facade 模式隐藏了系统的复杂性，并为客户机提供了一个接口，客户机可以使用该接口访问系统。 这种类型的设计模式属于结构模式，因为这种模式为现有系统添加了一个界面，以隐藏其复杂性。</p>
+<p>This pattern involves a single class which provides simplified methods required by client and delegates calls to methods of existing system classes.</p>
+<p>这种模式涉及一个类，它提供客户机所需的简化方法，并将调用委托给现有系统类的方法。</p>
+<p>What is Flyweight pattern? 什么是享元模式？</p>
+<p>Flyweight pattern is primarily used to reduce the number of objects created and to decrease memory footprint and increase performance. This type of design pattern comes under structural pattern as this pattern provides ways to decrease object count thus improving the object structure of application.</p>
+<p>享元模式主要用于减少创建的对象数量，减少内存占用并提高性能。 这种类型的设计模式属于结构模式，因为这种模式提供了减少对象数量的方法，从而改进了应用程序的对象结构。</p>
+<p>Flyweight pattern tries to reuse already existing similar kind objects by storing them and creates new object when no matching object is found.</p>
+<p>享元模式通过存储它们来重用已经存在的相似类型的对象，并在找不到匹配对象时创建新对象。</p>
+<p>What is Proxy pattern? 什么是代理模式？</p>
+<p>In proxy pattern, a class represents functionality of another class. This type of design pattern comes under structural pattern.</p>
+<p>在代理模式中，一个类表示另一个类的功能。 这种类型的设计模式属于结构模式。</p>
+<p>In proxy pattern, we create object having original object to interface its functionality to outer world.</p>
+<p>在代理模式中，我们创建具有原始对象的对象来将其功能接口到外部世界。</p>
+<p>What is Chain of Responsibility pattern? 什么是责任链模式？</p>
+<p>As the name suggests, the chain of responsibility pattern creates a chain of receiver objects for a request. This pattern decouples sender and receiver of a request based on type of request. This pattern comes under behavioral patterns.</p>
+<p>顾名思义，责任链模式为请求创建了一个接收方对象链。 这种模式根据请求的类型将请求的发送方和接收方解耦。 这种模式属于行为模式。</p>
+<p>In this pattern, normally each receiver contains reference to another receiver. If one object cannot handle the request then it passes the same to the next receiver and so on.</p>
+<p>在这种模式中，通常每个接收器都包含对另一个接收器的引用。 如果一个对象不能处理请求，那么它将同样的请求传递给下一个接收者，依此类推。</p>
+<p>What is Command pattern? 什么是命令模式？</p>
+<p>Command pattern is a data driven design pattern and falls under behavioral pattern category. A request is wrapped under an object as command and passed to invoker object. Invoker object looks for the appropriate object which can handle this command and passes the command to the corresponding object which executes the command.</p>
+<p>命令模式是一种数据驱动的设计模式，属于行为模式的范畴。 请求以命令的形式包装在对象下，并传递给调用程序对象。 Invoker 对象寻找能够处理该命令的适当对象，并将该命令传递给执行该命令的对应对象。</p>
+<p>What is Interpreter pattern? 什么是解释器模式？</p>
+<p>Interpreter pattern provides a way to evaluate language grammar or expression. This type of pattern comes under behavioral pattern. This pattern involves implementing an expression interface which tells to interpret a particular context.</p>
+<p>解释器模式提供了一种评估语言语法或表达式的方法。 这种类型的模式属于行为模式。 此模式涉及实现一个表达式接口，该接口告诉解释特定的上下文。</p>
+<p>Give an example where Interpreter pattern is used? 举一个使用解释器模式的例子？</p>
+<p>This pattern is used in SQL parsing, symbol processing engine etc.</p>
+<p>该模式用于 SQL 解析、符号处理引擎等。</p>
+<p>What is Iterator pattern? 什么是迭代器模式？</p>
+<p>Iterator pattern is very commonly used design pattern in Java and .Net programming environment. This pattern is used to get a way to access the elements of a collection object in sequential manner without any need to know its underlying representation. Iterator pattern falls under behavioral pattern category.</p>
+<p>迭代器模式是 Java 和 Java 中非常常用的设计模式。 网络编程环境。 这个模式被用来获得一种顺序访问集合对象元素的方法，而不需要知道它的基底形式。 迭代器模式属于行为模式的范畴。</p>
+<p>What are the entities of Service Locator pattern? 服务定位器模式的实体是什么？</p>
+<p>Following are the entities of this type of design pattern.</p>
+<p>下面是这种类型的设计模式的实体。</p>
+<ul>
+<li><p><strong>Service</strong> - Actual Service which will process the request. Reference of such service is to be looked upon in JNDI server.</p>
+<p>服务-将处理请求的实际服务。 这种服务的引用将在 JNDI 服务器中查看。</p>
+</li>
+<li><p><strong>Context / Initial Context</strong> - JNDI Context carries the reference to service used for lookup purpose.</p>
+<p>Context / Initial Context-JNDI Context 带有对用于查找目的的服务的引用。</p>
+</li>
+<li><p><strong>Service Locator</strong> - Service Locator is a single point of contact to get services by JNDI lookup caching the services.</p>
+<p>Service Locator-Service Locator 是通过 JNDI 查找缓存服务来获取服务的单个联系点。</p>
+</li>
+<li><p><strong>Cache</strong> - Cache to store references of services to reuse them.</p>
+<p>缓存-缓存存储服务的引用以重用它们。</p>
+</li>
+<li><p><strong>Client</strong> - Client is the object that invokes the services via ServiceLocator.</p>
+<p>Client-Client 是通过 ServiceLocator 调用服务的对象。</p>
+</li>
+</ul>
+<p>What is Mediator pattern? 什么是中介模式？</p>
+<p>Mediator pattern is used to reduce communication complexity between multiple objects or classes. This pattern provides a mediator class which normally handles all the communications between different classes and supports easy maintenance of the code by loose coupling. Mediator pattern falls under behavioral pattern category.</p>
+<p>中介模式用于降低多个对象或类之间的通信复杂度。 该模式提供了一个中介类，该类通常处理不同类之间的所有通信，并支持通过松散耦合简单地维护代码。 中介模式属于行为模式的范畴。</p>
+<p>What is Memento pattern? 什么是记忆碎片模式？</p>
+<p>Memento pattern is used to restore state of an object to a previous state. Memento pattern falls under behavioral pattern category.</p>
+<p>记忆碎片模式用于将对象的状态恢复到以前的状态。 纪念品模式属于行为模式范畴。</p>
+<p>Name the actor classes used in Memento pattern. 命名在记忆碎片模式中使用的角色类</p>
+<p>Memento pattern uses three actor classes. Memento contains state of an object to be restored. Originator creates and stores states in Memento objects and Caretaker object is responsible to restore object state from Memento.</p>
+<p>模式使用三个演员类。 记忆碎片包含要还原的物体的状态。 发起人创建并存储在记忆碎片对象中的状态，管理员对象负责从记忆碎片中恢复对象状态。</p>
+<p>What is Observer pattern? 什么是观察者模式？</p>
+<p>Observer pattern is used when there is one-to-many relationship between objects such as if one object is modified, its depenedent objects are to be notified automatically. Observer pattern falls under behavioral pattern category.</p>
+<p>当对象之间存在一对多关系时，如果一个对象被修改，它的观察者模式对象将被自动通知。 观察者模式属于行为模式的范畴。</p>
+<p>Name the actor classes used in Observer pattern. 命名观察者模式中使用的 actor 类</p>
+<p>Observer pattern uses three actor classes. Subject, Observer and Client. Subject is an object having methods to attach and detach observers to a client object. We have created an abstract class Observer and a concrete class Subject that is extending class Observer.</p>
+<p>观察者模式使用3个演员类别。 主题、观察员和客户。 主题是一个具有将观察者附加和分离到客户端对象的方法的对象。 我们已经创建了一个抽象类 Observer 和一个扩展类 Observer 的具体类 Subject。</p>
+<p>What is state pattern? 什么是状态模式？</p>
+<p>In State pattern a class behavior changes based on its state. This type of design pattern comes under behavior pattern. In State pattern, we create objects which represent various states and a context object whose behavior varies as its state object changes.</p>
+<p>在状态模式中，类行为根据其状态而变化。 这种类型的设计模式属于行为模式。 在 State 模式中，我们创建表示各种状态的对象和上下文对象，它们的行为随其状态对象的变化而变化。</p>
+<p>What is Null Object pattern? 什么是空对象模式？</p>
+<p>In Null Object pattern, a null object replaces check of NULL object instance. Instead of putting if check for a null value, Null Object reflects a do nothing relationship. Such Null object can also be used to provide default behaviour in case data is not available.</p>
+<p>在空对象模式中，NULL 对象替换 NULL 对象实例的检查。 与使用 if 检查空值不同，Null Object 反映了一种不做任何事的关系。 在数据不可用的情况下，也可以使用这种 Null 对象提供默认行为。</p>
+<p>In Null Object pattern, we create an abstract class specifying various operations to be done, concrete classes extending this class and a null object class providing do nothing implemention of this class and will be used seemlessly where we need to check null value.</p>
+<p>在空对象模式中，我们创建了一个抽象类来指定要完成的各种操作，具体类扩展了这个类，一个空对象类提供了这个类的任何实现，在需要检查空值的地方可以适当地使用。</p>
+<p>What is Strategy pattern? 什么是战略模式？</p>
+<p>In Strategy pattern, a class behavior or its algorithm can be changed at run time. This type of design pattern comes under behavior pattern.</p>
+<p>在策略模式中，类行为或其算法可以在运行时改变。 这种类型的设计模式属于行为模式。</p>
+<p>In Strategy pattern, we create objects which represent various strategies and a context object whose behavior varies as per its strategy object. The strategy object changes the executing algorithm of the context object.</p>
+<p>在策略模式中，我们创建表示各种策略的对象和上下文对象，其行为随其策略对象的不同而变化。 策略对象改变上下文对象的执行算法。</p>
+<p>What is Template pattern? 什么是模板模式？</p>
+<p>In Template pattern, an abstract class exposes defined way(s)/template(s) to execute its methods. Its subclasses can override the method implementation as per need but the invocation is to be in the same way as defined by an abstract class. This pattern comes under behavior pattern category.</p>
+<p>在 Template 模式中，抽象类公开用于执行其方法的定义方式 / 模板。 它的子类可以根据需要重写方法实现，但是调用的方式与抽象类定义的方式相同。 这种模式属于行为模式的范畴。</p>
+<p>What is Visitor pattern? 什么是访问者模式？</p>
+<p>In Visitor pattern, we use a visitor class which changes the executing algorithm of an element class. By this way, execution algorithm of element can vary as and when visitor varies. This pattern comes under behavior pattern category. As per the pattern, element object has to accept the visitor object so that visitor object handles the operation on the element object.</p>
+<p>在访问者模式中，我们使用访问者类来更改元素类的执行算法。 通过这种方式，元素的执行算法可以随访问者的变化而变化。 这种模式属于行为模式的范畴。 根据模式，元素对象必须接受访问者对象，以便访问者对象处理元素对象上的操作。</p>
+<p>What is MVC pattern? 什么是 MVC 模式？</p>
+<p>MVC Pattern stands for Model-View-Controller Pattern. This pattern is used to separate application’s concerns.</p>
+<p>Mvc 模式代表模型-视图-控制器模式。 此模式用于分离应用程序的关注点。</p>
+<ul>
+<li><p><strong>Model</strong> - Model represents an object or JAVA POJO carrying data. It can also have logic to update controller if its data changes.</p>
+<p>Model-Model 表示一个带有数据的对象或 javapojo。 如果控制器的数据发生变化，它也可以使用逻辑来更新控制器。</p>
+</li>
+<li><p><strong>View</strong> - View represents the visualization of the data that model contains.</p>
+<p>View-View 表示模型包含的数据的可视化。</p>
+</li>
+<li><p><strong>Controller</strong> - Controller acts on both model and view. It controls the data flow into model object and updates the view whenever data changes. It keeps view and model separate.</p>
+<p>Controller-Controller 对模型和视图都起作用。 它控制到模型对象的数据流，并在数据发生更改时更新视图。 它保持视图和模型分离。</p>
+</li>
+</ul>
+<p>What is Business Delegate pattern? 什么是业务代表模式？</p>
+<p>Business Delegate Pattern is used to decouple presentation tier and business tier. It is basically use to reduce communication or remote lookup functionality to business tier code in presentation tier code. In business tier we have following entities.</p>
+<p>业务委托模式用于分离表示层和业务层。 它主要用于将通信或远程查找功能减少到表示层代码中的业务层代码。 在业务层，我们有以下实体。</p>
+<ul>
+<li><p><strong>Client</strong> - Presentation tier code may be JSP, servlet or UI java code.</p>
+<p>客户端表示层代码可以是 JSP、 servlet 或 UI java 代码。</p>
+</li>
+<li><p><strong>Business Delegate</strong> - A single entry point class for client entities to provide access to Business Service methods.</p>
+<p>业务代表-客户端实体提供对业务服务方法的访问的单一入口点类。</p>
+</li>
+<li><p><strong>LookUp Service</strong> - Lookup service object is responsible to get relative business implementation and provide business object access to business delegate object.</p>
+<p>Lookup Service-LookUp 服务对象负责获取相关的业务实现，并提供对业务委托对象的业务对象访问。</p>
+</li>
+<li><p><strong>Business Service</strong> - Business Service interface. Concrete classes implement this business service to provide actual business implementation logic.</p>
+<p>业务服务-业务服务接口。 具体类实现这个业务服务，以提供实际的业务实现逻辑。</p>
+</li>
+</ul>
+<p>What is Composite Entity pattern? 什么是复合实体模式？</p>
+<p>Composite Entity pattern is used in EJB persistence mechanism. A Composite entity is an EJB entity bean which represents a graph of objects. When a composite entity is updated, internally dependent objects beans get updated automatically as being managed by EJB entity bean. Following are the participants in Composite Entity Bean.</p>
+<p>Ejb 持久化机制采用复合实体模式。 Composite 实体是 EJB 实体 bean，它表示一个对象图。 当更新组合实体时，内部依赖的对象 bean 将自动更新为由 EJB 实体 bean 管理。 下面是组合实体 Bean 中的参与者。</p>
+<ul>
+<li><p><strong>Composite Entity</strong> - It is primary entity bean. It can be coarse grained or can contain a coarse grained object to be used for persistence purpose.</p>
+<p>复合实体-它是主要的实体 bean。 它可以是粗粒度的，也可以包含用于持久化的粗粒度对象。</p>
+</li>
+<li><p><strong>Coarse-Grained Object</strong> - This object contains dependent objects. It has its own life cycle and also manages life cycle of dependent objects.</p>
+<p>粗粒度对象-这个对象包含依赖对象。 它有自己的生命周期，还管理相关对象的生命周期。</p>
+</li>
+<li><p><strong>Dependent Object</strong> - Dependent object is an object which depends on coarse grained object for its persistence lifecycle.</p>
+<p>依赖对象相关对象是一个在其持久化生命周期中依赖于粗粒度对象的对象。</p>
+</li>
+<li><p><strong>Strategies</strong> - Strategies represents how to implement a Composite Entity.</p>
+<p>战略-战略代表如何实施一个综合实体。</p>
+</li>
+</ul>
+<p>What is Data Access Object Pattern(DAO) pattern? 什么是数据访问对象模式(DAO) ？</p>
+<p>Data Access Object Pattern or DAO pattern is used to separate low level data accessing API or operations from high level business services. Following are the participants in Data Access Object Pattern.</p>
+<p>数据访问对象模式或 DAO 模式用于将底层数据访问 API 或操作与高层业务服务分离。 以下是数据访问对象模式的参与者。</p>
+<ul>
+<li><p><strong>Data Access Object Interface</strong> - This interface defines the standard operations to be performed on a model object(s).</p>
+<p>数据访问对象接口——这个接口定义了在模型对象上执行的标准操作。</p>
+</li>
+<li><p><strong>Data Access Object concrete class</strong> - This class implements above interface. This class is responsible to get data from a data source which can be database / xml or any other storage mechanism.</p>
+<p>数据访问对象具体类-这个类实现了上面的接口。 该类负责从数据源(可以是数据库 / xml 或任何其他存储机制)获取数据。</p>
+</li>
+<li><p><strong>Model Object or Value Object</strong> - This object is simple POJO containing get/set methods to store data retrieved using DAO class.</p>
+<p>模型对象或值对象——这个对象是简单的 POJO，包含用于存储使用 DAO 类检索到的数据的 get / set 方法。</p>
+</li>
+</ul>
+<p>What is Front Controller pattern? 什么是前端控制器模式？</p>
+<p>The front controller design pattern is used to provide a centralized request handling mechanism so that all requests will be handled by a single handler. This handler can do the authentication/ authorization/ logging or tracking of request and then pass the requests to corresponding handlers. Following are the entities of this type of design pattern.</p>
+<p>前端控制器设计模式用于提供集中的请求处理机制，以便所有请求都由单个处理程序处理。 该处理程序可以执行身份验证 / 授权 / 日志记录或跟踪请求，然后将请求传递给相应的处理程序。 下面是这种类型的设计模式的实体。</p>
+<ul>
+<li><p><strong>Front Controller</strong> - Single handler for all kinds of requests coming to the application (either web based/ desktop based).</p>
+<p>前端控制器-单一处理程序的各种请求来到应用程序(无论是基于 web / 基于桌面)。</p>
+</li>
+<li><p><strong>Dispatcher</strong> - Front Controller may use a dispatcher object which can dispatch the request to corresponding specific handler.</p>
+<p>Dispatcher-Front 控制器可以使用一个 Dispatcher 对象，该对象可以将请求分派给相应的特定处理程序。</p>
+</li>
+<li><p><strong>View</strong> - Views are the object for which the requests are made.</p>
+<p>视图-视图是为其提出请求的对象。</p>
+</li>
+</ul>
+<p>What is Intercepting Filter pattern? 什么是拦截过滤器模式？</p>
+<p>The intercepting filter design pattern is used when we want to do some pre-processing / post-processing with request or response of the application. Filters are defined and applied on the request before passing the request to actual target application. Filters can do the authentication/ authorization/ logging or tracking of request and then pass the requests to corresponding handlers.</p>
+<p>当我们需要对应用程序的请求或响应进行一些预处理 / 后处理时，使用拦截过滤器设计模式。 在将请求传递给实际的目标应用程序之前，对请求定义和应用过滤器。 过滤器可以执行身份验证 / 授权 / 记录请求或跟踪请求，然后将请求传递给相应的处理程序。</p>
+<p>What are the entities of Intercepting Filter pattern? 截取过滤器模式的实体是什么？</p>
+<p>Following are the entities of this type of design pattern.</p>
+<p>下面是这种类型的设计模式的实体。</p>
+<ul>
+<li><p><strong>Filter</strong> - Filter which will performs certain task prior or after execution of request by request handler.</p>
+<p>Filter-Filter 将在请求处理程序执行请求之前或之后执行特定任务。</p>
+</li>
+<li><p><strong>Filter Chain</strong> - Filter Chain carries multiple filters and help to execute them in defined order on target.</p>
+<p>过滤器链-过滤器链进行多个过滤器，并帮助执行他们在目标上定义的顺序。</p>
+</li>
+<li><p><strong>Target</strong> - Target object is the request handler.</p>
+<p>Target-Target 对象是请求处理程序。</p>
+</li>
+<li><p><strong>Filter Manager</strong> - Filter Manager manages the filters and Filter Chain.</p>
+<p>过滤器管理器-过滤器管理器管理过滤器和过滤器链。</p>
+</li>
+<li><p><strong>Client</strong> - Client is the object who sends request to the Target object.</p>
+<p>Client-Client 是向 Target 对象发送请求的对象。</p>
+</li>
+</ul>
+<p>What is Service Locator pattern? 什么是服务定位器模式？</p>
+<p>The service locator design pattern is used when we want to locate various services using JNDI lookup. Considering high cost of looking up JNDI for a service, Service Locator pattern makes use of caching technique. For the first time a service is required, Service Locator looks up in JNDI and caches the service object. Further lookup or same service via Service Locator is done in its cache which improves the performance of application to great extent.</p>
+<p>当我们希望使用 JNDI 查找各种服务时，可以使用服务定位器设计模式。 考虑到为服务查找 JNDI 的高成本，Service Locator 模式利用了缓存技术。 服务定位器首次在 JNDI 中查找并缓存服务对象。 通过服务定位器在缓存中进行进一步的查找或相同的服务，在很大程度上提高了应用程序的性能。</p>
+<p>What is Transfer Object pattern? 什么是传输对象模式？</p>
+<p>The Transfer Object pattern is used when we want to pass data with multiple attributes in one shot from client to server. Transfer object is also known as Value Object. Transfer Object is a simple POJO class having getter/setter methods and is serializable so that it can be transferred over the network. It does not have any behavior. Server Side business class normally fetches data from the database and fills the POJO and send it to the client or pass it by value. For client, transfer object is read-only. Client can create its own transfer object and pass it to server to update values in database in one shot. Following are the entities of this type of design pattern.</p>
+<p>传输对象模式用于在客户机到服务器之间一次性传递具有多个属性的数据。 传输对象也称为值对象。 Transfer Object 是一个具有 getter / setter 方法的简单 POJO 类，它是可序列化的，因此可以通过网络传输。 它没有任何行为。 服务器端业务类通常从数据库中获取数据并填充 POJO，然后将其发送给客户机或通过值传递。 对于客户端，传输对象是只读的。 客户端可以创建自己的传输对象，并将其传递给服务器，以便一次更新数据库中的值。 下面是这种类型的设计模式的实体。</p>
+<ul>
+<li><p><strong>Business Object</strong> - Business Service fills the Transfer Object with data.</p>
+<p>业务对象——业务服务用数据填充传输对象。</p>
+</li>
+<li><p><strong>Transfer Object</strong> - Simple POJO having methods to set/get attributes only.</p>
+<p>传输对象——只有设置 / 获取属性的方法的简单 POJO。</p>
+</li>
+<li><p><strong>Client</strong> - Client either requests or sends the Transfer Object to Business Object.</p>
+<p>客户端-客户端请求或发送传输对象到业务对象。</p>
+</li>
+</ul>
+<h2 id="What-is-Next"><a href="#What-is-Next" class="headerlink" title="What is Next ?"></a>What is Next ?</h2><h2 id="下一步是什么？"><a href="#下一步是什么？" class="headerlink" title="下一步是什么？"></a>下一步是什么？</h2><p>Further you can go through your past assignments you have done with the subject and make sure you are able to speak confidently on them. If you are fresher then interviewer does not expect you will answer very complex questions, rather you have to make your basics concepts very strong.</p>
+<p>此外，你还可以回顾一下过去完成的作业，确保你能够自信地就这些作业发言。 如果你是新人，那么面试官并不期望你会回答非常复杂的问题，而是你必须使你的基本概念非常强大。</p>
+<p>Second it really doesn’t matter much if you could not answer few questions but it matters that whatever you answered, you must have answered with confidence. So just feel confident during your interview. We at tutorialspoint wish you best luck to have a good interviewer and all the very best for your future endeavor. Cheers :-)</p>
+<p>其次，如果你不能回答几个问题，这真的没有多大关系，但重要的是，无论你回答了什么问题，你必须自信地回答。 所以在面试中要有自信。 我们在教育点祝你好运，有一个好的面试官和一切最好的为你未来的努力。 干杯: -)</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechat-reward-image.png" alt="博主 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay-reward-image.png" alt="博主 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>博主</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://xixici.com/2019/12/27/设计模式面试问答-1/" title="设计模式面试问答-1">http://xixici.com/2019/12/27/设计模式面试问答-1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/17/Linux面试常见30问答/" rel="next" title="Linux面试常见30问答">
+                <i class="fa fa-chevron-left"></i> Linux面试常见30问答
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/27/设计模式面试问答-2/" rel="prev" title="设计模式面试问答-2">
+                设计模式面试问答-2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.gif" alt="博主">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description">远方与诗的存在</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/xixici" title="GitHub &rarr; https://github.com/xixici" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:ybleak@gmail.com" title="E-Mail &rarr; mailto:ybleak@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Design-Pattern-Interview-Questions"><span class="nav-number">1.</span> <span class="nav-text">Design Pattern - Interview Questions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式-面试问题"><span class="nav-number">2.</span> <span class="nav-text">设计模式-面试问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-Next"><span class="nav-number">2.1.</span> <span class="nav-text">What is Next ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下一步是什么？"><span class="nav-number">2.2.</span> <span class="nav-text">下一步是什么？</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 - Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'eNL90rjoyqRULdbwDWngaezL-gzGzoHsz',
+    appKey: 'U7WbxXmVMpcwTtsEqCv41v5s',
+    placeholder: 'Talk Something...',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'; 
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+      pbOptions = {};
+      
+        pbOptions.iconStyle = "default";
+      
+        pbOptions.boxForm = "horizontal";
+      
+        pbOptions.position = "bottomCenter";
+      
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Linkedin,Mailto,Pinterest,Facebook,Tumblr,GoogleBookmarks,Evernote";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+        flOptions.iconStyle = "default";
+      
+        flOptions.boxForm = "horizontal";
+      
+        flOptions.position = "middleRight";
+      
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Linkedin,Mailto,Pinterest,Facebook,Tumblr,GoogleBookmarks,Evernote";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script>pangu.spacingPage();</script>
+
+
+  
+  <script src="/js/src/js.cookie.js?v=7.0.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=7.0.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
